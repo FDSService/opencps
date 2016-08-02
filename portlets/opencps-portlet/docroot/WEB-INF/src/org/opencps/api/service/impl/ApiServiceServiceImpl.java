@@ -67,6 +67,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextThreadLocal;
@@ -274,7 +275,7 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 		_log.debug("getByoid===oid==============" + oid);
 		
 		try {
-			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+			ServiceContext serviceContext = getServiceContext();
 			
 			_log.info("===getByoid===getRemoteAddr===" + serviceContext.getRemoteAddr());
 		} catch(Exception e) {
@@ -975,13 +976,9 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 			MessageBusUtil.sendMessage("opencps/backoffice/engine/destination",
 					message);
 			resultObj.put("statusCode", "Success");
-			ServiceContext serviceContext = ServiceContextThreadLocal
-					.getServiceContext();
-			serviceContext.setUserId(getUser().getUserId());
-			serviceContext.setScopeGroupId(getUser().getGroupId());
-			serviceContext.setCompanyId(getUser().getCompanyId());
+			ServiceContext serviceContext = getServiceContext();
 
-			String ipAddress = PortalUtil.getComputerAddress();
+			String ipAddress = serviceContext.getRemoteAddr();
 			JSONObject params = JSONFactoryUtil.createJSONObject();
 			params.put("oid", oid);
 			params.put("actioncode", actioncode);
@@ -991,12 +988,9 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 					"05", ipAddress, "", params.toString(), "success",
 					serviceContext);
 		} catch (SystemException e) {
-			// TODO Auto-generated catch block
 			resultObj.put("statusCode", "ActionNotFound");
-			ServiceContext serviceContext = ServiceContextThreadLocal
-					.getServiceContext();
-			serviceContext.setUserId(userId);
-			String ipAddress = PortalUtil.getComputerAddress();
+			ServiceContext serviceContext = getServiceContext();
+			String ipAddress = serviceContext.getRemoteAddr();
 			JSONObject params = JSONFactoryUtil.createJSONObject();
 			params.put("oid", oid);
 			params.put("actioncode", actioncode);
@@ -1014,13 +1008,9 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 			resultObj.put("statusCode", "ActionNotFound");
 
 			try {
-				ServiceContext serviceContext = ServiceContextThreadLocal
-						.getServiceContext();
-				serviceContext.setUserId(getUser().getUserId());
-				serviceContext.setScopeGroupId(getUser().getGroupId());
-				serviceContext.setCompanyId(getUser().getCompanyId());
+				ServiceContext serviceContext = getServiceContext();
 
-				String ipAddress = PortalUtil.getComputerAddress();
+				String ipAddress = serviceContext.getRemoteAddr();
 				JSONObject params = JSONFactoryUtil.createJSONObject();
 				params.put("oid", oid);
 				params.put("actioncode", actioncode);
@@ -1036,10 +1026,8 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 		} catch (PortalException e) {
 			// TODO Auto-generated catch block
 			resultObj.put("statusCode", "ActionNotFound");
-			ServiceContext serviceContext = ServiceContextThreadLocal
-					.getServiceContext();
-			serviceContext.setUserId(userId);
-			String ipAddress = PortalUtil.getComputerAddress();
+			ServiceContext serviceContext = getServiceContext();
+			String ipAddress = serviceContext.getRemoteAddr();
 			JSONObject params = JSONFactoryUtil.createJSONObject();
 			params.put("oid", oid);
 			params.put("actioncode", actioncode);
@@ -1154,13 +1142,9 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 			MessageBusUtil.sendMessage("opencps/backoffice/engine/destination",
 					message);
 			resultObj.put("statusCode", "Success");
-			ServiceContext serviceContext = ServiceContextThreadLocal
-					.getServiceContext();
-			serviceContext.setUserId(getUser().getUserId());
-			serviceContext.setScopeGroupId(getUser().getGroupId());
-			serviceContext.setCompanyId(getUser().getCompanyId());
+			ServiceContext serviceContext = getServiceContext();
 
-			String ipAddress = PortalUtil.getComputerAddress();
+			String ipAddress = serviceContext.getRemoteAddr();
 			JSONObject params = JSONFactoryUtil.createJSONObject();
 			params.put("oid", oid);
 			params.put("actioncode", actioncode);
@@ -1172,10 +1156,8 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 		} catch (SystemException e) {
 			// TODO Auto-generated catch block
 			resultObj.put("statusCode", "ActionNotFound");
-			ServiceContext serviceContext = ServiceContextThreadLocal
-					.getServiceContext();
-			serviceContext.setUserId(userId);
-			String ipAddress = PortalUtil.getComputerAddress();
+			ServiceContext serviceContext = getServiceContext();
+			String ipAddress = serviceContext.getRemoteAddr();
 			JSONObject params = JSONFactoryUtil.createJSONObject();
 			params.put("oid", oid);
 			params.put("actioncode", actioncode);
@@ -1193,13 +1175,9 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 			resultObj.put("statusCode", "ActionNotFound");
 
 			try {
-				ServiceContext serviceContext = ServiceContextThreadLocal
-						.getServiceContext();
-				serviceContext.setUserId(getUser().getUserId());
-				serviceContext.setScopeGroupId(getUser().getGroupId());
-				serviceContext.setCompanyId(getUser().getCompanyId());
+				ServiceContext serviceContext = getServiceContext();
 
-				String ipAddress = PortalUtil.getComputerAddress();
+				String ipAddress = serviceContext.getRemoteAddr();
 				JSONObject params = JSONFactoryUtil.createJSONObject();
 				params.put("oid", oid);
 				params.put("actioncode", actioncode);
@@ -1215,10 +1193,8 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 		} catch (PortalException e) {
 			// TODO Auto-generated catch block
 			resultObj.put("statusCode", "ActionNotFound");
-			ServiceContext serviceContext = ServiceContextThreadLocal
-					.getServiceContext();
-			serviceContext.setUserId(userId);
-			String ipAddress = PortalUtil.getComputerAddress();
+			ServiceContext serviceContext = getServiceContext();
+			String ipAddress = serviceContext.getRemoteAddr();
 			JSONObject params = JSONFactoryUtil.createJSONObject();
 			params.put("oid", oid);
 			params.put("actioncode", actioncode);
@@ -1293,12 +1269,9 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 		resultObj.put("statusCode", "Success");
 		resultObj.put("data", resultArr);
 		try {
-			ServiceContext serviceContext = new ServiceContext();
-			serviceContext.setUserId(getUser().getUserId());
-			serviceContext.setScopeGroupId(getUser().getGroupId());
-			serviceContext.setCompanyId(getUser().getCompanyId());
+			ServiceContext serviceContext = getServiceContext();
 
-			String ipAddress = PortalUtil.getComputerAddress();
+			String ipAddress = serviceContext.getRemoteAddr();
 
 			ApiServiceLocalServiceUtil.addApiService(getUser().getUserId(),
 					"02", ipAddress, "", "{ 'username': '" + username + "' }",
@@ -1430,11 +1403,9 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 
 				jsonObject.put("dossierFiles", dfArr);
 				try {
-					ServiceContext serviceContext = new ServiceContext();
-					serviceContext.setUserId(getUser().getUserId());
-					serviceContext.setScopeGroupId(getUser().getGroupId());
-					serviceContext.setCompanyId(getUser().getCompanyId());
-					String ipAddress = PortalUtil.getComputerAddress();
+					ServiceContext serviceContext = getServiceContext();
+					
+					String ipAddress = serviceContext.getRemoteAddr();
 
 					JSONObject params = JSONFactoryUtil.createJSONObject();
 					params.put("oid", oid);
@@ -1494,6 +1465,24 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 
 		return jsonObject;
 	}	
+	
+	private ServiceContext getServiceContext() 
+			throws PortalException, SystemException {
+		
+		ServiceContext serviceContext = getServiceContext();
+		
+		if(serviceContext == null) {
+			serviceContext = new ServiceContext();
+			
+			if(getUser() != null) {
+				serviceContext.setUserId(getUser().getUserId());
+				serviceContext.setScopeGroupId(getUser().getGroupId());
+				serviceContext.setCompanyId(getUser().getCompanyId());
+			}
+		}
+		
+		return serviceContext;
+	}
 	
 	private String getFileURL(FileEntry fileEntry) throws PortalException, SystemException {
 
