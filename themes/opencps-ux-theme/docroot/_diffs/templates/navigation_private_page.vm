@@ -41,16 +41,18 @@
 
            </li>
         #end
-        <li class="account-info">
-        	#if ($hasUserGroupRole)
-        		<a href="/group/guest/thong-tin-tai-khoan-cb" rel="nofollow" title="#language("account-info")" class="account-name">#language ("welcome-key") $user_name</a>
-        	#else
-        		<a href="/group/guest/thong-tin-tai-khoan-cd-tc" rel="nofollow" title="#language("account-info")" class="account-name">#language ("welcome-key") $user_name</a>
-        	#end
-        </li>
-        <li class="account-info">
-        	<span class="logout"><a href="$sign_out_url" class="btn-dn">#language ("logout-key")</a></span>
-        </li>
+        #if ($is_signed_in)
+	        <li class="account-info">
+	        	#if ($hasUserGroupRole)
+	        		<a href="/group/guest/thong-tin-tai-khoan-cb" rel="nofollow" title="#language("account-info")" class="account-name">#language ("welcome-key") $user_name</a>
+	        	#else
+	        		<a href="/group/guest/thong-tin-tai-khoan-cd-tc" rel="nofollow" title="#language("account-info")" class="account-name">#language ("welcome-key") $user_name</a>
+	        	#end
+	        </li>
+	        <li class="account-info">
+	        	<span class="logout"><a href="$sign_out_url" class="btn-dn">#language ("logout-key")</a></span>
+	        </li>
+        #end
     </ul>
     
 </nav>

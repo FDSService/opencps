@@ -31,3 +31,6 @@ width: 125px;
 .opencps-theme.ux.home_bg .portlet-borderless-container{
 	background: transparent !important;
 }
+.contact-box p {
+  text-shadow: 2px 2px 3px #000;
+}

@@ -13,7 +13,7 @@
 	<link rel="shortcut icon" type="image/png" href="$images_folder/custom/favicon.png"/>
 	
 	#css("$css_folder/$theme_style")
-	<script type="text/javascript" src="$javascript_folder/bootstrap.js" ></script>
+	<script type="text/javascript" src="$javascript_folder/bootstrap.min.js" ></script>
 </head>
 
 <body class="$css_class opencps-theme ux">
@@ -79,29 +79,25 @@
 	
 	<footer>
 		<div class="danhmuc">
-            <p class="title">#language ("danhmuc-key")</p>
-            <ul>
-                <li><a href="">#language ("home-page-key")</a></li>
-                <li><a href="">#language ("notifier-key")</a></li>
-                <li><a href="">#language ("van-ban-phap-luat-key")</a></li>
-                <li><a href="">#language ("serviceinfo-key")</a></li>
-            </ul>
-        </div>
-        <div class="huongdan">
-            <p class="title">#language ("conduct-key")</p>
-            <ul>
-                <li><a href="">#language ("account-register-key")</a></li>
-                <li><a href="">#language ("system-login-key")</a></li>
-                <li><a href="">#language ("nop-hstt-key")</a></li>
-                <li><a href="">#language ("tracuu-ketqua-key")</a></li>
-                <li><a href="">#language ("cbxl-nophs-key")</a></li>
-            </ul>
-        </div>
+                <p class="title">#language ("danhmuc-key")</p>
+                #parse ("$full_templates_path/navigation_footer_public_page.vm")
+
+            </div>
+            <div class="huongdan">
+                <p class="title">#language ("conduct-key")</p>
+                <ul>
+                    <li><a href="/-ang-ky-tai-khoan">#language ("account-register-key")</a></li>
+                    <li><a href="/-ang-nhap-he-thong">#language ("system-login-key")</a></li>
+                    <li><a href="/nop-ho-so-truc-tuyen">#language ("nop-hstt-key")</a></li>
+                    <li><a href="/home">#language ("tracuu-ketqua-key")</a></li>
+                    <li><a href="/can-bo-xu-ly-ho-so">#language ("cbxl-nophs-key")</a></li>
+                </ul>
+            </div>
         <div class="lienhehotro">
-            <p class="title">#language ("lienhehotro-key")</p>
-            <p class="diachi">#language ("nhavapa-key")<br/>#language ("tonthatthuyet-street-key")</p>
-            <p class="mail">opencps@gmail.com</p>
-            <p class="phone">1900 0311</p>
+             <p class="title">#language ("lienhehotro-key")</p>
+            <p class="diachi"></p>
+            <p class="mail"></p>
+            <p class="phone"></p>
         </div>
         <div style="color: rgb(0, 116, 205); position: relative; top: 165px;">Copyright © 2016 - Bộ Giao thông Vận tải</div>
 	</footer>

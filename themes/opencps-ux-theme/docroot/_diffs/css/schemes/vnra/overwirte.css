@@ -390,3 +390,9 @@ margin-right: 30px;
 border-top: 1px solid #dddddd !important;
 border-left: 0px solid #dddddd !important;
 }
+.payment-ld .taglib-search-iterator-page-iterator-top{
+	margin-bottom: 0px !important;
+}
+.opencps-theme .ux-sign-in-wrapper {
+    background: #fff;
+}

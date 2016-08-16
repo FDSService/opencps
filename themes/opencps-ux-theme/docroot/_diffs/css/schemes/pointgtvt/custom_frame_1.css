@@ -257,6 +257,8 @@ body.opencps-theme.home_bg {
     background-color: #0074cd;
     margin-bottom: 25px;
     color: white;
+    -webkit-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
+  box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
 }
 .vbpl-box .title {
     line-height: 70px;
@@ -321,6 +323,8 @@ body.opencps-theme.home_bg {
     height: 70px;
     padding-left: 30px;
     margin-bottom: 25px;
+    -webkit-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
+  box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
 }
 .hoidap-box a {
     line-height: 70px;
@@ -344,6 +348,8 @@ body.opencps-theme.home_bg {
     border-radius: 5px; 
     background-color: white;
     width: 315px;
+    -webkit-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
+  box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
 }
 .hdsd-box .title {
     font-size: 16px;
@@ -472,4 +478,13 @@ background-color: transparent !important;
 }
 .opencps-theme footer > div > ul li a{
   color: #292929;
+}
+footer .lienhehotro .diachi:before{
+	content: "80 Trần Hưng Đạo - Hoàn Kiếm - Hà Nội.";
+}
+footer .lienhehotro .mail:before{
+	content: "bophanhotro@mt.gov.vn";
+}
+footer .lienhehotro .phone:before{
+	content: "(04) 38222979 - Fax: (04) 38221066.";
 }
