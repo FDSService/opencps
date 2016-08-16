@@ -10,13 +10,14 @@ body.opencps-theme > div > .payment.payment_search.search_tools .navbar-inner {b
  
 /*---------- Footer ----------*/
 footer {
-	height: 212px;
+	height: 272px;
 	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvt/frame_1/bg_footer.png) 0 center repeat;
 	padding-top: 60px;
 	bottom: 0;
 	width: 100%;
-	padding-left: 300px;
 	position: absolute;
+	box-sizing: border-box;
+display: flex !important;
 }
 footer > div {
 	color: #292929;
@@ -47,7 +48,7 @@ footer .lienhehotro .phone {padding-left: 25px; background: url(/opencps-ux-them
 /*---------- Main ----------*/
 .opencps-theme.home_bg article {padding: 75px 0 !important}
 
-.opencps-theme #wrapper {background: none transparent; padding: 0; width: auto; min-height: 900px;}
+.opencps-theme #wrapper {background: none transparent; padding: 0; width: auto;}
 
 .content {clear: both}
 
@@ -55,7 +56,6 @@ footer .lienhehotro .phone {padding-left: 25px; background: url(/opencps-ux-them
 body.opencps-theme.home_bg {
 	position: relative !important;
 	width: auto;
-	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvt/frame_1/bg_home.jpg) no-repeat scroll center 0;
 	background-size: cover;
 	min-height: 900px;
 }

@@ -34,3 +34,6 @@ width: 125px;
 .contact-box p {
   text-shadow: 2px 2px 3px #000;
 }
+.opencps-theme.ux.home_bg #navigation ul li.selected{
+	background-color: rgba(255, 255, 255, 0.3);
+}
