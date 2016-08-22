@@ -44,12 +44,12 @@
         #if ($is_signed_in)
 	        <li class="account-info">
 	        	#if ($hasUserGroupRole)
-	        		<a href="/group/guest/thong-tin-tai-khoan-cb" rel="nofollow" title="#language("account-info")" class="account-name">#language ("welcome-key") $user_name</a>
+	        		<a href="/group/guest/thong-tin-tai-khoan-cb" rel="nofollow" title="$languageUtil.format($locale, "xin-chao-x",$user_name)" class="account-name tooltiptext">#language ("welcome-key") $user_name</a>
 	        	#else
-	        		<a href="/group/guest/thong-tin-tai-khoan-cd-tc" rel="nofollow" title="#language("account-info")" class="account-name">#language ("welcome-key") $user_name</a>
+	        		<a href="/group/guest/thong-tin-tai-khoan-cd-tc" rel="nofollow" title="$languageUtil.format($locale, "xin-chao-x",$user_name)" class="account-name tooltiptext">#language ("welcome-key") $user_name</a>
 	        	#end
 	        </li>
-	        <li class="account-info">
+	        <li>
 	        	<span class="logout"><a href="$sign_out_url" class="btn-dn">#language ("logout-key")</a></span>
 	        </li>
         #end

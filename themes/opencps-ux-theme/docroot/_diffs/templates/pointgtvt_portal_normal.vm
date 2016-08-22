@@ -76,10 +76,10 @@
             <div class="huongdan">
                 <p class="title">#language ("conduct-key")</p>
                 <ul>
-                    <li><a href="/-ang-ky-tai-khoan">#language ("account-register-key")</a></li>
-                    <li><a href="/-ang-nhap-he-thong">#language ("system-login-key")</a></li>
+                    <li><a href="/dang-ki-tai-khoan">#language ("account-register-key")</a></li>
+                    <li><a href="/dang-nhap-he-thong">#language ("system-login-key")</a></li>
                     <li><a href="/nop-ho-so-truc-tuyen">#language ("nop-hstt-key")</a></li>
-                    <li><a href="/home">#language ("tracuu-ketqua-key")</a></li>
+                    <li><a href="/tra-cuu-ket-qua">#language ("tracuu-ketqua-key")</a></li>
                     <li><a href="/can-bo-xu-ly-ho-so">#language ("cbxl-nophs-key")</a></li>
                 </ul>
             </div>

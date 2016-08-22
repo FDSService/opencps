@@ -9,18 +9,21 @@ body.opencps-theme {font-family: 'Roboto-Regular'; font-size: 13px}
 
 
 .opencps-theme.home_bg #wrapper {
-       position: relative !important;
-    width: auto;
-    background: url(/opencps-ux-theme/css/../images/schemes/pointgtvt/frame_1/bg_home.jpg) no-repeat scroll center 0;
-    background-size: cover;
+    content: "";
+    width: 100%;
+    height: calc(100%);
+    background: transparent url("/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/bg_home.jpg") no-repeat scroll center center / cover;
 }
 
 /*---------- Footer ----------*/
 footer {
-	height: 125px;
-	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/bg_footer.png) center center no-repeat;
-	background-size: cover;
-	padding-top: 25px;
+	height: 111px;
+	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/bg_footer.jpg) 0 center repeat;
+	padding-top: 10px;
+	border-top: 3px solid #0075c7;
+	position: relative;
+	bottom: 0;
+	width: 100%;
 }
 footer .footer {
 	margin: auto;
@@ -32,15 +35,13 @@ footer .footer {
 	height: 100px;
 }
 footer .footer .logo {
-    background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/logo_footer.png) 0px 0px no-repeat;
-    background-size: 84px 82px;
-	width: 125px;
+    background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/logo_footer.png) 40px 5px no-repeat;
+    width: 150px;
 }
 footer .footer > div {
-	color: #7d91a0;
+	color: #d1d8dd;
 }
 footer .footer > div:last-child {
-	position: absolute;
 	bottom: 0;
 	left: 1;
 	top: 0;
@@ -74,9 +75,8 @@ footer .footer div > p#total_access:before {
 }
 
 
-
 /*---------- Main ----------*/
-.opencps-theme article {padding: 25px 0 !important}
+.opencps-theme article {padding: 0px 0 !important}
 
 .opencps-theme #wrapper {background: none transparent; padding: 0}
 

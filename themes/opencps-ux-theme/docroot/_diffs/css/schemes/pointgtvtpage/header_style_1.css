@@ -1,17 +1,18 @@
 /*---------- Header ----------*/
 .opencps-theme header.mHeader_1 {
-    background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/bg_header.png) center center no-repeat;
-    background-size: cover;
-    height: 125px;
-    position: relative;
+	height: 150px;
+	border-bottom: 1px solid rgb(0, 117, 199);
+	position: relative;
+	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/bg_header_1.jpg) center center no-repeat;
 }
 .opencps-theme header.mHeader_1 .header {
 	height: 113px;
 }
 .opencps-theme header.mHeader_1 .header .logo {
-	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/logo_2.png) left center no-repeat;
-	width: 100%;
-	height: 100%;
+	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/logo_3.png) center center no-repeat;
+	width: 624px;
+	height: 110px;
+	margin-top: 35px;
 }
 
 .opencps-theme header .top-menu {
@@ -41,13 +42,11 @@
 .opencps-theme header .top-menu ul {
 	margin: auto;
 	display: inline-block;
-	background-color: rgba(255, 255, 255, 0.3);
-	padding: 15px;
 }
 .opencps-theme header .top-menu ul li {
 	float: left;
-	border-right: 1px solid #fff;
-	color: #fff;
+	border-right: 1px solid #2b7bc8;
+	color: #2b7bc8;
 	font-family: 'Roboto-Bold';
 	line-height: 14px;
 }
@@ -57,7 +56,7 @@
 .opencps-theme header .top-menu ul li a {
 	padding: 0 12px;
 	font-family: 'Roboto-Bold';
-	color: #fff;
+	color: rgb(0, 116, 200);
 }
 .opencps-theme header .top-menu ul li a.home:before {
 	content: "Trang chủ";
@@ -75,12 +74,11 @@
 /*---------- Menu ----------*/
 .opencps-theme nav {
 	height: auto;
-	background-color: #0acaf4;
 	background-image: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/bg_menu.png);
 	color: white;
 	font-family: 'Roboto-Bold';
 	margin-bottom: 0 !important;
-	text-transform: uppercase;
+	font-size: 14px;
 	overflow: hidden;
 }
 .opencps-theme nav ul {
@@ -96,38 +94,25 @@
 	display: none;
 }
 .opencps-theme nav ul > li > a {
-	line-height: 50px;
-	padding: 18px 30px;
-	color: white;
+	line-height: 43px;
+	padding: 13px 30px;
+	color: rgb(26, 77, 120);
 }
 .opencps-theme nav ul > li > a img {
 	display: none;
 }
 .opencps-theme nav ul > li.selected > a, .opencps-theme nav ul > li:hover > a {
-	background-color: #0090ff;
+	background-color: rgb(0, 117, 199)	;
 	color: white;
 	text-decoration: none;
-}
-.opencps-theme header.mHeader_1 .header .hotline{
-  position: absolute !important;
-top: 65px;
-left: 80%;
-background: transparent url("/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/phone.png") no-repeat scroll 0px center / 24px 24px;
-height: 34px;
-color: white;
-font-family: "Roboto-Medium";
-font-size: 11px;
-line-height: 16px;
-width: 130px;
-padding-left: 35px;
 }
 .opencps-theme.ux nav .logout{
       color: rgb(255, 255, 255);
     display: inline-block;
-    padding: 14px 0px 0px 0px;
+    padding: 11px 0px 0px 0px;
 }
 .opencps-theme.ux nav .logout a{
-      color: rgb(255, 255, 255);
+      color: #1a4d78;
 }
 .opencps-theme.ux nav .logout a:before {
     content: "\f08b";
@@ -136,4 +121,21 @@ padding-left: 35px;
 }
 .opencps-theme.ux.home_bg #column-1 .portlet-borderless-container{
   background: transparent !important;
+}
+.opencps-theme nav ul > li.account-info > a{
+  display: block;
+	text-indent: -9999px;
+	background: transparent url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/custom/welcome_h.png) no-repeat scroll center center;
+	height: 18px;
+	cursor: pointer;
+}
+.opencps-theme nav ul > li.account-info > a:hover{
+  display: block;
+	text-indent: -9999px;
+	background: transparent url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/custom/welcome_new.png) no-repeat scroll center center;
+	height: 18px;
+	cursor: pointer;
+}
+.account-info.hover.open{
+  background-color: #0074cd;
 }

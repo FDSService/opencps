@@ -120,3 +120,20 @@
 .opencps-theme.ux.home_bg #column-1 .portlet-borderless-container{
   background: transparent !important;
 }
+.opencps-theme nav ul > li.account-info > a{
+  display: block;
+	text-indent: -9999px;
+	background: transparent url(/opencps-ux-theme/css/../images/schemes/vnra/custom/welcome_h.png) no-repeat scroll center center;
+	height: 18px;
+	cursor: pointer;
+}
+.opencps-theme nav ul > li.account-info > a:hover{
+  display: block;
+	text-indent: -9999px;
+	background: transparent url(/opencps-ux-theme/css/../images/schemes/vnra/custom/welcome_new.png) no-repeat scroll center center;
+	height: 18px;
+	cursor: pointer;
+}
+.account-info.hover.open{
+  background-color: #f58220;
+}
