@@ -1,6 +1,6 @@
 
 .file_manage_title {
-    background: url(/opencps-ux-theme/css/../images/schemes/viwa/frame_1/icon_capnhat.png) 0 center no-repeat;
+/*     background: url(/opencps-ux-theme/css/../images/schemes/viwa/frame_1/icon_capnhat.png) 0 center no-repeat; */
     padding-left: 20px;
     text-transform: uppercase;
     font-family: 'Roboto-Bold';
@@ -90,7 +90,8 @@
 	height:20px;
 	position:relative;
 	text-indent:20px;
-	width:110px
+	width:110px;
+	text-align: -webkit-auto;
 }
 .opencps-theme.ux .search-container-action a {
 	color:white;
@@ -389,4 +390,29 @@ margin-right: 30px;
   border: 0px solid #dddddd !important;
 border-top: 1px solid #dddddd !important;
 border-left: 0px solid #dddddd !important;
+}
+.payment-ld .taglib-search-iterator-page-iterator-top{
+	margin-bottom: 0px !important;
+}
+.opencps-theme .ux-sign-in-wrapper {
+    background: #fff;
+}
+.portlet-boundary_16_WAR_opencpsportlet_ .ocps-title-detail .service-reception-label,
+.portlet-boundary_16_WAR_opencpsportlet_ .ocps-title-detail .service-name-label{
+	width: 20%;
+float: left;
+font-family: "Roboto-Bold";
+font-size: 13px;
+}
+.portlet-boundary_16_WAR_opencpsportlet_ .ocps-dossier-info .dossier-info-table tr > td:first-child {
+font-family: "Roboto-Bold";
+font-size: 13px;
+}
+.portlet-boundary_16_WAR_opencpsportlet_ .ocps-dossier-process .process-workflow-info tr > td:nth-child(1),
+.portlet-boundary_16_WAR_opencpsportlet_ .ocps-dossier-process .process-workflow-info tr > td:nth-child(3){
+	font-family: "Roboto-Bold";
+font-size: 13px;
+}
+.opencps-theme.ux .portlet-boundary_5_WAR_opencpsportlet_ .portlet-body{
+	background-color: #fff;
 }

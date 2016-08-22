@@ -29,3 +29,18 @@
     vertical-align: middle;
     width: 19px;
 }
+
+.opencps-theme.ux .portlet-boundary_16_WAR_opencpsportlet_ .last input {
+     width: 100%;
+    background: #0090ff;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Roboto-Medium';
+    border: 0;
+    padding: 10px;
+ 	text-shadow: none;
+}
+
+.opencps-theme.ux .portlet-boundary_16_WAR_opencpsportlet_ .last {
+     vertical-align: middle;
+}

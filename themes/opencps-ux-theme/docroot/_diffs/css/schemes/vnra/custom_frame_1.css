@@ -43,7 +43,6 @@ footer .footer > div {
 	color: #292929;
 }
 footer .footer > div:last-child {
-	position: absolute;
 	bottom: 0;
 	left: 1;
 	top: 0;
@@ -77,7 +76,7 @@ footer .footer div > p#total_access:before {
 
 
 /*---------- Main ----------*/
-.opencps-theme article {padding: 25px 0 !important}
+.opencps-theme article {padding: 0px 0 !important}
 
 .opencps-theme #wrapper {background: none transparent; padding: 0}
 

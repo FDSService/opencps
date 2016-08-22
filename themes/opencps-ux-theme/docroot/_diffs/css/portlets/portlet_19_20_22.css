@@ -242,6 +242,16 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2); width: 370px; float: right; padding
     margin-bottom: 0 !important;
     float: left;
 }
+.file_manage_title_new{
+	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvtpage/frame_1/icon_capnhat.png) 0 center no-repeat;
+    padding-left: 20px;
+    text-transform: uppercase;
+    font-family: 'Roboto-Bold';
+    font-size: 16px;
+    line-height: 60px;
+    margin-bottom: 0 !important;
+    float: left;
+}
 .payment-ld .content .title_box .count {
     margin-left: auto;
     color: #666;
@@ -480,4 +490,8 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2); width: 370px; float: right; padding
 }
 .opencps-theme.ux .portlet-boundary_19_WAR_opencpsportlet_ .toolbar_search_input label{
 	display: none;
+}
+
+div.payment-ld:nth-child(2){
+	padding-bottom: 25px;
 }

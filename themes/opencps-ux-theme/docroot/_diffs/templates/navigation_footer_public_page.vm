@@ -10,7 +10,7 @@
 		#if (!$nav_item.isHidden())
 		
 			<li >
-				<a href="/web/guest$nav_item.getFriendlyURL()" $nav_item_attr_has_popup $nav_item.getTarget() role="menuitem"> $nav_item.getName() </a>
+				<a href="/web/guest$nav_item.getFriendlyURL()" $nav_item_attr_has_popup $nav_item.getTarget() role="menuitem"> $nav_item.getName($locale) </a>
 
 			</li>
 		#end

@@ -13,7 +13,7 @@
 	<link rel="shortcut icon" type="image/png" href="$images_folder/custom/favicon.png"/>
 	
 	#css("$css_folder/$theme_style")
-	<script type="text/javascript" src="$javascript_folder/bootstrap.js" ></script>
+	<script type="text/javascript" src="$javascript_folder/bootstrap.min.js" ></script>
 </head>
 
 <body class="$css_class opencps-theme ux">
@@ -23,8 +23,12 @@
 	#if ($is_signed_in && $permissionChecker.isOmniadmin())
 		#dockbar()
 	#end
-	
-#*	#if(!$is_signed_in)	*#
+	 <div class="img-1"></div>
+    <div class="img-2"></div>
+    <div class="img-3"></div>
+    <div class="img-4"></div>
+    <div class="img-5"></div>
+    <div class="img-6"></div>
 		<header id="banner" role="banner" class="mHeader_1">
 	        <a href="" class="logo"></a>
 			
@@ -33,33 +37,19 @@
 			#end
 			
 			<div>
-				<a href="$sign_in_url" class="btn-dn">#language ("login-key")</a>
-		        <a href="$register_url" class="btn-dk">#language ("register-key")</a>
+				#if(!$is_signed_in)
+					<a href="$sign_in_url" class="btn-dn">#language ("login-key")</a>
+		        	<a href="$register_url" class="btn-dk">#language ("register-key")</a>
+		        #else
+		        	<ul>
+						<li>
+							<a style='font-family: "Roboto-Bold"; top: 6px; position: relative; color: rgb(255, 255, 255);' href="/group/guest">#language("back-to-backoffice")</a>
+						</li>
+					</ul>
+				#end
 	        </div>
 		</header>		
 		
-#*	#else 
-		<header id="banner" role="banner" class="mHeader_2">
-			<div class="header container align-middle">
-	            <a href="" class="logo"></a>
-	            <div class="hotline">
-	                #language ("hotline-key")<br/><span>1900 0311</span>
-	            </div>
-	            <div class="log-out">
-					<span>#language ("welcome-key") $user_name</span>
-					<a href="$sign_out_url" class="btn-dn">#language ("logout-key")</a>
-				</div>
-			</div>
-		
-			#if ($has_navigation || $is_signed_in)
-				#parse ("$full_templates_path/navigation_private_page.vm")
-			#end
-		</header>
-		
-		#if ($has_navigation || $is_signed_in)
-			#parse ("$full_templates_path/navigation_custom_role.vm")
-		#end
-	#end	*#
 	
 	<article id="wrapper" class="container">	
 		<div id="content">
@@ -79,31 +69,27 @@
 	
 	<footer>
 		<div class="danhmuc">
-            <p class="title">#language ("danhmuc-key")</p>
-            <ul>
-                <li><a href="">#language ("home-page-key")</a></li>
-                <li><a href="">#language ("notifier-key")</a></li>
-                <li><a href="">#language ("van-ban-phap-luat-key")</a></li>
-                <li><a href="">#language ("serviceinfo-key")</a></li>
-            </ul>
-        </div>
-        <div class="huongdan">
-            <p class="title">#language ("conduct-key")</p>
-            <ul>
-                <li><a href="">#language ("account-register-key")</a></li>
-                <li><a href="">#language ("system-login-key")</a></li>
-                <li><a href="">#language ("nop-hstt-key")</a></li>
-                <li><a href="">#language ("tracuu-ketqua-key")</a></li>
-                <li><a href="">#language ("cbxl-nophs-key")</a></li>
-            </ul>
-        </div>
+                <p class="title">#language ("danhmuc-key")</p>
+                #parse ("$full_templates_path/navigation_footer_public_page.vm")
+
+            </div>
+            <div class="huongdan">
+                <p class="title">#language ("conduct-key")</p>
+                <ul>
+                    <li><a href="/dang-ki-tai-khoan">#language ("account-register-key")</a></li>
+                    <li><a href="/dang-nhap-he-thong">#language ("system-login-key")</a></li>
+                    <li><a href="/nop-ho-so-truc-tuyen">#language ("nop-hstt-key")</a></li>
+                    <li><a href="/tra-cuu-ket-qua">#language ("tracuu-ketqua-key")</a></li>
+                    <li><a href="/can-bo-xu-ly-ho-so">#language ("cbxl-nophs-key")</a></li>
+                </ul>
+            </div>
         <div class="lienhehotro">
-            <p class="title">#language ("lienhehotro-key")</p>
-            <p class="diachi">#language ("nhavapa-key")<br/>#language ("tonthatthuyet-street-key")</p>
-            <p class="mail">opencps@gmail.com</p>
-            <p class="phone">1900 0311</p>
+             <p class="title">#language ("lienhehotro-key")</p>
+            <p class="diachi"></p>
+            <p class="mail"></p>
+            <p class="phone"></p>
         </div>
-        <div style="color: rgb(0, 116, 205); position: relative; top: 165px;">Copyright © 2016 - Bộ Giao thông Vận tải</div>
+        <div style="color: rgb(0, 116, 205); position: relative; padding-top: 165px; margin-right: 15px;">Copyright © 2016 - Bộ Giao thông Vận tải</div>
 	</footer>
 
 

@@ -10,13 +10,14 @@ body.opencps-theme > div > .payment.payment_search.search_tools .navbar-inner {b
  
 /*---------- Footer ----------*/
 footer {
-	height: 212px;
+	height: 272px;
 	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvt/frame_1/bg_footer.png) 0 center repeat;
 	padding-top: 60px;
 	bottom: 0;
 	width: 100%;
-	padding-left: 300px;
 	position: absolute;
+	box-sizing: border-box;
+display: flex !important;
 }
 footer > div {
 	color: #292929;
@@ -47,7 +48,7 @@ footer .lienhehotro .phone {padding-left: 25px; background: url(/opencps-ux-them
 /*---------- Main ----------*/
 .opencps-theme.home_bg article {padding: 75px 0 !important}
 
-.opencps-theme #wrapper {background: none transparent; padding: 0; width: auto; min-height: 900px;}
+.opencps-theme #wrapper {background: none transparent; padding: 0; width: auto;}
 
 .content {clear: both}
 
@@ -55,7 +56,6 @@ footer .lienhehotro .phone {padding-left: 25px; background: url(/opencps-ux-them
 body.opencps-theme.home_bg {
 	position: relative !important;
 	width: auto;
-	background: url(/opencps-ux-theme/css/../images/schemes/pointgtvt/frame_1/bg_home.jpg) no-repeat scroll center 0;
 	background-size: cover;
 	min-height: 900px;
 }
@@ -84,7 +84,8 @@ body.opencps-theme.home_bg {
 	font-family: 'Roboto-Black';
 	font-weight: normal;
 	color: white;
-	width: 700px;
+	width: 100%;
+	min-width: 700px;
 }
 .opencps-theme.home_bg .portlet-boundary_19_WAR_opencpsportlet_ .portlet-body > p {
 	position: absolute;
@@ -94,7 +95,8 @@ body.opencps-theme.home_bg {
 	font-size: 21px;
 	text-shadow: 2px 2px 10px #000;
 	color: white;
-	width: 700px;
+	width: 100%;
+	min-width: 700px;
 }
 .opencps-theme .home-search {
 	position: absolute;
@@ -212,12 +214,16 @@ body.opencps-theme.home_bg {
 }
 
 .homegtvt_layout {width: 100%; height: 100%}
-.homegtvt_left_col {width: 80%; height: 100%; float: left}
+.homegtvt_left_col {width: 75%; height: 100%; float: left}
 .homegtvt_left_col .homegtvt_top {width: 100%; height: 50%; float: left}
 .homegtvt_left_col .homegtvt_bottom {width: 100%; height: 50%; float: left; position: relative; bottom: 0;z-index: 1; top: 100px; left: 30px;}
 .homegtvt_left_col .homegtvt_bottom .homegtvt_left {width: 80%; height: 100%; float: left}
 .homegtvt_left_col .homegtvt_bottom .homegtvt_right {width: 20%; height: 100%; float: left}
-.homegtvt_right_col {width: 20%; height: 100%; float: left;z-index: 1; position: relative; top: 60px;}
+.homegtvt_right_col {width: 25%; height: 100%; float: left;z-index: 1; position: relative; top: 60px;padding-right: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;}
 .left-col {
     float: left;
     width: calc(100% - 340px);
@@ -257,6 +263,8 @@ body.opencps-theme.home_bg {
     background-color: #0074cd;
     margin-bottom: 25px;
     color: white;
+    -webkit-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
+  box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
 }
 .vbpl-box .title {
     line-height: 70px;
@@ -321,6 +329,8 @@ body.opencps-theme.home_bg {
     height: 70px;
     padding-left: 30px;
     margin-bottom: 25px;
+    -webkit-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
+  box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
 }
 .hoidap-box a {
     line-height: 70px;
@@ -344,6 +354,8 @@ body.opencps-theme.home_bg {
     border-radius: 5px; 
     background-color: white;
     width: 315px;
+    -webkit-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
+  box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.5);
 }
 .hdsd-box .title {
     font-size: 16px;
@@ -356,6 +368,7 @@ body.opencps-theme.home_bg {
     color: #0074cd;
     border-bottom: 1px solid #e1e1e1;
     background: url(/opencps-ux-theme/css/../images/schemes/pointgtvt/frame_1/icon_huongdansudung.png) 30px center no-repeat;
+    box-sizing: border-box;
 }
 .hdsd-box ul {
     margin: 0;
@@ -472,4 +485,13 @@ background-color: transparent !important;
 }
 .opencps-theme footer > div > ul li a{
   color: #292929;
+}
+footer .lienhehotro .diachi:before{
+	content: "80 Trần Hưng Đạo - Hoàn Kiếm - Hà Nội.";
+}
+footer .lienhehotro .mail:before{
+	content: "bophanhotro@mt.gov.vn";
+}
+footer .lienhehotro .phone:before{
+	content: "(04) 38222979 - Fax: (04) 38221066.";
 }
