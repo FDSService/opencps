@@ -231,7 +231,7 @@
 
 	<div class="opcs-serviceinfo-list-label">
 		<div class="title_box">
-	           <p class="file_manage_title"><liferay-ui:message key="title-danh-sach-ho-so" /></p>
+	           <p class="file_manage_title ds"><liferay-ui:message key="title-danh-sach-ho-so" /></p>
 	           <p class="count"></p>
 	    </div>
 	</div>

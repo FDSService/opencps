@@ -389,4 +389,32 @@
 			submitForm(document.<portlet:namespace />payForm, "<%=requestBankPaymentURL.toString()%>");
 		}
 	},['liferay-util-list-fields']);
-			</aui:script>
+	
+	Liferay.provide(window, '<portlet:namespace/>processKeyPayURL', function(paymentFileId,uri) {
+		var A = AUI();
+		
+		A.io.request(
+			'1232',
+			{
+			    dataType : 'json',
+			    data:{    	
+			    	<portlet:namespace/>paymentFileId : paymentFileId,
+			    },   
+			    on: {
+			        success: function(event, id, obj) {
+						var instance = this;
+						var res = instance.get('responseData');
+						
+						var okURL = res.okURL;
+						
+						if(okURL == 'true'){
+							window.location = uri;
+						}
+					},
+			    	error: function(){
+			    	}
+				}
+			}
+		);
+	},['aui-io','liferay-portlet-url']);
+</aui:script>
