@@ -43,7 +43,9 @@ public class OneMinute implements MessageListener{
     @Override
 	public void receive(Message message)
 	    throws MessageListenerException {
-
+		
+    	_log.info(">>>>> CHECK PAYMENT <<<<<<");
+		
 		List<SchedulerJobs> schedulerJobs = new ArrayList<SchedulerJobs>();
 
 		try {

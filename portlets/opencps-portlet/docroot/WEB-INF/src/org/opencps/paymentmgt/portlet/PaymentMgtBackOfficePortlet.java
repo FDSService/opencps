@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
@@ -126,6 +127,7 @@ public class PaymentMgtBackOfficePortlet extends MVCPortlet {
 					paymentFile.setPaymentStatus(PaymentMgtUtil.PAYMENT_STATUS_REJECTED);
 					paymentFile.setApproveNote(lyDo);
 				}
+				paymentFile.setModifiedDate(new Date());
 				PaymentFileLocalServiceUtil.updatePaymentFile(paymentFile);
 				SessionMessages.add(
 					    actionRequest,
@@ -389,6 +391,7 @@ public class PaymentMgtBackOfficePortlet extends MVCPortlet {
 			paymentFile = PaymentFileLocalServiceUtil.getPaymentFile(paymentFileId);
 			paymentFile.setPaymentStatus(PaymentMgtUtil.PAYMENT_STATUS_CONFIRMED);
 			paymentFile.setPaymentMethod(PaymentMgtUtil.PAYMENT_METHOD_BANK);
+			paymentFile.setModifiedDate(new Date());
 			PaymentFileLocalServiceUtil.updatePaymentFile(paymentFile);
 			addProcessActionSuccessMessage = false;
 			SessionMessages.add(actionRequest, "confirm-payment-cash-success");
@@ -415,6 +418,7 @@ public class PaymentMgtBackOfficePortlet extends MVCPortlet {
 			paymentFile = PaymentFileLocalServiceUtil.getPaymentFile(paymentFileId);
 			paymentFile.setPaymentStatus(PaymentMgtUtil.PAYMENT_STATUS_APPROVED);
 			paymentFile.setPaymentMethod(PaymentMgtUtil.PAYMENT_METHOD_CASH);
+			paymentFile.setModifiedDate(new Date());
 			PaymentFileLocalServiceUtil.updatePaymentFile(paymentFile);
 			addProcessActionSuccessMessage = false;
 			SessionMessages.add(actionRequest, "confirm-payment-cash-success");

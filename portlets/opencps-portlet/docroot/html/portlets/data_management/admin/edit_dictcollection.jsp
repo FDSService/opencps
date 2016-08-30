@@ -28,6 +28,7 @@
 <%@page import="org.opencps.datamgt.EmptyCollectionCodeException"%>
 <%@page import="org.opencps.datamgt.EmptyDictCollectionNameException"%>
 <%@page import="org.opencps.util.WebKeys"%>
+
 <%@ include file="../init.jsp"%>
 
 <portlet:actionURL var="updateDictCollectionURL" name="updateDictCollection" />
@@ -43,7 +44,7 @@
 	title='<%= (dictCollection == null) ? "add-dictcollection" : "update-dictcollection" %>'
 />
 
-<div class="opencps-datamgt collection-wrapper">
+<div class="opencps-datamgt collection-wrapper opencps-bound-wrapper pd20 default-box-shadow"">
 	<div class="edit-form">
 		<liferay-ui:error exception="<%= OutOfLengthCollectionCodeException.class %>" message="<%=OutOfLengthCollectionCodeException.class.getName() %>" />
 		<liferay-ui:error exception="<%= OutOfLengthCollectionNameException.class %>" message="<%=OutOfLengthCollectionNameException.class.getName() %>" />
@@ -61,18 +62,23 @@
 			<aui:input name="returnURL" type="hidden" value="<%=currentURL %>"/>
 			
 			<aui:fieldset>
-			
-				<aui:input name="<%=DictCollectionDisplayTerms.COLLECTION_NAME %>" cssClass="input80">
-					<aui:validator name="required"/>
-					<aui:validator name="minLength">3</aui:validator>
-					<aui:validator name="maxLength">255</aui:validator>
-				</aui:input>
-				
-				<aui:input name="<%=DictCollectionDisplayTerms.COLLECTION_CODE %>" type="text" cssClass="input20">
-					<aui:validator name="required"/>
-					<aui:validator name="maxLength">100</aui:validator>
-				</aui:input>
+				<aui:row>
+					<aui:col width="80">
+						<aui:input name="<%=DictCollectionDisplayTerms.COLLECTION_NAME %>" cssClass="input100">
+							<aui:validator name="required"/>
+							<aui:validator name="minLength">3</aui:validator>
+							<aui:validator name="maxLength">255</aui:validator>
+						</aui:input>
+					</aui:col>
 					
+					<aui:col width="20">
+						<aui:input name="<%=DictCollectionDisplayTerms.COLLECTION_CODE %>" type="text" cssClass="input100">
+							<aui:validator name="required"/>
+							<aui:validator name="maxLength">100</aui:validator>
+						</aui:input>
+					</aui:col>
+				</aui:row>
+
 				<aui:input name="<%=DictCollectionDisplayTerms.DESCRIPTION %>" type="textarea" cssClass="input100"/>
 
 			</aui:fieldset>

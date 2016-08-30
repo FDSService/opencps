@@ -31,6 +31,7 @@
 <%@page import="com.liferay.portal.model.Group"%>
 <%@page import="com.liferay.portal.service.LayoutLocalServiceUtil"%>
 <%@page import="com.liferay.portal.model.Layout"%>
+
 <%@ include file="../../init.jsp"%>
 
 <%
@@ -62,7 +63,7 @@
 <liferay-ui:error exception="<%= AuthException.class %>" message="<%=AuthException.class.getName() %>"/>
 
 <div id="<portlet:namespace/>accountInfo">
-	<aui:row>
+	<aui:row cssClass="nav-content-row-2">
 		<aui:col width="50">
 			<aui:input 
 				name="<%= EmployeeDisplayTerm.SCREEN_NAME%>"
@@ -70,6 +71,7 @@
 				required="<%=false %>"
 				id="mappingUserScreenName"
 				type="text"
+				cssClass="input100"
 			>
 			</aui:input>
 			
@@ -77,6 +79,7 @@
 				name="<%= EmployeeDisplayTerm.USER_EMAIL%>"
 				disabled="<%=mappingUser != null ? true : false  %>"
 				type="text"
+				cssClass="input100"
 			>
 				<aui:validator name="email"/>
 				<aui:validator name="maxLength">
@@ -117,24 +120,24 @@
 		</aui:col>
 	</aui:row>
 	
-	<aui:row>
+	<aui:row cssClass="nav-content-row-2">
 		<aui:input name="changePassWord" type="checkbox" checked="false"/>
 	</aui:row>
 	
 	<div id = "<portlet:namespace />showOrHidePasswordsField" >
-		<aui:row>
-			<aui:col width="90">
-				<aui:input name="<%= EmployeeDisplayTerm.OLD_PASS_WORD%>" type="password"></aui:input>
+		<aui:row cssClass="nav-content-row-2">
+			<aui:col width="100">
+				<aui:input name="<%= EmployeeDisplayTerm.OLD_PASS_WORD%>" type="password" cssClass="input100"/>
 			</aui:col>
 		</aui:row>
 		
-		<aui:row>
+		<aui:row cssClass="nav-content-row-2">
 			<aui:col width="50">
-				<aui:input name="<%= EmployeeDisplayTerm.PASS_WORD%>" type="password"></aui:input>
+				<aui:input name="<%= EmployeeDisplayTerm.PASS_WORD%>" type="password" cssClass="input100"/>
 			</aui:col>
 			
 			<aui:col width="50">
-				<aui:input name="<%= EmployeeDisplayTerm.RE_PASS_WORD%>" type="password">
+				<aui:input name="<%= EmployeeDisplayTerm.RE_PASS_WORD%>" type="password" cssClass="input100">
 					<aui:validator name="equalTo">'#<portlet:namespace /><%= EmployeeDisplayTerm.PASS_WORD%>'</aui:validator>
 				</aui:input>
 			</aui:col>

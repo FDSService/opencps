@@ -1,4 +1,3 @@
-
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -34,6 +33,7 @@
 <%@page import="org.opencps.util.PortletConstants"%>
 <%@page import="org.opencps.dossiermgt.model.ServiceConfig"%>
 <%@page pageEncoding="UTF-8"%>
+
 <%@ include file="../init.jsp"%>
 
  
@@ -61,7 +61,7 @@
 		<portlet:param name="<%=DossierDisplayTerms.DOSSIER_ID %>" value="<%=String.valueOf(dossier.getDossierId()) %>"/>
 		<portlet:param name="<%=Constants.CMD %>" value="<%=Constants.VIEW %>"/>
 		<portlet:param name="isEditDossier" value="<%=String.valueOf(false) %>"/>
-		<portlet:param name="backURL" value="<%=currentURL %>"/>
+		<portlet:param name="redirectURL" value="<%=currentURL %>"/>
 	</portlet:renderURL> 
 	<liferay-ui:icon 
 		cssClass="search-container-action fa view" 
@@ -76,7 +76,7 @@
 		 		<portlet:renderURL var="updateDossierURL">
 					<portlet:param name="mvcPath" value='<%=templatePath + "edit_dossier.jsp" %>'/>
 					<portlet:param name="<%=DossierDisplayTerms.DOSSIER_ID %>" value="<%=String.valueOf(dossier.getDossierId()) %>"/>
-					<portlet:param name="backURL" value="<%=currentURL %>"/>
+					<portlet:param name="redirectURL" value="<%=currentURL %>"/>
 					<portlet:param name="isEditDossier" value="<%=String.valueOf(true) %>"/>
 				</portlet:renderURL> 
 		 		<liferay-ui:icon 
@@ -89,7 +89,7 @@
 			 		<portlet:actionURL var="updateDossierStatusURL" name="updateDossierStatus">
 						<portlet:param name="<%=DossierDisplayTerms.DOSSIER_ID %>" value="<%=String.valueOf(dossier.getDossierId()) %>"/>
 						<portlet:param name="<%=DossierDisplayTerms.DOSSIER_STATUS %>" value="<%=String.valueOf(PortletConstants.DOSSIER_STATUS_NEW) %>"/>
-						<portlet:param name="backURL" value="<%=currentURL %>"/>
+						<portlet:param name="redirectURL" value="<%=currentURL %>"/>
 					</portlet:actionURL> 
 			 		<liferay-ui:icon
 			 			cssClass="search-container-action fa forward"
@@ -103,7 +103,7 @@
 			 		<portlet:actionURL var="updateDossierStatusURL" name="updateDossierStatus">
 						<portlet:param name="<%=DossierDisplayTerms.DOSSIER_ID %>" value="<%=String.valueOf(dossier.getDossierId()) %>"/>
 						<portlet:param name="<%=DossierDisplayTerms.DOSSIER_STATUS %>" value="<%=String.valueOf(PortletConstants.DOSSIER_STATUS_WAITING) %>"/>
-						<portlet:param name="backURL" value="<%=currentURL %>"/>
+						<portlet:param name="redirectURL" value="<%=currentURL %>"/>
 					</portlet:actionURL> 
 			 		<liferay-ui:icon
 			 			cssClass="search-container-action fa forward"
@@ -133,14 +133,7 @@
 		 		<portlet:actionURL var="cancelDossierURL" name="cancelDossier" >
 					<portlet:param name="<%=DossierDisplayTerms.DOSSIER_ID %>" value="<%=String.valueOf(dossier.getDossierId()) %>"/>
 					<portlet:param name="redirectURL" value="<%=currentURL %>"/>
-				</portlet:actionURL> 
-				<liferay-ui:icon-delete 
-					image="undo"
-					cssClass="search-container-action fa undo"
-					confirmation="are-you-sure-cancel-entry" 
-					message="cancel"  
-					url="<%=cancelDossierURL.toString() %>" 
-				/>
+				</portlet:actionURL>
 		</c:when>  		
  	</c:choose>
 <%-- </liferay-ui:icon-menu> --%> 

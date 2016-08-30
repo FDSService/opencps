@@ -1,13 +1,5 @@
 
-<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
-<%@page import="org.opencps.usermgt.util.UserMgtUtil"%>
-<%@page import="org.opencps.util.MessageKeys"%>
-<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
-<%@page import="org.opencps.usermgt.search.JobPosDisplayTerms"%>
-<%@page import="org.opencps.usermgt.service.JobPosLocalServiceUtil"%>
-<%@page import="org.opencps.usermgt.model.JobPos"%>
-<%@page import="com.liferay.portal.kernel.log.LogFactoryUtil"%>
-<%@page import="com.liferay.portal.kernel.log.Log"%>
+<%@page import="org.opencps.util.WebKeys"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -26,6 +18,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
+
+<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
+<%@page import="org.opencps.usermgt.util.UserMgtUtil"%>
+<%@page import="org.opencps.util.MessageKeys"%>
+<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
+<%@page import="org.opencps.usermgt.search.JobPosDisplayTerms"%>
+<%@page import="org.opencps.usermgt.service.JobPosLocalServiceUtil"%>
+<%@page import="org.opencps.usermgt.model.JobPos"%>
+<%@page import="com.liferay.portal.kernel.log.LogFactoryUtil"%>
+<%@page import="com.liferay.portal.kernel.log.Log"%>
+
 <%@ include file="../init.jsp"%>
 
 <%
@@ -43,10 +46,10 @@
 	
 	String message = LanguageUtil.get(portletConfig ,themeDisplay.getLocale(), "are-you-sure-to-update");
 %>
-<liferay-ui:header
+<%-- <liferay-ui:header
 	backURL="<%= redirectURL %>"
 	title='<%= (jobPos == null) ? "add-jobpos" : "update-jobpos" %>'
-/>
+/> --%>
 
 <liferay-ui:error 
 	key="<%=MessageKeys.USERMGT_JOBPOS_UPDATE_ERROR %>" 
@@ -85,16 +88,19 @@
 <aui:form name="fm2" 
 	method="post" 
 	action="<%=editJobPosURL.toString() %>">
-	<liferay-ui:form-navigator 
-		backURL="<%= redirectURL %>"
-		categoryNames= "<%= UserMgtUtil._JOBPOS_CATEGORY_NAMES %>"	
-		categorySections="<%=updateCategorySections %>" 
-		htmlBottom="<%= htmlBot %>"
-		htmlTop="<%= htmlTop %>"
-		jspPath='<%=templatePath + "jobpos/" %>'
-		showButtons="false"
-		>	
-	</liferay-ui:form-navigator>
+	<div class="opencps-form-navigator-container">
+		<liferay-ui:form-navigator 
+			backURL="<%= redirectURL %>"
+			categoryNames= "<%= UserMgtUtil._JOBPOS_CATEGORY_NAMES %>"	
+			categorySections="<%=updateCategorySections %>" 
+			htmlBottom="<%= htmlBot %>"
+			htmlTop="<%= htmlTop %>"
+			jspPath='<%=templatePath + "jobpos/" %>'
+			showButtons="false"
+			displayStyle="left-navigator"
+			>	
+		</liferay-ui:form-navigator>
+	</div>
 	<aui:input name="<%=JobPosDisplayTerms.ID_JOBPOS %>" 
 		type="hidden" value="<%=String.valueOf(jobPosId) %>"/>
 		
@@ -107,17 +113,19 @@
 		var btnChooseCancel = A.one('#<portlet:namespace />cancel');
 		if(btnChooseCancel) {
 			btnChooseCancel.on('click', function() {
-				Liferay.Util.getOpener().<portlet:namespace/>closePopup('<portlet:namespace/>dialog');
+				closeDialog('<portlet:namespace/>updateJobPos', '<%=WebKeys.USER_MGT_PORTLET%>_');
 			});
 		}
 		
 		if(btnChoose) {
 			btnChoose.on('click',function(){
+				//make a confirm box
 				var r = confirm(message);
+				//check confirm
 				if(r == true) {
 					<portlet:namespace/>submitItemForm();
 				} else {
-					Liferay.Util.getOpener().<portlet:namespace/>closePopup('<portlet:namespace/>dialog');
+					closeDialog('<portlet:namespace/>updateJobPos', '<%=WebKeys.USER_MGT_PORTLET%>_');
 				}
 				
 			});
@@ -132,8 +140,7 @@
               form: { id: '<portlet:namespace />fm2' },
               on: {
                   success: function(){
-                	  Liferay.Util.getOpener().<portlet:namespace/>closePopup('<portlet:namespace/>dialog');
-                	  
+                	  closeDialog('<portlet:namespace/>updateJobPos', '<%=WebKeys.USER_MGT_PORTLET%>_');
                   }
              }
         });

@@ -40,12 +40,12 @@
 	}
 %>
 	<aui:model-context bean="<%=jobPos %>" model="<%=JobPos.class %>" />
-	<aui:input name="<%=JobPosDisplayTerms.TITLE_JOBPOS %>">
+	<aui:input name="<%=JobPosDisplayTerms.TITLE_JOBPOS %>" cssClass="input100">
 		<aui:validator name="required"></aui:validator>
 	</aui:input>
 	<aui:input name="<%=JobPosDisplayTerms.ID_JOBPOS %>" type="hidden" />
 	<aui:input name="<%=JobPosDisplayTerms.ID_JOBPOS %>" type="hidden" />
-	<aui:select name="<%=JobPosDisplayTerms.LEADER_JOBPOS %>">
+	<aui:select name="<%=JobPosDisplayTerms.LEADER_JOBPOS %>" cssClass="input100">
 		<%
 			for(int j = 0 ; j < PortletPropsValues.USERMGT_JOBPOS_LEADER.length; j++){
 				%>

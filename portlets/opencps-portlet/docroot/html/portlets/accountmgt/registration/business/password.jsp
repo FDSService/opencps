@@ -16,9 +16,25 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
-<%@ include file="/init.jsp" %> 
 <%@page import="org.opencps.accountmgt.search.BusinessDisplayTerms"%>
 
-<aui:input type="password" name="<%=BusinessDisplayTerms.CURRENT_PASSWORD %>" label="cur-pass"/>
-<aui:input type="password" name="<%=BusinessDisplayTerms.NEW_PASSWORD %>" />
-<aui:input type="password" name="<%=BusinessDisplayTerms.RE_PASSWORD %>" />
+<%@ include file="/init.jsp" %> 
+
+
+<aui:row cssClass="nav-content-row-2">
+	<aui:col>
+		<aui:input type="password" name="<%=BusinessDisplayTerms.CURRENT_PASSWORD %>" label="cur-pass"/>
+	</aui:col>
+</aui:row>
+
+<aui:row cssClass="nav-content-row-2">
+	<aui:col>
+		<aui:input type="password" name="<%=BusinessDisplayTerms.NEW_PASSWORD %>" />
+	</aui:col>
+</aui:row>
+
+<aui:row cssClass="nav-content-row-2">
+	<aui:col>
+		<aui:input type="password" name="<%=BusinessDisplayTerms.RE_PASSWORD %>" />
+	</aui:col>
+</aui:row>

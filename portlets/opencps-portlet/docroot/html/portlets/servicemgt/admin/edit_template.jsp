@@ -71,14 +71,17 @@
 		value="<%= scopeGroupId%>"/>
 	<aui:input name="<%= ServiceDisplayTerms.COMPANY_ID %>" type="hidden" 
 		value="<%= company.getCompanyId()%>"/>
-
-	<liferay-ui:form-navigator
-		backURL="<%= backURL %>"
-		categoryNames="<%= ServiceUtil.SERVICE_TEMPLATE_NAMES %>"
-		categorySections="<%= categorySections %>"
-		htmlTop="<%= htmlTop %>"
-		jspPath='<%= templatePath + "template/" %>'
-	/>
+		
+	<div class="opencps-form-navigator-container radius8">
+		<liferay-ui:form-navigator
+			backURL="<%= backURL %>"
+			categoryNames="<%= ServiceUtil.SERVICE_TEMPLATE_NAMES %>"
+			categorySections="<%= categorySections %>"
+			htmlTop="<%= htmlTop %>"
+			jspPath='<%= templatePath + "template/" %>'
+			displayStyle="left-navigator"
+		/>
+	</div>
 </aui:form>
 
 

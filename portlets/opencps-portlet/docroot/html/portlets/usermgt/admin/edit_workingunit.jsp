@@ -1,23 +1,21 @@
-<%@page import="com.liferay.portal.kernel.servlet.SessionErrors"%>
-<%@page import="com.liferay.portal.kernel.servlet.SessionMessages"%>
-<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
+
 <%
-	/**
-	 * OpenCPS is the open source Core Public Services software
-	 * Copyright (C) 2016-present OpenCPS community
-	 * 
-	 * This program is free software: you can redistribute it and/or modify
-	 * it under the terms of the GNU Affero General Public License as published by
-	 * the Free Software Foundation, either version 3 of the License, or
-	 * any later version.
-	 * 
-	 * This program is distributed in the hope that it will be useful,
-	 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-	 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	 * GNU Affero General Public License for more details.
-	 * You should have received a copy of the GNU Affero General Public License
-	 * along with this program. If not, see <http://www.gnu.org/licenses/>.
-	 */
+/**
+ * OpenCPS is the open source Core Public Services software
+ * Copyright (C) 2016-present OpenCPS community
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 %>
 
 <%@page import="org.opencps.usermgt.search.WorkingUnitDisplayTerms"%>
@@ -35,6 +33,10 @@
 <%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@page import="org.opencps.usermgt.service.WorkingUnitLocalServiceUtil"%>
 <%@page import="org.opencps.usermgt.model.WorkingUnit"%>
+<%@page import="com.liferay.portal.kernel.servlet.SessionErrors"%>
+<%@page import="com.liferay.portal.kernel.servlet.SessionMessages"%>
+<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
+
 <%@ include file="../init.jsp"%>
 
 <%
@@ -139,16 +141,20 @@
 
 <aui:form name="fm" 
 	method="post" 
-	action="<%=updateWorkingUnitURL.toString() %>">
-	<liferay-ui:form-navigator 
-		backURL="<%= redirectURL %>"
-		categoryNames= "<%= UserMgtUtil._WORKING_UNIT_CATEGORY_NAMES %>"	
-		categorySections="<%=categorySections %>" 
-		htmlBottom="<%= htmlBot %>"
-		htmlTop="<%= htmlTop %>"
-		jspPath='<%=templatePath + "workingunit/" %>'
+	action="<%=updateWorkingUnitURL.toString() %>"
+>
+	<div class="opencps-form-navigator-container radius8">
+		<liferay-ui:form-navigator 
+			backURL="<%= redirectURL %>"
+			categoryNames= "<%= UserMgtUtil._WORKING_UNIT_CATEGORY_NAMES %>"	
+			categorySections="<%=categorySections %>" 
+			htmlBottom="<%= htmlBot %>"
+			htmlTop="<%= htmlTop %>"
+			jspPath='<%=templatePath + "workingunit/" %>'
+			displayStyle="left-navigator"
 		>	
-	</liferay-ui:form-navigator>
+		</liferay-ui:form-navigator>
+	</div>
 	<aui:input 
 		name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_ID %>" 
 		value="<%=String.valueOf(workingUnitId) %>"

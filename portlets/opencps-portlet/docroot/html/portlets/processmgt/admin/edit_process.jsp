@@ -20,6 +20,7 @@
 <%@page import="org.opencps.servicemgt.util.ServiceUtil"%>
 <%@page import="org.opencps.servicemgt.search.ServiceDisplayTerms"%>
 <%@page import="org.opencps.processmgt.model.ServiceProcess"%>
+
 <%@ include file="../init.jsp"%>
 
 <%
@@ -75,14 +76,16 @@
 		value="<%= company.getCompanyId()%>"/>
 	<aui:input name="serviceProcessId" type="hidden" 
 		value="<%= Validator.isNotNull(servieProcess) ? servieProcess.getServiceProcessId() : StringPool.BLANK %>"/>
-
-	<liferay-ui:form-navigator
-		backURL="<%= backURL %>"
-		categoryNames='<%= new String [] {"process-info"} %>'
-		categorySections="<%= categorySections %>"
-		htmlTop="<%= htmlTop %>"
-		jspPath='<%= templatePath + "process/" %>'
-		formName="fm"
-	/>
+	<div class="opencps-form-navigator-container">
+		<liferay-ui:form-navigator
+			backURL="<%= backURL %>"
+			categoryNames='<%= new String [] {"process-info"} %>'
+			categorySections="<%= categorySections %>"
+			htmlTop="<%= htmlTop %>"
+			jspPath='<%= templatePath + "process/" %>'
+			formName="fm"
+			displayStyle="left-navigator"
+		/>
+	</div>
 </aui:form>
 

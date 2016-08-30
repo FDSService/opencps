@@ -32,6 +32,7 @@
 <%@page import="org.opencps.util.ActionKeys"%>
 <%@page import="org.opencps.dossiermgt.search.DossierTemplateDisplayTerms"%>
 <%@page import="org.opencps.dossiermgt.util.DossierMgtUtil"%>
+
 <%@ include file="../../init.jsp"%>
 <%
 	DossierTemplate dossierTemplate = (DossierTemplate) request.getAttribute(WebKeys.DOSSIER_TEMPLATE_ENTRY);
@@ -58,7 +59,7 @@
 	long dossierTemplateId = dossierTemplate != null ? dossierTemplate.getDossierTemplateId() : 0L;
 	
 	try {
-		totalCount = DossierPartLocalServiceUtil.CountByTempalteId(dossierTemplateId);
+		totalCount = DossierPartLocalServiceUtil.countByTempalteId(dossierTemplateId);
 	} catch (Exception e) {}
 	
 	if (isPermission) {
@@ -112,50 +113,45 @@
 			%>
 			<liferay-util:buffer var="boundcol1">
 				<div class="row-fluid">
-					<div class="span1"></div>
 					
-					<div class="span2 bold-label">
+					<div class="span5 bold-label">
 						<liferay-ui:message key="sibling"/>
 					</div>
-					<div class="span9"><%=String.valueOf((int)dossierPart.getSibling())%></div>
+					<div class="span7"><%=String.valueOf((int)dossierPart.getSibling())%></div>
 				</div>
 				
 				<div class="row-fluid">
-					<div class="span1"></div>
-					
-					<div class="span2 bold-label">
+								
+					<div class="span5 bold-label">
 						<liferay-ui:message key="part-no"/>
 					</div>
-					<div class="span9"><%=dossierPart.getPartNo()%></div>
+					<div class="span7"><%=dossierPart.getPartNo()%></div>
 				</div>
 				
 				<div class="row-fluid">
-					<div class="span1"></div>
 					
-					<div class="span2 bold-label">
+					<div class="span5 bold-label">
 						<liferay-ui:message key="part-name"/>
 					</div>
-					<div class="span9"><%=dossierPart.getPartName()%></div>
+					<div class="span7"><%=dossierPart.getPartName()%></div>
 				</div>
 			</liferay-util:buffer>
 			
 			<liferay-util:buffer var="boundcol2">
 				<div class="row-fluid">
-					<div class="span1"></div>
 					
-					<div class="span2 bold-label">
+					<div class="span5 bold-label">
 						<liferay-ui:message key="part-type"/>
 					</div>
-					<div class="span9"><%=partTypeName %> </div>
+					<div class="span7"><%=partTypeName %> </div>
 				</div>
 				
 				<div class="row-fluid">
-					<div class="span1"></div>
 					
-					<div class="span2 bold-label">
+					<div class="span5 bold-label">
 						<liferay-ui:message key="part-tip"/>
 					</div>
-					<div class="span9"><%=dossierPart.getPartTip() %> </div>
+					<div class="span7"><%=dossierPart.getPartTip() %> </div>
 				</div>
 			</liferay-util:buffer>
 			<%

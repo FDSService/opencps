@@ -94,6 +94,7 @@
 	                            <liferay-ui:input-search 
 									id="keywords1" 
 	                                name="keywords" 
+	                                title='<%= LanguageUtil.get(locale, "keywords") %>' 
 	                                placeholder='<%= LanguageUtil.get(locale, "keyword") %>' 
 	                            />
 	                        </aui:col>

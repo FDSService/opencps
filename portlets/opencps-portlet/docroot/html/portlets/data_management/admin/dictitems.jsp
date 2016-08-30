@@ -43,6 +43,7 @@
 <%@page import="org.opencps.util.PortletConstants"%>
 <%@page import="org.opencps.datamgt.service.DictVersionLocalServiceUtil"%>
 <%@page import="org.opencps.datamgt.model.DictVersion"%>
+
 <%@ include file="../init.jsp"%>
 
 <liferay-util:include page="/html/portlets/data_management/admin/toptabs.jsp" servletContext="<%=application %>" />
@@ -60,103 +61,106 @@
 	
 %>
 
-<liferay-ui:search-container searchContainer="<%= new DictItemSearch(renderRequest, SearchContainer.DEFAULT_DELTA, iteratorURL) %>">
-
-	<liferay-ui:search-container-results>
-		<%
-			DictItemSearchTerms searchTerms = (DictItemSearchTerms)searchContainer.getSearchTerms();
-			
-			String[] itemNames = null;
-			
-			if(Validator.isNotNull(searchTerms.getKeywords())){
-				itemNames = CustomSQLUtil.keywords(searchTerms.getKeywords());
-			}
-			
-			try{
-				
-				%>
-					<%@include file="/html/portlets/data_management/admin/dictitem_search_results.jspf" %>
-				<%
-			}catch(Exception e){
-				_log.error(e);
-			}
-		
-			total = totalCount;
-			results = dictItems;
-			pageContext.setAttribute("results", results);
-			pageContext.setAttribute("total", total);
-		%>
-	</liferay-ui:search-container-results>	
-		<liferay-ui:search-container-row 
-			className="org.opencps.datamgt.model.DictItem" 
-			modelVar="dictItem" 
-			keyProperty="dictItemId"
-		>
+<div class="opencps-searchcontainer-wrapper-width-header default-box-shadow radius8">
+	<liferay-ui:search-container searchContainer="<%= new DictItemSearch(renderRequest, SearchContainer.DEFAULT_DELTA, iteratorURL) %>">
+	
+		<liferay-ui:search-container-results>
 			<%
-				PortletURL editURL = renderResponse.createRenderURL();
-				editURL.setParameter("mvcPath", "/html/portlets/data_management/admin/edit_dictitem.jsp");
-				editURL.setParameter(DictItemDisplayTerms.DICTITEM_ID, String.valueOf(dictItem.getDictItemId()));
-				editURL.setParameter("backURL", currentURL);
+				DictItemSearchTerms searchTerms = (DictItemSearchTerms)searchContainer.getSearchTerms();
 				
-				//id column
-				row.addText(String.valueOf(dictItem.getDictItemId()), editURL);
-			
-				row.addText(dictItem.getItemCode(), editURL);
-				row.addText(dictItem.getItemName(locale), editURL);
+				String[] itemNames = null;
 				
-				row.addText(dictItem.getTreeIndex(), editURL);
-				
-				row.addText(DateTimeUtil.convertDateToString(dictItem.getCreateDate(), DateTimeUtil._VN_DATE_TIME_FORMAT), editURL);
-				row.addText(DateTimeUtil.convertDateToString(dictItem.getModifiedDate(), DateTimeUtil._VN_DATE_TIME_FORMAT), editURL);
-				
-				// version column
-				String versionName = StringPool.BLANK;
-				
-				try{
-					DictVersion dictVersion = DictVersionLocalServiceUtil.getDictVersion(dictItem.getDictItemId());
-					if(dictVersion != null){
-						versionName = dictVersion.getVersion();
-					}
-				}catch(Exception e){
-					// Nothing todo
+				if(Validator.isNotNull(searchTerms.getKeywords())){
+					itemNames = CustomSQLUtil.keywords(searchTerms.getKeywords());
 				}
 				
-				row.addText(versionName, editURL);
-				
-				//author column
-				String authorName = StringPool.BLANK;
 				try{
-					User author = UserLocalServiceUtil.getUser(dictItem.getUserId());
-					authorName = author.getFullName();
+					
+					%>
+						<%@include file="/html/portlets/data_management/admin/dictitem_search_results.jspf" %>
+					<%
 				}catch(Exception e){
 					_log.error(e);
 				}
+			
+				total = totalCount;
+				results = dictItems;
+				pageContext.setAttribute("results", results);
+				pageContext.setAttribute("total", total);
+			%>
+		</liferay-ui:search-container-results>	
+			<liferay-ui:search-container-row 
+				className="org.opencps.datamgt.model.DictItem" 
+				modelVar="dictItem" 
+				keyProperty="dictItemId"
+			>
+				<%
+					PortletURL editURL = renderResponse.createRenderURL();
+					editURL.setParameter("mvcPath", "/html/portlets/data_management/admin/edit_dictitem.jsp");
+					editURL.setParameter(DictItemDisplayTerms.DICTITEM_ID, String.valueOf(dictItem.getDictItemId()));
+					editURL.setParameter("backURL", currentURL);
+					
+					row.setClassName("opencps-searchcontainer-row");
+					
+					//id column
+					row.addText(String.valueOf(dictItem.getDictItemId()), editURL);
 				
-				row.addText(authorName, editURL);
-				
-				//inuse column
-				String status = LanguageUtil.get(locale, "draft");
-				
-				if(dictItem.getIssueStatus() == PortletConstants.DRAFTING){
-					status = LanguageUtil.get(locale, "draft");
-				}else if(dictItem.getIssueStatus() == PortletConstants.INUSE){
-					status = LanguageUtil.get(locale, "inuse");
-				}else if(dictItem.getIssueStatus() == PortletConstants.EXPIRED){
-					status = LanguageUtil.get(locale, "expired");
-				}else{
-					status = LanguageUtil.get(locale, "unknown");
-				}
-				
-				row.addText(status, editURL);
-				
-				//action column
-				row.addJSP("center",SearchEntry.DEFAULT_VALIGN,"/html/portlets/data_management/admin/dictitem_actions.jsp", config.getServletContext(), request, response);
-			%>	
-		</liferay-ui:search-container-row> 
-	
-	<liferay-ui:search-iterator type="opencs_page_iterator"/>
-</liferay-ui:search-container>
-
+					row.addText(dictItem.getItemCode(), editURL);
+					row.addText(dictItem.getItemName(locale), editURL);
+					
+					row.addText(dictItem.getTreeIndex(), editURL);
+					
+					row.addText(DateTimeUtil.convertDateToString(dictItem.getCreateDate(), DateTimeUtil._VN_DATE_TIME_FORMAT), editURL);
+					row.addText(DateTimeUtil.convertDateToString(dictItem.getModifiedDate(), DateTimeUtil._VN_DATE_TIME_FORMAT), editURL);
+					
+					// version column
+					String versionName = StringPool.BLANK;
+					
+					try{
+						DictVersion dictVersion = DictVersionLocalServiceUtil.getDictVersion(dictItem.getDictItemId());
+						if(dictVersion != null){
+							versionName = dictVersion.getVersion();
+						}
+					}catch(Exception e){
+						// Nothing todo
+					}
+					
+					row.addText(versionName, editURL);
+					
+					//author column
+					String authorName = StringPool.BLANK;
+					try{
+						User author = UserLocalServiceUtil.getUser(dictItem.getUserId());
+						authorName = author.getFullName();
+					}catch(Exception e){
+						_log.error(e);
+					}
+					
+					row.addText(authorName, editURL);
+					
+					//inuse column
+					String status = LanguageUtil.get(locale, "draft");
+					
+					if(dictItem.getIssueStatus() == PortletConstants.DRAFTING){
+						status = LanguageUtil.get(locale, "draft");
+					}else if(dictItem.getIssueStatus() == PortletConstants.INUSE){
+						status = LanguageUtil.get(locale, "inuse");
+					}else if(dictItem.getIssueStatus() == PortletConstants.EXPIRED){
+						status = LanguageUtil.get(locale, "expired");
+					}else{
+						status = LanguageUtil.get(locale, "unknown");
+					}
+					
+					row.addText(status, editURL);
+					
+					//action column
+					row.addJSP("center",SearchEntry.DEFAULT_VALIGN,"/html/portlets/data_management/admin/dictitem_actions.jsp", config.getServletContext(), request, response);
+				%>	
+			</liferay-ui:search-container-row> 
+		
+		<liferay-ui:search-iterator type="opencs_page_iterator"/>
+	</liferay-ui:search-container>
+</div>
 <%!
 	private Log _log = LogFactoryUtil.getLog("html.portlets.data_management.admin.dictitem.jsp");
 %>

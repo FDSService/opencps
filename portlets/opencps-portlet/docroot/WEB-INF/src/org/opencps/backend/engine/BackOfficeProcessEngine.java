@@ -67,9 +67,7 @@ public class BackOfficeProcessEngine implements MessageListener {
 	}
 	
 	private void _doRecevie(Message message) {
-		
-		_log.info("POKEMON ->> GO ProcessEngine -->>>>>>>>>");
-		
+				
 		Date now = new Date();
 		String actionName = StringPool.BLANK;
 		String stepName = StringPool.BLANK;
@@ -244,7 +242,7 @@ public class BackOfficeProcessEngine implements MessageListener {
 					String pattern = processWorkflow.getReceptionNoPattern();
 					if (Validator.isNotNull(pattern) && StringUtil.trim(pattern).length() != 0) {
 						
-						toBackOffice.setReceptionNo(DossierNoGenerator.genaratorNoReception(pattern)); 
+						toBackOffice.setReceptionNo(DossierNoGenerator.genaratorNoReception(pattern, toEngineMsg.getDossierId())); 
 					} else {
 						toBackOffice.setReceptionNo(dossier.getReceptionNo());
 					}

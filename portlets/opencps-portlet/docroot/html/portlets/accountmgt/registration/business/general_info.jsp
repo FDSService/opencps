@@ -101,7 +101,7 @@
 <aui:model-context bean="<%=business%>" model="<%=Business.class%>" />
 
 <c:if test="<%=isAdminViewProfile  && businessId > 0%>">
-	<aui:row>
+	<aui:row cssClass="nav-content-row-2">
 		<aui:col width="50">
 			<aui:input 
 				type="text"
@@ -109,16 +109,21 @@
 				value="<%=DateTimeUtil.convertDateToString(business.getCreateDate(), DateTimeUtil._VN_DATE_FORMAT) %>"
 				disabled="<%=isAdminViewProfile %>"
 				label="create-date"
+				cssClass="input100" 
 			/>
 		</aui:col>
 		<aui:col width="50">
-			<aui:input name="<%=BusinessDisplayTerms.BUSINESS_ACCOUNTSTATUS%>"  disabled="<%=isAdminViewProfile %>" />
+			<aui:input 
+				name="<%=BusinessDisplayTerms.BUSINESS_ACCOUNTSTATUS%>"  
+				disabled="<%=isAdminViewProfile %>" 
+				cssClass="input100" 
+			/>
 		</aui:col>
 		
 	</aui:row>
 </c:if>
 
-<aui:row>
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="50">
 		<aui:input name="<%=BusinessDisplayTerms.BUSINESS_NAME %>" cssClass="input100" >
 			<aui:validator name="required" />
@@ -127,17 +132,15 @@
 	</aui:col>
 	
 	<aui:col width="50">
-		<div class="span6">
-			<aui:input name="<%=BusinessDisplayTerms.BUSINESS_IDNUMBER %>" cssClass="input100"	
-				>
-				<aui:validator name="required" />
-				<aui:validator name="maxLength">100</aui:validator>
-			</aui:input>
-		</div>
+		<aui:input name="<%=BusinessDisplayTerms.BUSINESS_IDNUMBER %>" cssClass="input100"	
+			>
+			<aui:validator name="required" />
+			<aui:validator name="maxLength">100</aui:validator>
+		</aui:input>
 	</aui:col>
 </aui:row>
 
-<aui:row>
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="50">
 		<aui:input name="<%= BusinessDisplayTerms.BUSINESS_ENNAME %>" cssClass="input100">
 			<aui:validator name="maxLength">255</aui:validator>
@@ -145,26 +148,25 @@
 	</aui:col>
 	
 	<aui:col width="50">
-		<div class="span6">
-			<aui:input name="<%=BusinessDisplayTerms.BUSINESS_SHORTNAME %>" cssClass="input100">
-				<aui:validator name="maxLength">100</aui:validator>
-			</aui:input>
-		</div>
+		<aui:input name="<%=BusinessDisplayTerms.BUSINESS_SHORTNAME %>" cssClass="input100">
+			<aui:validator name="maxLength">100</aui:validator>
+		</aui:input>
 	</aui:col>
 </aui:row>
-<aui:row>
+
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="50">
 		<aui:row>
-			<aui:col width="50">
-				<datamgt:ddr
-					cssClass="input100"
-					depthLevel="1" 
-					dictCollectionCode="<%=PortletPropsValues.DATAMGT_MASTERDATA_BUSINESS_TYPE %>"
-					itemNames="businessType"
-					itemsEmptyOption="true"	
-					selectedItems="<%=String.valueOf(dictItemTypeId)%>"
-				/>
-			</aui:col>
+			<datamgt:ddr
+				cssClass="input100"
+				depthLevel="1" 
+				dictCollectionCode="<%=PortletPropsValues.DATAMGT_MASTERDATA_BUSINESS_TYPE %>"
+				itemNames="businessType"
+				itemsEmptyOption="true"	
+				selectedItems="<%=String.valueOf(dictItemTypeId)%>"
+				emptyOptionLabels="businessType"
+				showLabel="<%=true%>"
+			/>
 		</aui:row>
 		<aui:row>
 				<aui:input name="<%=BusinessDisplayTerms.BUSINESS_ADDRESS %>" cssClass="input100">

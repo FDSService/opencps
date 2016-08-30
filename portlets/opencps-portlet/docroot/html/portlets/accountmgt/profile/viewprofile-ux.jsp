@@ -90,11 +90,19 @@
 		dictItemDistrict = PortletUtil.getDictItem("ADMINISTRATIVE_REGION", business.getDistrictCode(), scopeGroupId);
 		dictItemWard = PortletUtil.getDictItem("ADMINISTRATIVE_REGION", business.getWardCode(), scopeGroupId);
 		dicBusinessType = PortletUtil.getDictItem("BUSINESS_TYPE", business.getBusinessType(), scopeGroupId);
-		cityName = dictItemCity.getItemName(themeDisplay.getLocale(), true);
-		districtName = dictItemDistrict.getItemName(themeDisplay.getLocale(), true);
-		wardName = dictItemWard.getItemName(themeDisplay.getLocale(), true);
+		if(Validator.isNotNull(dictItemCity)) {
+			cityName = dictItemCity.getItemName(themeDisplay.getLocale(), true);
+		}
+		if(Validator.isNotNull(dictItemDistrict)) {
+			districtName = dictItemDistrict.getItemName(themeDisplay.getLocale(), true);
+		}
+		if(Validator.isNotNull(dictItemWard)) {
+			wardName = dictItemWard.getItemName(themeDisplay.getLocale(), true);
+		}
 		
-		businessTypeName = dicBusinessType.getItemName(locale,true);
+		if(Validator.isNotNull(dicBusinessType)) {
+			businessTypeName = dicBusinessType.getItemName(locale,true);
+		}
 	
 	}
 %>
@@ -276,14 +284,18 @@
 														<%
 														for(BusinessDomain businessDomain : businessDomains) {
 				                                    		%>
+				                                    			<%
+				                                    				DictItem dictItemDomain = null;
+				                                    				dictItemDomain = PortletUtil.getDictItem(PortletPropsValues.DATAMGT_MASTERDATA_BUSINESS_DOMAIN, businessDomain.getBusinessDomainCode(), scopeGroupId);
+				                                    			%>
 				                                    			<span>
 				                                    				<i class="fa fa-check-square-o" aria-hidden="true"></i>
-				                                    				<%=PortletUtil.getDictItem(PortletPropsValues.DATAMGT_MASTERDATA_BUSINESS_DOMAIN, businessDomain.getBusinessDomainCode(), scopeGroupId) %>
+				                                    				<%=Validator.isNotNull(dictItemDomain) ? dictItemDomain.getItemName(locale, true) : StringPool.BLANK %>
 				                                    			</span>
 				                                    		<%
 				                                	}
 														%>
-													</label>					                                    
+													</label>
 			                                    <%
 		                                	}
 			                            %> 

@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
-<%@ include file="../init.jsp"%>
+
 <%@page import="org.opencps.datamgt.EmptyItemCodeException"%>
 <%@page import="org.opencps.datamgt.OutOfLengthItemCodeException"%>
 <%@page import="org.opencps.datamgt.EmptyDictItemNameException"%>
@@ -25,6 +25,9 @@
 <%@page import="org.opencps.datamgt.NoSuchDictItemException"%>
 <%@page import="org.opencps.util.MessageKeys"%>
 <%@page import="org.opencps.datamgt.search.DictItemDisplayTerms"%>
+
+<%@ include file="../init.jsp"%>
+
 <%
 	DictItem dictItem = (DictItem) request.getAttribute(WebKeys.DICT_ITEM_ENTRY);
 	DictItem dictItemChirld = null;
@@ -34,11 +37,11 @@
 	String isAddChirld = ParamUtil.getString(request, "isAddChirld"); 
 %>
 
-<liferay-ui:header
+<%-- <liferay-ui:header
 	backURL="<%= backURL %>"
 	title="update"
 	backLabel="back"
-/>
+/> --%>
 
 
 <portlet:actionURL name="updateDomain" var="updateDomainURL" >
@@ -49,13 +52,13 @@
 </portlet:actionURL>
 
 <aui:form action="<%=updateDomainURL.toString() %>" name="fm" method="post">
-<liferay-ui:error exception="<%= EmptyItemCodeException.class %>" message="<%=EmptyItemCodeException.class.getName() %>" />
-		<liferay-ui:error exception="<%= OutOfLengthItemCodeException.class %>" message="<%=OutOfLengthItemCodeException.class.getName() %>" />
-		<liferay-ui:error exception="<%= EmptyDictItemNameException.class %>" message="<%=EmptyDictItemNameException.class.getName() %>" />
-		<liferay-ui:error exception="<%= OutOfLengthItemNameException.class %>" message="<%=OutOfLengthItemNameException.class.getName() %>" />
-		<liferay-ui:error exception="<%= DuplicateItemException.class %>" message="<%=DuplicateItemException.class.getName() %>" />
-		<liferay-ui:error exception="<%= NoSuchDictItemException.class %>" message="<%=NoSuchDictItemException.class.getName() %>" />
-		<liferay-ui:error key="<%= MessageKeys.DATAMGT_SYSTEM_EXCEPTION_OCCURRED%>" message="<%=MessageKeys.DATAMGT_SYSTEM_EXCEPTION_OCCURRED %>" />
+	<liferay-ui:error exception="<%= EmptyItemCodeException.class %>" message="<%=EmptyItemCodeException.class.getName() %>" />
+	<liferay-ui:error exception="<%= OutOfLengthItemCodeException.class %>" message="<%=OutOfLengthItemCodeException.class.getName() %>" />
+	<liferay-ui:error exception="<%= EmptyDictItemNameException.class %>" message="<%=EmptyDictItemNameException.class.getName() %>" />
+	<liferay-ui:error exception="<%= OutOfLengthItemNameException.class %>" message="<%=OutOfLengthItemNameException.class.getName() %>" />
+	<liferay-ui:error exception="<%= DuplicateItemException.class %>" message="<%=DuplicateItemException.class.getName() %>" />
+	<liferay-ui:error exception="<%= NoSuchDictItemException.class %>" message="<%=NoSuchDictItemException.class.getName() %>" />
+	<liferay-ui:error key="<%= MessageKeys.DATAMGT_SYSTEM_EXCEPTION_OCCURRED%>" message="<%=MessageKeys.DATAMGT_SYSTEM_EXCEPTION_OCCURRED %>" />
 	<c:choose>
 		<c:when test="<%=Validator.isNotNull(isAddChirld) %>">
 			<aui:model-context bean="<%=dictItemChirld%>" model="<%=DictItem.class%>" />

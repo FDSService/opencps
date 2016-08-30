@@ -23,6 +23,7 @@ import java.util.Random;
 import org.opencps.dossiermgt.model.Dossier;
 import org.opencps.dossiermgt.service.DossierLocalServiceUtil;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -34,22 +35,14 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class DossierNoGenerator {
 	
-	public static void main(String[] args) {
-		String pattern = "{yy}-{mm}-{dd}-{nnnnnnnnnnn}";
-		
-		String receptionNo = genaratorNoReception(pattern);
-		
-		System.out.println(receptionNo);
-	    
-    }
 	
 	/**
 	 * @param pattern
 	 * @return
 	 */
-	public static String genaratorNoReception(String pattern) {
+	public static String genaratorNoReception(String pattern, long dossierId) {
 		
-		String noReception = _genaratorNoReception(pattern);
+		String noReception = _genaratorNoReception(pattern, dossierId);
 		
 		Dossier dossier = null;
 		
@@ -61,7 +54,7 @@ public class DossierNoGenerator {
         }
 		
 		if (Validator.isNotNull(dossier)) {
-			noReception = genaratorNoReception(pattern);
+			noReception = genaratorNoReception(pattern, dossierId);
 		}
 		
 		return noReception;
@@ -73,7 +66,7 @@ public class DossierNoGenerator {
 	 * @param pattern
 	 * @return
 	 */
-	private static String _genaratorNoReception(String pattern) {
+	private static String _genaratorNoReception(String pattern, long dossierId) {
 		
 		String noReception = StringPool.BLANK;
 		
@@ -97,9 +90,8 @@ public class DossierNoGenerator {
 		        : Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
 		
 		if (_validateParttern(pattern)) {
-			int numberSerial = StringUtil.count(pattern, "n");
 			
-			String serialNumber = noGenarator(numberSerial);
+			String serialNumber = _serialNumberAutoIncrement(pattern, dossierId);
 			
 			sbNoReception.replace(pattern.indexOf('n') - 1 , pattern.lastIndexOf('n') + 2, serialNumber);
 			
@@ -183,6 +175,40 @@ public class DossierNoGenerator {
 		
 		return sb.toString();
 	}
+	
+	/**
+	 * @param pattern
+	 * @param dossierId
+	 * @return
+	 */
+	private static String _serialNumberAutoIncrement(String pattern, long dossierId) {
+		dossierId  = dossierId + 2;
+		int numberSerial = StringUtil.count(pattern, "n");
+		
+		String strNumSerial = intToString(dossierId, numberSerial);
+		
+		return strNumSerial;
+	}
+	
+	/**
+	 * @param number
+	 * @param stringLength
+	 * @return
+	 */
+	public static String intToString(long number, int stringLength) {
+
+		int numberOfDigits = String.valueOf(number).length();
+		int numberOfLeadingZeroes = stringLength - numberOfDigits;
+		StringBuilder sb = new StringBuilder();
+		if (numberOfLeadingZeroes > 0) {
+			for (int i = 0; i < numberOfLeadingZeroes; i++) {
+				sb.append("0");
+			}
+		}
+		sb.append(number);
+		return sb.toString();
+	}
+
 	
 	public static final String FIX_YEAR_PATTERN_TYPE_1 = "{yyyy}";
 

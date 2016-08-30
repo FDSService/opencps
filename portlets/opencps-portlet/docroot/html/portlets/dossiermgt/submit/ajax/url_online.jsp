@@ -1,9 +1,3 @@
-<%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
-<%@page import="org.opencps.util.WebKeys"%>
-<%@page import="org.opencps.servicemgt.service.ServiceInfoLocalServiceUtil"%>
-<%@page import="org.opencps.dossiermgt.service.ServiceConfigLocalServiceUtil"%>
-<%@page import="org.opencps.dossiermgt.model.ServiceConfig"%>
-<%@page import="org.opencps.servicemgt.model.ServiceInfo"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -23,6 +17,12 @@
  */
 %>
 <%@ include file="../init.jsp"%>
+<%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
+<%@page import="org.opencps.util.WebKeys"%>
+<%@page import="org.opencps.servicemgt.service.ServiceInfoLocalServiceUtil"%>
+<%@page import="org.opencps.dossiermgt.service.ServiceConfigLocalServiceUtil"%>
+<%@page import="org.opencps.dossiermgt.model.ServiceConfig"%>
+<%@page import="org.opencps.servicemgt.model.ServiceInfo"%>
 
 <%
 	long serviceInfoId = ParamUtil.getLong(request, "serviceinfoId");
@@ -71,7 +71,7 @@
 		<c:when test="<%=Validator.isNotNull(serviceConfig) %>">
 			<c:choose>
 				<c:when test="<%=serviceConfig.getServiceInstruction().equalsIgnoreCase(StringPool.BLANK) %>">
-					<liferay-ui:message key="service-no-description"/>
+					
 				</c:when>
 				<c:otherwise>
 					<%= serviceConfig.getServiceInstruction() %>

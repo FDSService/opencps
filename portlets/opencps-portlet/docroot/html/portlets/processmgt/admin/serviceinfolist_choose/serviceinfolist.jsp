@@ -1,10 +1,4 @@
-<%@page import="org.opencps.util.PortletUtil"%>
-<%@page import="org.opencps.util.PortletPropsValues"%>
-<%@page import="org.opencps.util.DictItemUtil"%>
-<%@page import="com.liferay.portal.kernel.dao.search.RowChecker"%>
-<%@page import="org.opencps.servicemgt.service.ServiceInfoLocalServiceUtil"%>
-<%@page import="org.opencps.dossiermgt.service.ServiceConfigLocalServiceUtil"%>
-<%@page import="org.opencps.dossiermgt.model.ServiceConfig"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -23,6 +17,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
+<%@page import="org.opencps.util.PortletUtil"%>
+<%@page import="org.opencps.util.PortletPropsValues"%>
+<%@page import="org.opencps.util.DictItemUtil"%>
+<%@page import="com.liferay.portal.kernel.dao.search.RowChecker"%>
+<%@page import="org.opencps.servicemgt.service.ServiceInfoLocalServiceUtil"%>
+<%@page import="org.opencps.dossiermgt.service.ServiceConfigLocalServiceUtil"%>
+<%@page import="org.opencps.dossiermgt.model.ServiceConfig"%>
+
 <%@ include file="../../init.jsp"%>
 
 <%
@@ -93,7 +95,7 @@
 			/>
 		<liferay-ui:search-container-column-text 
 				name="service-administration-action" 
-				value="<%=PortletUtil.getDictItem(PortletPropsValues.DATAMGT_MASTERDATA_SERVICE_ADMINISTRATION, serviceConfig.getGovAgencyCode(), scopeGroupId).getItemName(locale,true) %>"
+				value="<%=PortletUtil.getDictItem(PortletPropsValues.DATAMGT_MASTERDATA_GOVERNMENT_AGENCY, serviceConfig.getGovAgencyCode(), scopeGroupId).getItemName(locale,true) %>"
 			/>
 	</liferay-ui:search-container-row>
 <liferay-ui:search-iterator paginate="false"/>

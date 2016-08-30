@@ -1,4 +1,5 @@
 
+<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -140,7 +141,7 @@
 					</span>
 					
 					<span class="span8">
-						<%=Validator.isNotNull(dossierLog.getActor()) ? dossierLog.getActor() : StringPool.DASH %>
+						<%= Validator.isNotNull(dossierLog.getActor())? LanguageUtil.get(pageContext, dossierLog.getActor()+"-cus"):StringPool.BLANK %>
 					</span>
 				</aui:row>
 				
@@ -150,7 +151,7 @@
 					</span>
 					
 					<span class="span8">
-						<%=dossierLog.getMessageInfo()%>
+						<%=dossierLog.getActionInfo()%>
 					</span>
 					
 				</aui:row>

@@ -1,66 +1,14 @@
-.bottom-horizontal-line{
-	border-bottom: 1px solid #ccc;
-	clear: both;
-	display: block;
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
-
-.input90{
-	width : 90% !important;
-}
-
-.input95{
-	width : 95% !important;
-}
-
-.input96{
-	width : 96% !important;
-}
-
-.input97{
-	width : 97% !important;
-}
-
 .input100{
-	width : 100% !important;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-khtml-box-sizing: border-box;
+	box-sizing: border-box;
+	min-height: 30px;
+	max-width: 100% !important;
+	width: 100%;
 }
 
-.input50{
-	width : 50% !important;
-}
-
-.input60{
-	width : 60% !important;
-}
-
-.input30{
-	width : 30% !important;
-}
-
-.input40{
-	width : 40% !important;
-}
-
-.input50{
-	width : 50% !important;
-}
-
-.input60{
-	width : 60% !important;
-}
-
-.input30{
-	width : 30% !important;
-}
-
-.input70{
-	width : 70% !important;
-}
-
-.input40{
-	width : 40% !important;
-}
 
 .input30_1 select {
 	width: 150px !important;

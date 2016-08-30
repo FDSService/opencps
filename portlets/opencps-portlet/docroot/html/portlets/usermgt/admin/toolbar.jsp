@@ -58,12 +58,13 @@
 					<portlet:param name="redirectURL" value="<%=currentURL %>"/>
 				</portlet:renderURL>
 				<c:if test="<%=WorkingUnitPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_WORKINGUNIT) %>">
-					<aui:nav-item 
+					<%-- <aui:nav-item 
 						id="add-workingunit" 
 						label="add-workingunit" 
 						iconCssClass="icon-plus"  
 						href="<%=editWorkingUnitURL %>"
-					/>
+					/> --%>
+					<aui:button icon="icon-plus" href="<%=editWorkingUnitURL %>" cssClass="action-button" value="add-workingunit"/>
 				</c:if>
 			</c:when>
 			
@@ -74,13 +75,13 @@
 					<portlet:param name="backURL" value="<%=currentURL %>"/>
 				</portlet:renderURL>
 				
-				<aui:nav-item 
+				<%-- <aui:nav-item 
 					id="add-employee" 
 					label="add-employee" 
 					iconCssClass="icon-plus"  
 					href="<%=editEmployeeURL %>"
-				/>
-					
+				/> --%>
+				<aui:button icon="icon-plus" href="<%=editEmployeeURL %>" cssClass="action-button" value="add-employee"/>
 			</c:when>
 			
 		</c:choose>
@@ -131,6 +132,7 @@
 	                            <liferay-ui:input-search 
 	                                id="keywords1" 
 	                                name="keywords" 
+	                                title='<%= LanguageUtil.get(locale, "keywords") %>' 
 	                                placeholder='<%= LanguageUtil.get(locale, "keyword") %>' 
 	                            />
 	                        </aui:col>

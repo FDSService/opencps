@@ -192,16 +192,18 @@
 	action='<%= citizenId > 0 ? updateCitizenProfileURL.toString() : updateBusinessProfileURL.toString() %>'
 	enctype="multipart/form-data"	
 >
-	
-	<liferay-ui:form-navigator 
-		backURL="<%= currentURL %>"
-		categoryNames= "<%= UserMgtUtil._PROFILE_CATEGORY_NAMES %>"	
-		categorySections="<%=categorySections %>" 
-		htmlBottom="<%= htmlBot %>"
-		htmlTop="<%= htmlTop %>"
-		jspPath="<%=path%>"
+	<div class="opencps-form-navigator-container radius8">
+		<liferay-ui:form-navigator 
+			backURL="<%= currentURL %>"
+			categoryNames= "<%= UserMgtUtil._PROFILE_CATEGORY_NAMES %>"	
+			categorySections="<%=categorySections %>" 
+			htmlBottom="<%= htmlBot %>"
+			htmlTop="<%= htmlTop %>"
+			jspPath="<%=path%>"
+			displayStyle="left-navigator"
 		>	
-	</liferay-ui:form-navigator>
+		</liferay-ui:form-navigator>
+	</div>
 	
 	<c:choose>
 		<c:when test="<%=citizenId > 0 %>">

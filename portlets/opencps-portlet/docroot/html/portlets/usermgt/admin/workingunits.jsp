@@ -1,4 +1,3 @@
-<%@page import="org.opencps.usermgt.util.UserMgtUtil"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -17,7 +16,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
-
+<%@page import="org.opencps.usermgt.WorkingUnitHasChildException"%>
+<%@page import="org.opencps.usermgt.NoSuchWorkingUnitException"%>
+<%@page import="org.opencps.usermgt.EmployeeHasExistedException"%>
+<%@page import="org.opencps.usermgt.JopPosHasExistedException"%>
 <%@page import="com.liferay.portal.kernel.dao.search.RowChecker"%>
 <%@page import="com.liferay.taglib.aui.RowTag"%>
 <%@page import="com.liferay.portal.kernel.dao.search.SearchEntry"%>
@@ -33,6 +35,8 @@
 <%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@page import="org.opencps.util.MessageKeys"%>
 <%@page import="org.opencps.util.PortletConstants"%>
+<%@page import="org.opencps.usermgt.util.UserMgtUtil"%>
+
 <%@ include file="../init.jsp"%>
 
 
@@ -52,6 +56,14 @@
 	if(Validator.isNotNull(isEmployeeRequest) && isEmployeeRequest.equals("isEmploy")) {
 		isEmployee = true;
 	}
+	
+	List<String> headerNames = new ArrayList<String>();
+	
+	headerNames.add("no");
+	headerNames.add("working-unit-info");
+	headerNames.add("action");
+	
+	String headers = StringUtil.merge(headerNames, StringPool.COMMA);
 %>
 
 <liferay-ui:success 
@@ -72,34 +84,101 @@
 		MessageKeys.USERMGT_WORKINGUNIT_DELETE_ERROR) %>"
 />
 
-<liferay-ui:search-container searchContainer="<%= new WorkingUnitSearch(
-	renderRequest ,SearchContainer.DEFAULT_DELTA, iteratorURL) %>">
-	<liferay-ui:search-container-results>
-		<%@include file="/html/portlets/usermgt/admin/workingunit_search_results.jspf" %>
-	</liferay-ui:search-container-results>
-	
-	<liferay-ui:search-container-row 
-		className="org.opencps.usermgt.model.WorkingUnit" 
-		modelVar="workingUnit" 
-		keyProperty="workingunitId"
-	>
-	
-		<%
-		    row.addText(String.valueOf(row.getPos() +1 ));
-			row.addText(workingUnit.getName());
-			row.addText(workingUnit.getGovAgencyCode());
-			String isEmployer = "<i class=\"opencps-icon employees\"></i>";
-			
-			if(workingUnit.getIsEmployer() == false) {
-				isEmployer = "<i class=\"opencps-icon not-employee\"></i>";
-			}
-			
-			row.addText(isEmployer);
-			
-			row.addJSP("center", SearchEntry.DEFAULT_VALIGN,  templatePath + "workingunit_action.jsp", config.getServletContext(), request, response);
-		%>
-	</liferay-ui:search-container-row>
-	
-	<liferay-ui:search-iterator type="opencs_page_iterator"/>
-</liferay-ui:search-container>
+<liferay-ui:error 
+	exception="<%=NoSuchWorkingUnitException.class %>"
+	message="<%=NoSuchWorkingUnitException.class.getName() %>"	
+/>
 
+<liferay-ui:error 
+	exception="<%=JopPosHasExistedException.class  %>"
+	message="<%=JopPosHasExistedException.class.getName() %>"	
+/>
+
+<liferay-ui:error 
+	exception="<%=EmployeeHasExistedException.class %>"
+	message="<%=EmployeeHasExistedException.class.getName() %>"	
+/>
+
+<liferay-ui:error 
+	exception="<%=WorkingUnitHasChildException.class %>"
+	message="<%=WorkingUnitHasChildException.class.getName() %>"	
+/>
+
+<liferay-ui:error 
+	key="<%=MessageKeys.USERMGT_SYSTEM_EXCEPTION_OCCURRED %>"
+	message="<%=MessageKeys.USERMGT_SYSTEM_EXCEPTION_OCCURRED %>"	
+/>
+
+<div class="opencps-searchcontainer-wrapper default-box-shadow radius8">
+	<liferay-ui:search-container searchContainer="<%= new WorkingUnitSearch(
+		renderRequest ,SearchContainer.DEFAULT_DELTA, iteratorURL) %>" headerNames="<%=headers %>">
+		<liferay-ui:search-container-results>
+			<%@include file="/html/portlets/usermgt/admin/workingunit_search_results.jspf" %>
+		</liferay-ui:search-container-results>
+		
+		<liferay-ui:search-container-row 
+			className="org.opencps.usermgt.model.WorkingUnit" 
+			modelVar="workingUnit" 
+			keyProperty="workingunitId"
+		>
+			<liferay-util:buffer var="no">
+				<div class="row-fluid min-width10">
+					<div class="span12 bold">
+						<%=row.getPos() + 1 %>
+					</div>
+				</div>
+			</liferay-util:buffer>
+			
+			<liferay-util:buffer var="workingunitInfo">
+				<div class="row-fluid">
+					<div class="span4 bold">
+						<liferay-ui:message key="name"/>
+					</div>
+					<div class="span8">
+						<%= workingUnit.getName() %>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span4 bold">
+						<liferay-ui:message key="govagencycode"/>
+					</div>
+					<div class="span8">
+						<%= workingUnit.getGovAgencyCode() %>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span4 bold">
+						<liferay-ui:message key="isEmployer"/>
+					</div>
+					<div class="span8">
+						<%
+							String isEmployer = "<i class=\"opencps-icon employees\"></i>";
+							
+							if(workingUnit.getIsEmployer() == false) {
+								isEmployer = "<i class=\"opencps-icon not-employee\"></i>";
+							}
+						%>
+						<%= isEmployer %>
+					</div>
+				</div>
+			</liferay-util:buffer>
+		
+			<%
+				row.setClassName("opencps-searchcontainer-row");
+			    row.addText(no);
+				row.addText(workingunitInfo);
+	
+				//row.addJSP("center", SearchEntry.DEFAULT_VALIGN,  templatePath + "workingunit_action.jsp", config.getServletContext(), request, response);
+			%>
+			
+			<liferay-ui:search-container-column-jsp 
+				path='<%=templatePath + "workingunit_action.jsp" %>' 
+				name="action" cssClass="width80"
+			/>
+		</liferay-ui:search-container-row>
+		
+		<liferay-ui:search-iterator type="opencs_page_iterator"/>
+	</liferay-ui:search-container>
+</div>

@@ -1,7 +1,4 @@
 
-<%@page import="com.liferay.portal.kernel.servlet.SessionErrors"%>
-<%@page import="com.liferay.portal.kernel.servlet.SessionMessages"%>
-<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -20,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
-<%@ include file="../init.jsp"%>
+
 <%@page import="org.opencps.usermgt.util.UserMgtUtil"%>
 <%@page import="org.opencps.usermgt.service.JobPosLocalServiceUtil"%>
 <%@page import="org.opencps.usermgt.search.JobPosDisplayTerms"%>
@@ -30,7 +27,12 @@
 <%@page import="com.liferay.portal.kernel.log.LogFactoryUtil"%>
 <%@page import="org.opencps.usermgt.model.JobPos"%>
 <%@page import="com.liferay.portal.kernel.exception.SystemException"%>
+<%@page import="com.liferay.portal.kernel.servlet.SessionErrors"%>
+<%@page import="com.liferay.portal.kernel.servlet.SessionMessages"%>
+<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
+<%@page import="org.opencps.util.WebKeys"%>
 
+<%@ include file="../init.jsp"%>
 <%
 	long workingUnitId = ParamUtil.getLong(request, "workingUnitId");
 	long jobPosId = ParamUtil.getLong(request, JobPosDisplayTerms.ID_JOBPOS);
@@ -52,16 +54,16 @@
 
 	try{
 		success = !SessionMessages.isEmpty(renderRequest) && SessionErrors.isEmpty(renderRequest);
-		
 	}catch(Exception e){
 		
 	}
+	
 %>
-
+<%-- 
 <liferay-ui:header
 	backURL="<%= redirectURL %>"
 	title='<%= (jobPos == null) ? "add-jobpos" : "update-jobpos" %>'
-/>
+/> --%>
 
 
 <liferay-ui:error 
@@ -76,9 +78,14 @@
 		MessageKeys.USERMGT_JOBPOS_DELETE_SUCCESS) %>"
 />
 
+<liferay-ui:error 
+	key="jobpos-existed-title" 
+	message="jobpos-existed-title"
+/>
+
+
 <portlet:actionURL var="updateJobPosURL" name="updateJobPoses">
 	<portlet:param name="workingUnitId" value="<%=String.valueOf(workingUnitId) %>"/>
-	<portlet:param name="redirectURL" value="<%=redirectURL %>"/>
 	<portlet:param name="returnURL" value="<%=returnURL %>"/>
 </portlet:actionURL>
 
@@ -124,9 +131,9 @@
 %>
 <aui:script use='liferay-util-window'>
 	AUI().ready(function(A) {
-		var success = '<%= success%>';
-		if(success == 'true') {
-			Liferay.Util.getOpener().<portlet:namespace/>closePopup('<portlet:namespace/>dialog');
+		var successVal = "<%= success %>";
+		if(successVal == 'true') {
+			closeDialog('<portlet:namespace/>editJobPos', '<%=WebKeys.USER_MGT_PORTLET%>_');
 		}
 	});
 </aui:script>

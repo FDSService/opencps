@@ -68,7 +68,7 @@
 />
 
 
-<div class="opencps-datamgt dictitem-wrapper">
+<div class="opencps-datamgt dictitem-wrapper opencps-bound-wrapper pd20 default-box-shadow"">
 	<div class="edit-form">
 		<liferay-ui:error exception="<%= EmptyItemCodeException.class %>" message="<%=EmptyItemCodeException.class.getName() %>" />
 		<liferay-ui:error exception="<%= OutOfLengthItemCodeException.class %>" message="<%=OutOfLengthItemCodeException.class.getName() %>" />

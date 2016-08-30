@@ -452,6 +452,10 @@
 		    <name>copy-request-parameters</name>
 		    <value>true</value>
 		</init-param>
+		<init-param>
+			<name>add-process-action-success-action</name>
+			<value>false</value>
+		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
@@ -613,6 +617,10 @@
 		<init-param>
 		    <name>copy-request-parameters</name>
 		    <value>true</value>
+		</init-param>
+		<init-param>
+			<name>add-process-action-success-action</name>
+			<value>false</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

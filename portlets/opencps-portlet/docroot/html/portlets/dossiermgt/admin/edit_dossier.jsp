@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
-<%@ include file="../init.jsp"%>
+
 <%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
 <%@page import="org.opencps.dossiermgt.model.DossierTemplate"%>
 <%@page import="javax.portlet.PortletURL"%>
@@ -30,6 +30,9 @@
 <%@page import="org.opencps.dossiermgt.OutOfLengthDossierTemplateNumberException"%>
 <%@page import="org.opencps.dossiermgt.OutOfLengthDossierTemplateNameException"%>
 <%@page import="org.opencps.util.MessageKeys"%>
+
+<%@ include file="../init.jsp"%>
+
 <%
 
 	DossierTemplate dossierTemplate = (DossierTemplate) request.getAttribute(WebKeys.DOSSIER_TEMPLATE_ENTRY);
@@ -107,19 +110,21 @@
 	</div> --%>
 </liferay-util:buffer>
 
-<aui:form name="fm" 
+<aui:form 
+	name="fm" 
 	method="post" 
-	action="<%=updateDossierURL.toString() %>">
-<div class="opencps-form-navigator-container">
-	<liferay-ui:form-navigator 
-		backURL="<%= currentURL %>"
-		categoryNames= "<%= DossierMgtUtil._DOSSIER_CATEGORY_NAMES %>"	
-		categorySections="<%=categorySections %>" 
-		htmlBottom="<%= htmlBot %>"
-		htmlTop="<%= htmlTop %>"
-		jspPath='<%=templatePath + "dossier_common/" %>'
-		displayStyle="left-navigator"
-		>	
-	</liferay-ui:form-navigator>
-</div>
+	action="<%=updateDossierURL.toString() %>"
+>
+	<div class="opencps-form-navigator-container">
+		<liferay-ui:form-navigator 
+			backURL="<%= currentURL %>"
+			categoryNames= "<%= DossierMgtUtil._DOSSIER_CATEGORY_NAMES %>"	
+			categorySections="<%=categorySections %>" 
+			htmlBottom="<%= htmlBot %>"
+			htmlTop="<%= htmlTop %>"
+			jspPath='<%=templatePath + "dossier_common/" %>'
+			displayStyle="left-navigator"
+			>	
+		</liferay-ui:form-navigator>
+	</div>
 </aui:form>

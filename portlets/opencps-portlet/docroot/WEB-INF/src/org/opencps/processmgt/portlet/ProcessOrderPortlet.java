@@ -102,6 +102,7 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -255,6 +256,9 @@ public class ProcessOrderPortlet extends MVCPortlet {
 				size, serviceContext);
 
 			updated = true;
+			
+			SessionMessages.add(
+					actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
 
 		}
 		catch (Exception e) {
@@ -354,6 +358,10 @@ public class ProcessOrderPortlet extends MVCPortlet {
 				serviceContext.getUserId(), dossierId, dossierPartId, partName,
 				PortletConstants.DOSSIER_FILE_SYNC_STATUS_NOSYNC,
 				serviceContext);
+			
+			SessionMessages.add(
+					actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
+			
 		}
 		catch (Exception e) {
 			updated = false;
@@ -500,6 +508,10 @@ public class ProcessOrderPortlet extends MVCPortlet {
 				"opencps/backoffice/engine/destination", message);
 
 			sending = true;
+			
+			SessionMessages.add(
+					actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
+			
 		}
 		catch (Exception e) {
 			sending = false;
@@ -628,6 +640,9 @@ public class ProcessOrderPortlet extends MVCPortlet {
 				serviceContext);
 
 			updated = true;
+			
+			SessionMessages.add(
+					actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
 
 		}
 		catch (Exception e) {
@@ -856,6 +871,10 @@ public class ProcessOrderPortlet extends MVCPortlet {
 					}
 				}
 			}
+			
+			SessionMessages.add(
+					actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
+			
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchDossierFileException) {
@@ -930,8 +949,12 @@ public class ProcessOrderPortlet extends MVCPortlet {
 				DossierFileLocalServiceUtil.deleteDossierFile(
 					dossierFileId, fileEntryId);
 				jsonObject.put("deleted", Boolean.TRUE);
+				
+				SessionMessages.add(
+						actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
+				
 			}
-
+			
 		}
 		catch (Exception e) {
 			jsonObject.put("deleted", Boolean.FALSE);
@@ -964,6 +987,7 @@ public class ProcessOrderPortlet extends MVCPortlet {
 							dossierFile.getFileEntryId());
 					System.out.println(tempFilePath);
 				}
+				
 			}
 			catch (Exception e) {
 				// TODO: handle exception
@@ -1087,6 +1111,10 @@ public class ProcessOrderPortlet extends MVCPortlet {
 			if (is != null) {
 				is.close();
 			}
+			
+			SessionMessages.add(
+					actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
+			
 
 		}
 		catch (Exception e) {
@@ -1334,6 +1362,9 @@ public class ProcessOrderPortlet extends MVCPortlet {
 
 			jsonObject.put("deleted", Boolean.TRUE);
 
+			SessionMessages.add(
+					actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
+			
 		}
 		catch (Exception e) {
 			jsonObject.put("deleted", Boolean.FALSE);
@@ -1553,6 +1584,10 @@ public class ProcessOrderPortlet extends MVCPortlet {
 						dossierFileType, dossierFileNo, dossierFileDate,
 						original, syncStatus, serviceContext);
 			}
+			
+			SessionMessages.add(
+					actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
+			
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchDossierException) {

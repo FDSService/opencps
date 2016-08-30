@@ -31,8 +31,27 @@
 }
 .lfr-search-container{
 	margin-top: 0;
+	width: 100%;
 }
 .lfr-search-container .pagination{
   margin: 0 !important;
 }
+.mrb25{
+	margin-bottom: 25px;
+}
 /* ks 888 */
+.opencps-theme.ux .portlet-boundary_13_WAR_opencpsportlet_ .lfr-search-container .taglib-search-iterator-page-iterator-top .pagination >div.lfr-pagination-config{
+  margin-top: -55px;
+position: absolute;
+right: 0px;
+margin-right: 30px;
+}
+.opencps-theme.ux .payment-ld .lfr-search-container .taglib-search-iterator-page-iterator-top .pagination >div.lfr-pagination-config{
+  margin-top: -55px;
+position: absolute;
+right: 0px;
+margin-right: 30px;
+}
+.opcs-serviceinfo-list-label{
+	overflow: hidden;
+}

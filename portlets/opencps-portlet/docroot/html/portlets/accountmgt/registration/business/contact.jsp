@@ -1,4 +1,4 @@
-<%@page import="org.opencps.util.AccountUtil"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -34,6 +34,8 @@
 <%@page import="org.opencps.datamgt.model.DictCollection"%>
 <%@page import="org.opencps.accountmgt.service.BusinessLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.documentlibrary.model.DLFileEntry"%>
+<%@page import="org.opencps.util.AccountUtil"%>
+
 <%@ include file="../../init.jsp" %>
 
 <%
@@ -113,7 +115,7 @@
 
 <aui:model-context bean="<%=business%>" model="<%=Business.class%>" />
 
-<aui:row>
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="100">
 		<datamgt:ddr 
 			cssClass="input100"
@@ -122,12 +124,14 @@
 			itemNames="cityId,districtId,wardId"
 			itemsEmptyOption="true,true,true"	
 			selectedItems="<%=selectItems.toString() %>"
+			emptyOptionLabels="cityId,districtId,wardId"
+			showLabel="<%=true%>"
 		/>	
 	</aui:col>
 </aui:row>
 
-<aui:row>
-	<aui:col width="30">
+<aui:row cssClass="nav-content-row-2">
+	<aui:col width="50">
 		<aui:input 
 			cssClass="input100"
 			name="<%=BusinessDisplayTerms.BUSINESS_EMAIL %>"
@@ -139,21 +143,21 @@
 		</aui:input>
 	</aui:col>
 	
-	<aui:col width="30">
+	<aui:col width="50">
 		<aui:input name="<%=BusinessDisplayTerms.BUSINESS_TELNO %>" cssClass="input100">
 			<aui:validator name="maxLength">20</aui:validator>
 		</aui:input>
 	</aui:col>
 </aui:row>
 
-<aui:row>
-	<aui:col width="30">
+<aui:row cssClass="nav-content-row-2">
+	<aui:col width="50">
 			<aui:input name="<%=BusinessDisplayTerms.BUSINESS_REPRESENTATIVENAME %>" cssClass="input100">
 				<aui:validator name="maxLength">255</aui:validator>
 			</aui:input>
 	</aui:col> 
 	
-	<aui:col width="30">
+	<aui:col width="50">
 			<aui:input name="<%=BusinessDisplayTerms.BUSINESS_REPRESENTATIVEROLE %>" cssClass="input100">
 				<aui:validator name="maxLength">100</aui:validator>
 			</aui:input>
@@ -161,7 +165,7 @@
 </aui:row>
 
 <c:if test="<%= !isViewProfile && !isAdminViewProfile %>">
-	<aui:row>
+	<aui:row cssClass="nav-content-row-2">
 		<aui:input type="file" name="attachFile" label="business-attach-file">
 			<aui:validator name="acceptFiles">
 				'<%= StringUtil.merge(PortletPropsValues.ACCOUNTMGT_FILE_TYPE) %>'

@@ -1,6 +1,4 @@
-<%@page import="org.opencps.processmgt.model.ServiceProcess"%>
-<%@page import="org.opencps.processmgt.permissions.ProcessPermission"%>
-<%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -19,6 +17,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 %>
+<%@page import="org.opencps.processmgt.model.ServiceProcess"%>
+<%@page import="org.opencps.processmgt.permissions.ProcessPermission"%>
+<%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 
 <%@ include file="../init.jsp"%>
 

@@ -234,7 +234,7 @@ public class DefineObjectsTag extends IncludeTag {
 					_log
 						.info(DefineObjectsTag.class
 							.getName() +
-							": --------------------------------->>>: AccountBean is null");
+							": ##########################: AccountBean is null");
 				}
 
 			}
@@ -246,7 +246,6 @@ public class DefineObjectsTag extends IncludeTag {
 				accountBean = new AccountBean(
 					accountInstance, accountType, accountFolder, accountRoles,
 					accountOrgs, ownerUserId, ownerOrganizationId);
-
 				session
 					.setAttribute(org.opencps.util.WebKeys.ACCOUNT_BEAN,
 						accountBean);

@@ -16,15 +16,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 %>
-<%@ include file="../init.jsp"%>
+
 <%@page import="org.opencps.util.PortletPropsValues"%>
 <%@page import="org.opencps.datamgt.search.DictItemSearch"%>
 
-<div class="ocps-serviceinfo-list">
+<%@ include file="../init.jsp"%>
+
 
 <liferay-util:include page='<%= templatePath + "toptabs.jsp" %>' servletContext="<%=application %>" />
 
 <liferay-util:include page='<%= templatePath + "toolbar.jsp"%>' servletContext="<%=application %>" />
+
 <%
 	PortletURL iteratorURL = renderResponse.createRenderURL();
 	iteratorURL.setParameter("mvcPath", templatePath + "templatefileserviceinfo.jsp");
@@ -40,38 +42,76 @@
 	
 	int totalCount = 0;
 %>
-<liferay-ui:search-container searchContainer="<%= new DictItemSearch(renderRequest, SearchContainer.DEFAULT_DELTA, iteratorURL) %>">
-	<liferay-ui:search-container-results>
-		<%
-			if(dictCollection != null) {
-				dictItems = DictItemLocalServiceUtil.getDictItemsByDictCollectionId(dictCollection.getDictCollectionId());
-				totalCount = DictItemLocalServiceUtil.countByDictCollectionId(dictCollection.getDictCollectionId());
-			}
-			results = dictItems;
-			total = totalCount;
-			pageContext.setAttribute("results", results);
-			pageContext.setAttribute("total", total);
-		%>
-	</liferay-ui:search-container-results>
+
+<div class="opencps-searchcontainer-wrapper default-box-shadow radius8">
+	<liferay-ui:search-container searchContainer="<%= new DictItemSearch(renderRequest, SearchContainer.DEFAULT_DELTA, iteratorURL) %>">
+		<liferay-ui:search-container-results>
+			<%
+				if (dictCollection != null) {
+					dictItems =
+						DictItemLocalServiceUtil.getDictItemsByDictCollectionId(dictCollection.getDictCollectionId());
+					totalCount =
+						DictItemLocalServiceUtil.countByDictCollectionId(dictCollection.getDictCollectionId());
+				}
+				results = dictItems;
+				total = totalCount;
+				pageContext.setAttribute("results", results);
+				pageContext.setAttribute("total", total);
+			%>
+		</liferay-ui:search-container-results>
+		
 		<liferay-ui:search-container-row 
 			className="org.opencps.datamgt.model.DictItem" 
 			modelVar="dictItem" 
 			keyProperty="dictItemId"
 		>
+		
+			<%
+				row.setClassName("opencps-searchcontainer-row");
+			%>
+			
+			<liferay-util:buffer var="no">
+				<div class="row-fluid min-width10">
+					<div class="span12 bold">
+						<%=row.getPos() + 1 %>
+					</div>
+				</div>
+			</liferay-util:buffer>
+			
+			<liferay-util:buffer var="service">
+				<div class="row-fluid">
+					<div class="span3 bold">
+						<liferay-ui:message key="service-number" />
+					</div>
+					<div class="span9">
+						<%= dictItem.getItemCode() %>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span3 bold">
+						<liferay-ui:message key="service-name" />
+					</div>
+					<div class="span9">
+						<%=dictItem.getItemName(locale, true) %>
+					</div>
+				</div>
+			</liferay-util:buffer>
+		
 			<liferay-ui:search-container-column-text 
-				name="row-index" value="<%= String.valueOf(row.getPos() + 1) %>"
+				name="row-index" value="<%= no %>"
 			/>
 			
 			<liferay-ui:search-container-column-text 
-				name="service-number" value="<%= dictItem.getItemCode() %>"
+				name="service-info" value="<%= service %>"
 			/>
 			
-			<liferay-ui:search-container-column-text 
-				name="service-name" value="<%= dictItem.getItemName(locale, true) %>"
+			<liferay-ui:search-container-column-jsp 
+				path='<%=templatePath + "domain_actions.jsp" %>' 
+				name="action"
+				cssClass="width80"
 			/>
-			
-			<liferay-ui:search-container-column-jsp path='<%=templatePath + "domain_actions.jsp" %>' name="action"/>
 		</liferay-ui:search-container-row>
-<liferay-ui:search-iterator type="opencs_page_iterator"/>
-</liferay-ui:search-container>
+		<liferay-ui:search-iterator type="opencs_page_iterator"/>
+	</liferay-ui:search-container>
 </div>

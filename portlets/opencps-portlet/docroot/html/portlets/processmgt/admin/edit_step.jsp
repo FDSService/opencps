@@ -1,4 +1,5 @@
 
+<%@page import="org.opencps.datamgt.model.DictItem"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -49,9 +50,22 @@
 	}
 	
 	List<DossierPart> dossiers = ProcessUtils.getDossierParts(dossierTemplateId, PortletConstants.DOSSIER_TYPE_OWN_RECORDS);
-
+	
+	List<DossierPart> dossiersResults = new ArrayList<DossierPart>();
+	
 	List<DossierPart> dossiersResult = ProcessUtils.getDossierParts(dossierTemplateId, PortletConstants.DOSSIER_PART_TYPE_RESULT);
-
+	
+	List<DossierPart> dossiersResultMulti = ProcessUtils.getDossierParts(dossierTemplateId, PortletConstants.DOSSIER_PART_TYPE_MULTIPLE_RESULT);
+	
+	
+	if(dossiersResult!=null && !dossiersResult.isEmpty()){
+		dossiersResults.addAll(dossiersResult);
+	}
+	
+	if(dossiersResultMulti!=null && !dossiersResultMulti.isEmpty()){
+		dossiersResults.addAll(dossiersResultMulti);
+	}
+	
 	List<StepAllowance> stepAllowances = Collections.emptyList();
 	
 	List<ProcessStepDossierPart> dossierSel = Collections.emptyList();
@@ -134,6 +148,15 @@
 			dossierIndexs = new int[0];
 		}
 	}
+	
+	long dictStatusId = 0;
+	
+	DictItem itemStatus = null;
+	
+	if(step != null) {
+		itemStatus = PortletUtil.getDictItem("DOSSIER_STATUS", step.getDossierStatus(), scopeGroupId);
+		dictStatusId = itemStatus.getDictItemId();
+	}
 %>
 
 <portlet:actionURL name="updateProcessStep" var="updateProcessStepURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString()%>"/>
@@ -168,7 +191,7 @@
 	</aui:row>
 	<aui:row>
 		<aui:col width="70">
-			<aui:select name="dossierStatus" label="" inlineField="<%=true %>" inlineLabel="left">
+			<%-- <aui:select name="dossierStatus" label="" inlineField="<%=true %>" inlineLabel="left">
 				<aui:option value="<%=StringPool.BLANK %>"><liferay-ui:message key="all"/></aui:option>
 				<%
 					for(String status : PortletUtil.getDossierStatus()){
@@ -177,7 +200,18 @@
 						<%
 					}
 				%>
-			</aui:select>
+			</aui:select> --%>
+			
+			<datamgt:ddr 
+				depthLevel="1" 
+				dictCollectionCode="DOSSIER_STATUS" 
+				showLabel="<%=false%>"
+				emptyOptionLabels="dossier-status"
+				itemsEmptyOption="true"
+				itemNames="dossierStatus"
+				selectedItems="<%=String.valueOf(dictStatusId)%>"
+				optionValueType="code"
+			/>
 			
 		</aui:col>
 		<aui:col width="30">
@@ -218,7 +252,7 @@
 				<div class="row-fields">
 					<aui:select id='<%= "dossierPart" + dossierIndex %>' inlineField="<%= true %>" label="" name='<%= "dossierPart" + dossierIndex %>' showEmptyOption="true">
 						<%
-							for (DossierPart dossier : dossiersResult) {
+							for (DossierPart dossier : dossiersResults) {
 						%>
 							<aui:option selected="<%=  Validator.equals(stepDossier.getDossierPartId(), dossier.getDossierpartId())  %>" value="<%= dossier.getDossierpartId() %>">
 								<%= dossier.getPartName() %>

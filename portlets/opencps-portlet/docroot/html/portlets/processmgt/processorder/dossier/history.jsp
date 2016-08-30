@@ -1,7 +1,4 @@
 
-<%@page import="org.opencps.servicemgt.service.ServiceInfoLocalServiceUtil"%>
-<%@page import="org.opencps.dossiermgt.service.DossierLocalServiceUtil"%>
-<%@page import="org.opencps.dossiermgt.model.Dossier"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -20,18 +17,24 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 %>
-<%@page import="java.text.SimpleDateFormat"%>
+
 <%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
-<%@page import="org.opencps.util.DateTimeUtil"%>
-<%@page import="org.opencps.processmgt.service.ActionHistoryLocalServiceUtil"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="org.opencps.dossiermgt.model.Dossier"%>
+<%@page import="org.opencps.dossiermgt.service.DossierLocalServiceUtil"%>
 <%@page import="org.opencps.processmgt.model.ActionHistory"%>
 <%@page import="org.opencps.processmgt.model.ProcessOrder"%>
+<%@page import="org.opencps.processmgt.service.ActionHistoryLocalServiceUtil"%>
+<%@page import="org.opencps.servicemgt.service.ServiceInfoLocalServiceUtil"%>
+<%@page import="org.opencps.util.DateTimeUtil"%>
+
 <%@ include file="../../init.jsp"%>
 
 <%
 	ProcessOrder processOrder = (ProcessOrder)request.getAttribute(WebKeys.PROCESS_ORDER_ENTRY);
 	
 	long processOrderId = Validator.isNotNull(processOrder) ? processOrder.getProcessOrderId() : 0L;
+	
 	PortletURL iteratorURL = renderResponse.createRenderURL();
 	iteratorURL.setParameter("mvcPath", templatePath + "dossier/history.jsp");
 	
@@ -39,21 +42,25 @@
 	
 	SimpleDateFormat sdf = new SimpleDateFormat();
 	
-	
 	Dossier dossier = null;
+	
 	ServiceInfo serviceInfo = null;
+	
 	String receptionNo = StringPool.BLANK;
+	
 	String serviceName = StringPool.BLANK;
+	
 	if(Validator.isNotNull(processOrder)) {
 		try {
 			dossier = DossierLocalServiceUtil.getDossier(processOrder.getDossierId());
+			
 			receptionNo = dossier.getReceptionNo();
 			
 			serviceInfo = ServiceInfoLocalServiceUtil.getServiceInfo(processOrder.getServiceInfoId());
-			serviceName = serviceInfo.getServiceName();
-		} catch (Exception e) {
 			
-		}
+			serviceName = serviceInfo.getServiceName();
+			
+		} catch (Exception e) {}
 	}
 	 
 	
@@ -169,6 +176,17 @@
 							
 							<span class="span8">
 								<%=String.valueOf(actionHistory.getDaysDelay())%>
+							</span>
+							
+						</aui:row>
+						
+						<aui:row>
+							<span class="span4 bold">
+								<liferay-ui:message key="action-note" />
+							</span>
+							
+							<span class="span8">
+								<%=String.valueOf(actionHistory.getActionNote())%>
 							</span>
 							
 						</aui:row>

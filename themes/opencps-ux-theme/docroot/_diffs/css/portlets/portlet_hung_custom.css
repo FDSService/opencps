@@ -324,150 +324,9 @@
 		QUAN TRI HE THONG
 ------------------------------*/
 
-/*---------- PortletID 9 ----------*/
-.portlet-boundary_9_WAR_opencpsportlet_ .portlet header {
-	background-color: #fff;
-	-webkit-box-shadow: 0px -2px 5px 1px rgba(0,0,0,0.2);
-	box-shadow: 0px -2px 5px 1px rgba(0,0,0,0.2);
-	border-radius: 4px 4px 0 0;
-	border-bottom: 1px solid #e1e1e1;
-	height: 50px;
-	padding-left: 25px;
-	margin-bottom: -2px;
-}
-.portlet-boundary_9_WAR_opencpsportlet_ .portlet header h1 {
-	line-height: 50px;
-	font-size: 16px;
-	font-family: 'Roboto-Bold';
-	text-transform: uppercase;
-	margin: 0;
-}
-.portlet-boundary_9_WAR_opencpsportlet_ .portlet .portlet-content {
-	padding: 0;
-}
 
-/* .opencps-theme .ocps-serviceinfo-list {
-	background-color: #fff;
-	-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
-	box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
-	border-radius: 4px;
-	padding-top: 20px;
-}
-.opencps-theme .ocps-serviceinfo-list .nav.nav-tabs {
-	padding: 0 0 0 30px;
-}
-.opencps-theme .ocps-serviceinfo-list .search_tools.payment.payment_search ul li a {
-	background: #0090ff;
-    text-shadow: none;
-    color: white !important;
-    border-radius: 4px;
-    margin-left: 30px;
-}
-.opencps-theme .ocps-serviceinfo-list .search_tools.payment.payment_search .toolbar_search_input .span3, 
-.opencps-theme .ocps-serviceinfo-list .search_tools.payment.payment_search .toolbar_search_input .span5 {
-	width: 32%;
-	margin: 0;
-}
-.opencps-theme .ocps-serviceinfo-list .search_tools.payment.payment_search .toolbar_search_input .span3 {
-	margin-right: 2%;
-}
-.opencps-theme .ocps-serviceinfo-list .search_tools.payment.payment_search .navbar-search {
-	width: 100%;
-	padding: 0 30px;
-	margin-top: 15px;
-}
-.opencps-theme .ocps-serviceinfo-list .navbar.custom-toolbar .navbar-inner .toolbar_search_input .span3 .control-group {
-	width: 100%;
-	height: 41px;
-	overflow: hidden;
-	background: url(../images/frame_1/icon_select_gray.png) no-repeat right;
-	background-position: 92% center;
-	margin-bottom: 0;
-}
-.opencps-theme .ocps-serviceinfo-list .navbar.custom-toolbar .navbar-inner .toolbar_search_input .span5 .input-append {
-	width: 100%;
-}
-.opencps-theme .ocps-serviceinfo-list .navbar.custom-toolbar .navbar-inner .toolbar_search_input .span5 .input-append input {
-	width: calc(100% - 70px);
-	min-width: auto;
-}
-.opencps-theme .ocps-serviceinfo-list .navbar.custom-toolbar .navbar-inner .toolbar_search_input .span5 .input-append > .btn {
-	height: 41px;
-	text-indent: -5px;
-	width: 70px;
-}
-Table Thu tuc hanh chinh
-.opencps-theme .ocps-serviceinfo-list table {
-	border: 0;
-}
-.opencps-theme .ocps-serviceinfo-list table thead {
-	display: none;
-}
-.opencps-theme .ocps-serviceinfo-list table td {
-	background: none #fff;
-	border: 0;
-	border-bottom: 1px solid #e1e1e1;
-	position: relative;
-}
-.opencps-theme .ocps-serviceinfo-list table tr:first-child td {
-	border-top: 1px solid #e1e1e1;
-}
-.opencps-theme .ocps-serviceinfo-list table td:after {
-	content: "";
-	border-right: 1px solid #e1e1e1;
-	width: 1px;
-	height: calc(100% - 30px);
-	position: absolute;
-	right: 0;
-	top: 15px;
-} */
-/* .opencps-theme .ocps-serviceinfo-list table td:first-child:after, 
-.opencps-theme .ocps-serviceinfo-list table td:last-child:after {
-	border: 0;
-}
-.opencps-theme .ocps-serviceinfo-list table td.table-cell {
-	padding: 20px 30px;
-}
-.opencps-theme .ocps-serviceinfo-list table td.table-cell.first {
-	text-align: right;
-	font-family: 'Roboto-Bold';
-	padding: 20px 0;
-	width: 40px;
-}
-.opencps-theme .ocps-serviceinfo-list table td.table-cell .ocps-searh-bound-data p span {
-	font-family: 'Roboto-Bold';
-	display: inline-block;
-	width: 125px;
-}
-.opencps-theme .ocps-serviceinfo-list table td.table-cell .ocps-searh-bound-data p a,
-.opencps-theme .ocps-serviceinfo-list table td.table-cell .ocps-searh-bound-data p > i {
-	display: flex;
-}
-.opencps-theme .ocps-serviceinfo-list table td:nth-child(3) {
-	width: 280px;
-}
-.opencps-theme .ocps-serviceinfo-list table td:last-child {
-	width: 150px;
-}
-.opencps-theme .ocps-serviceinfo-list table td:last-child a img {
-	display: none;
-}
-.opencps-theme .ocps-serviceinfo-list table td:last-child a {
-	width: 100%;
-    display: block;
-    height: 30px;
-    border-radius: 20px;
-}
-.opencps-theme .ocps-serviceinfo-list table td:last-child .edit a {
-	background-color: #0090ff;
-	margin: 25% 0;
-}
-.opencps-theme .ocps-serviceinfo-list table td:last-child .delete a {
-	background-color: #ff5558;
-}
- */
 /*---------- PortletID 9 - Detail ----------*/
-.ocps-update-service-bound-all .ocps-update-service-bound-general {
+/* .ocps-update-service-bound-all .ocps-update-service-bound-general {
 	background-color: #fff;
 	-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
 	box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
@@ -578,14 +437,14 @@ Table Thu tuc hanh chinh
 .opencps-theme .portlet-boundary_9_WAR_opencpsportlet_ form {
 	margin-bottom: 0;
 }
-/* Button */
+Button
 .opencps-theme .portlet-boundary_9_WAR_opencpsportlet_ form > button {
 	padding: 5px 50px;
 	position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
-
+ */
 
 
 /*---------- PortletID 85 ----------*/

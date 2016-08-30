@@ -108,32 +108,29 @@
 			%>
 			<liferay-util:buffer var="boundcol1">
 				<div class="row-fluid">
-					<div class="span1"></div>
 					
-					<div class="span2 bold-label">
+					<div class="span5 bold-label">
 						<liferay-ui:message key="service-name"/>
 					</div>
-					<div class="span9"><%=serviceInfo.getServiceName()%></div>
+					<div class="span7"><%=serviceInfo.getServiceName()%></div>
 				</div>
 			</liferay-util:buffer>
 			
 			<liferay-util:buffer var="boundcol2">
 				<div class="row-fluid">
-					<div class="span1"></div>
 					
-					<div class="span2 bold-label">
+					<div class="span5 bold-label">
 						<liferay-ui:message key="govAgency-Name"/>
 					</div>
-					<div class="span9"><%=serviceConfig.getGovAgencyName() %> </div>
+					<div class="span7"><%=serviceConfig.getGovAgencyName() %> </div>
 				</div>
 				
 				<div class="row-fluid">
-					<div class="span1"></div>
 					
-					<div class="span2 bold-label">
+					<div class="span5 bold-label">
 						<liferay-ui:message key="service-mode"/>
 					</div>
-					<div class="span9"><%=serviceConfigModeName %> </div>
+					<div class="span7"><%=serviceConfigModeName %> </div>
 				</div>
 			</liferay-util:buffer>
 			<%

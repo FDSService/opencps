@@ -1,4 +1,4 @@
-<%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -24,6 +24,9 @@
 <%@page import="org.opencps.usermgt.search.JobPosDisplayTerms"%>
 <%@page import="org.opencps.util.ActionKeys"%>
 <%@page import="org.opencps.usermgt.permissions.JobPosPermission"%>
+<%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
+<%@page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil"%>
+
 <%@ include file="../init.jsp"%>
 
 <%
@@ -32,21 +35,39 @@
 		(ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 	JobPos jobPos = (JobPos)row.getObject();
 %>
-
 <%-- <liferay-ui:icon-menu> --%>
+
 	<portlet:renderURL var="updateJobPos" windowState="<%=LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="mvcPath"
-			value="/html/portlets/usermgt/admin/update_jobpos.jsp" />
-		<portlet:param name="<%=JobPosDisplayTerms.ID_JOBPOS%>"
-			value="<%=String.valueOf(jobPos.getJobPosId())%>" />
-		<portlet:param name="workingUnitId" 
-			value="<%=String.valueOf(workingUnitId) %>"/>
+		<portlet:param 
+			name="mvcPath"
+			value="/html/portlets/usermgt/admin/update_jobpos.jsp" 
+		/>
+		
+		<portlet:param 
+			name="<%=JobPosDisplayTerms.ID_JOBPOS%>"
+			value="<%=String.valueOf(jobPos.getJobPosId())%>" 
+		/>
+		
+		<portlet:param 
+			name="workingUnitId" 
+			value="<%=String.valueOf(workingUnitId) %>"
+		/>
+		
 		<portlet:param name="redirectURL" value="<%=currentURL%>" />
 	</portlet:renderURL>
+	
 	<c:if test="<%=JobPosPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE) %>">
-		<liferay-ui:icon cssClass="search-container-action fa edit" image="edit" message="edit"
-		url="#" 
-		onClick="<%= \"javascript:\" + renderResponse.getNamespace() + \"showPopup('\" + updateJobPos +\"');\" %>" />
+		<liferay-ui:icon 
+			cssClass="search-container-action fa edit" image="edit" message="edit"
+			url="javascript:void(0);" 
+			onClick="<%=
+					\"javascript:\" +  \"openDialog('\" + 
+					updateJobPos + \"','\" + 
+					renderResponse.getNamespace() + \"updateJobPos\" + \"','\" +
+					UnicodeLanguageUtil.get(pageContext, \"update-jobpos\") +
+					\"');\"  
+				%>"
+		/>
 	</c:if>
 
 	<portlet:actionURL var="deleteJobPosURL" name="deleteJobPos">
@@ -56,22 +77,9 @@
 	</portlet:actionURL>
 	
 	<c:if test="<%=JobPosPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE) %>">
-		<liferay-ui:icon-delete cssClass="search-container-action fa delete" image="delete" message="delete"
-		url="<%=deleteJobPosURL.toString()%>" confirmation="do-you-want-to-delete-entry" />
+		<liferay-ui:icon-delete
+			cssClass="search-container-action fa delete" image="delete" message="delete"
+			url="<%=deleteJobPosURL.toString()%>" confirmation="do-you-want-to-delete-entry"
+		/>
 	</c:if>
-
-<aui:script>
-	Liferay.provide(window, '<portlet:namespace />showPopup', function(url){
-		Liferay.Util.openWindow({
-			dialog : {
-				centered : true,
-				height : 800,
-				modal : true,
-				width : 1000
-			},
-			id : '<portlet:namespace/>dialog',
-			title : '',
-			uri : url
-		});
-	});
-</aui:script>
+<%-- </liferay-ui:icon-menu> --%>

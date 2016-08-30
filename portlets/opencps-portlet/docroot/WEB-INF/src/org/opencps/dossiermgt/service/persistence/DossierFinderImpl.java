@@ -57,6 +57,9 @@ public class DossierFinderImpl extends BasePersistenceImpl<Dossier>
 	public static final String COUNT_DOSSIER_BY_USER = DossierFinder.class
 		.getName() + ".countDossierByUser";
 
+	public static final String COUNT_DOSSIER_BY_USER_NEW_REQUEST = DossierFinder.class
+			.getName() + ".countDossierByUserNewRequest";
+	
 	public static final String COUNT_DOSSIER_BY_KEYWORDDOMAINANDSTATUS =
 		DossierFinder.class
 			.getName() + ".countDossierByKeywordDomainAndStatus";
@@ -67,6 +70,8 @@ public class DossierFinderImpl extends BasePersistenceImpl<Dossier>
 	public static final String SEARCH_DOSSIER_BY_USER = DossierFinder.class
 		.getName() + ".searchDossierByUser";
 
+	public static final String SEARCH_DOSSIER_BY_USER_NEW_REQUEST = DossierFinder.class
+			.getName() + ".searchDossierByUserNewRequest";
 	public static final String SEARCH_DOSSIER_BY_KEYWORDDOMAINANDSTATUS =
 		DossierFinder.class
 			.getName() + ".searchDossierByKeywordDomainAndStatus";
@@ -1986,4 +1991,199 @@ public class DossierFinderImpl extends BasePersistenceImpl<Dossier>
 
 		return null;
 	} 	
+	
+	/**
+	 * @param groupId
+	 * @param userId
+	 * @param keyword
+	 * @param serviceDomainTreeIndex
+	 * @param dossierStatus
+	 * @return
+	 */
+	public int countDossierByUserNewRequest(
+		long groupId, long userId) {
+
+		boolean andOperator = false;
+
+		return countDossierByUserNewRequest(groupId, userId, andOperator);
+	}
+	
+	/**
+	 * @param groupId
+	 * @param userId
+	 * @param keywords
+	 * @param serviceDomainTreeIndex
+	 * @param dossierStatus
+	 * @param andOperator
+	 * @return
+	 */
+	private int countDossierByUserNewRequest(
+		long groupId, long userId, 
+		boolean andOperator) {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil
+				.get(COUNT_DOSSIER_BY_USER_NEW_REQUEST);
+
+			sql = CustomSQLUtil
+				.replaceAndOperator(sql, andOperator);
+
+			SQLQuery q = session
+				.createSQLQuery(sql);
+
+			q
+				.addScalar(COUNT_COLUMN_NAME, Type.INTEGER);
+
+			QueryPos qPos = QueryPos
+				.getInstance(q);
+
+			qPos
+				.add(groupId);
+
+			qPos
+				.add(userId);
+
+			Iterator<Integer> itr = q
+				.iterate();
+
+			if (itr
+				.hasNext()) {
+				Integer count = itr
+					.next();
+
+				if (count != null) {
+					return count
+						.intValue();
+				}
+			}
+
+			return 0;
+
+		}
+		catch (Exception e) {
+			_log
+				.error(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return 0;
+	}
+
+
+/**
+	 * @param groupId
+	 * @param userId
+	 * @param keyword
+	 * @param serviceDomainTreeIndex
+	 * @param dossierStatus
+	 * @param start
+	 * @param end
+	 * @param obc
+	 * @return
+	 */
+	public List searchDossierByUserNewRequest(
+		long groupId, long userId, int start, int end,
+		OrderByComparator obc) {
+
+		boolean andOperator = false;
+
+		return searchDossierByUserNewRequest(groupId, userId, andOperator, start, end,
+			obc);
+	}
+
+	/**
+	 * @param groupId
+	 * @param userId
+	 * @param keywords
+	 * @param serviceDomainTreeIndex
+	 * @param dossierStatus
+	 * @param andOperator
+	 * @param start
+	 * @param end
+	 * @param obc
+	 * @return
+	 */
+	private List<DossierBean> searchDossierByUserNewRequest(
+		long groupId, long userId,
+		boolean andOperator, int start, int end, OrderByComparator obc) {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil
+				.get(SEARCH_DOSSIER_BY_USER_NEW_REQUEST);
+
+			sql = CustomSQLUtil
+				.replaceAndOperator(sql, andOperator);
+
+			SQLQuery q = session
+				.createSQLQuery(sql);
+
+			q
+				.addEntity("Dossier", DossierImpl.class);
+			q
+				.addScalar("SERVICE_NAME", Type.STRING);
+
+			QueryPos qPos = QueryPos
+				.getInstance(q);
+
+			qPos
+				.add(groupId);
+
+			qPos
+				.add(userId);
+
+			Iterator<Object[]> itr = (Iterator<Object[]>) QueryUtil
+				.list(q, getDialect(), start, end).iterator();
+
+			List<DossierBean> dossierBeans = new ArrayList<DossierBean>();
+
+			if (itr
+				.hasNext()) {
+				while (itr
+					.hasNext()) {
+					DossierBean dossierBean = new DossierBean();
+
+					Object[] objects = itr
+						.next();
+
+					Dossier dossier = (Dossier) objects[0];
+
+					String serviceName = (String) objects[1];
+
+					dossierBean
+						.setDossierId(dossier
+							.getDossierId());
+					dossierBean
+						.setDossier(dossier);
+					dossierBean
+						.setServiceName(serviceName);
+
+					dossierBeans
+						.add(dossierBean);
+
+				}
+			}
+
+			return dossierBeans;
+
+		}
+		catch (Exception e) {
+			_log
+				.error(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return null;
+	}
 }

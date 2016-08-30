@@ -100,7 +100,7 @@
 								cssClass="search-input input-keyword"
 								id="keywords1"
 								name="keywords"
-								title="keywords"
+								title='<%= LanguageUtil.get(locale, "keywords") %>'
 								placeholder='<%= LanguageUtil.get(portletConfig, locale, "put-keyword") %>' 
 							/>
 						</aui:col>

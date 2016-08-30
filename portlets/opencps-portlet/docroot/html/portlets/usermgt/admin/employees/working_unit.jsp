@@ -91,6 +91,7 @@
 %>
 
 <aui:model-context bean="<%=mappingWorkingUnit%>" model="<%=WorkingUnit.class%>" />
+
 <liferay-ui:error-marker key="errorSection" value="working_unit" />
 
 <liferay-ui:error exception="<%= NoSuchWorkingUnitException.class %>" 
@@ -99,14 +100,14 @@
 <liferay-ui:error exception="<%= NoSuchJobPosException.class %>" 
 	message="<%=NoSuchJobPosException.class.getName() %>" 
 />
-<aui:row>
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="100">
 		<aui:select 
 			name="<%= EmployeeDisplayTerm.WORKING_UNIT_ID %>" 
-			cssClass="input100"
 			showEmptyOption="<%=true %>"
 			required="<%=true %>"
 			disabled='<%=userViewProfile ? true : false %>'
+			cssClass="input100"
 		>
 			<%
 				if(workingUnits != null){
@@ -126,7 +127,7 @@
 	</aui:col>
 </aui:row>
 
-<aui:row>
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="100">
 		<aui:input 
 			name="<%= EmployeeDisplayTerm.WORKING_STATUS  %>" 
@@ -136,12 +137,13 @@
 			value="<%=employee != null 
 				&& employee.getWorkingStatus() == PortletConstants.WORKING_STATUS_ACTIVATE ? true : false %>"
 			disabled='<%=userViewProfile ? true : false %>'
+			cssClass="input100"
 		/>
 	</aui:col>
 </aui:row>
 
 <label><liferay-ui:message key="main-jobpos"/></label>
-<aui:row id="mainJobPosBoundingBox">
+<aui:row id="mainJobPosBoundingBox" cssClass="nav-content-row-2">
 	<aui:col width="50">
 		<aui:select 
 			name='<%= EmployeeDisplayTerm.WORKING_UNIT_ID%>' 
@@ -149,6 +151,7 @@
 			onChange='<%=renderResponse.getNamespace() + "getJobPosByWorkingUnitId(this)" %>'
 			required='<%=true %>'
 			disabled="<%=userViewProfile ? true : false %>"
+			cssClass="input100"
 		>
 			<aui:option value=""><liferay-ui:message key="select-working-unit"/></aui:option>
 			<%
@@ -183,6 +186,7 @@
 			label='<%=StringPool.BLANK %>'  
 			required='<%=true %>'
 			disabled='<%=userViewProfile ? true : false %>'
+			cssClass="input100"
 		>
 			<aui:option value=""><liferay-ui:message key="select-jobpos"/></aui:option>
 			<%
@@ -204,7 +208,7 @@
 </aui:row>
 
 <label><liferay-ui:message key="other-jobpos"/></label>
-<aui:row id="opencps-usermgt-employee-jobpos">
+<aui:row id="opencps-usermgt-employee-jobpos" cssClass="nav-content-row-2">
 	<aui:fieldset id="boundingBox">
 	<%
 		for(int i = 0; i < jobPosIndexes.length; i++){
@@ -229,6 +233,7 @@
 								onChange='<%=renderResponse.getNamespace() + "getJobPosByWorkingUnitId(this)" %>'
 								showEmptyOption='<%=true %>'
 								disabled='<%=userViewProfile ? true : false %>'
+								cssClass="input100"
 							>
 							
 								<%
@@ -266,6 +271,7 @@
 								label='<%=StringPool.BLANK %>'
 								showEmptyOption='<%=true %>'
 								disabled='<%=userViewProfile ? true : false %>'
+								cssClass="input100"
 							>
 								<%
 									if(selectedWorkingUnitId > 0 && jobPos != null){

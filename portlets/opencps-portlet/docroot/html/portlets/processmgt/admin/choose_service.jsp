@@ -1,4 +1,4 @@
-<%@page import="org.opencps.processmgt.util.ProcessUtils"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -17,6 +17,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
+<%@page import="org.opencps.processmgt.util.ProcessUtils"%>
+
 <%@ include file="../init.jsp"%>
 <%
 	ServiceProcess serviceProcess = (ServiceProcess) request.getAttribute(WebKeys.SERVICE_PROCESS_ENTRY);
@@ -27,12 +29,12 @@
 	String backURL = ParamUtil.getString(request, "backURL");
 %>
 
-<liferay-ui:header
+<%-- <liferay-ui:header
 	backURL="<%= backURL %>"
 	title="choose-serviceinfos"
 	backLabel="back"
 />
-
+ --%>
 <portlet:actionURL name="chooseServiceInfoFromProcess" var="chooseServiceInfoFromProcessURL" >
 	<portlet:param name="backURL" value="<%= backURL %>"/>
 	<portlet:param name="serviceProcessId" value="<%=String.valueOf(serviceProcessId) %>"/>

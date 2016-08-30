@@ -1,4 +1,4 @@
-<%@page import="com.liferay.portal.kernel.util.UnicodeFormatter"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -18,6 +18,8 @@
  */
 %>
 
+<%@page import="com.liferay.portal.kernel.util.UnicodeFormatter"%>
+
 <%@ include file="../../init.jsp" %>
 
 <%
@@ -26,111 +28,80 @@
 
 <aui:model-context bean="<%= serviceInfo %>" model="<%= ServiceInfo.class %>"/>
 
-<aui:row cssClass="opcps-rows">
-	<aui:col width="100">
-		<div class="label">
-			<liferay-ui:message key="service-process"/>
-		</div>
+<aui:row>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-process"/></label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_PROCESS %>" 
-			toolbarSet="simple" initMethod="initProcess"/>
+			toolbarSet="simple" initMethod="initProcess"
+		/>
 	</aui:col>
 </aui:row>
 
-<aui:row cssClass="opcps-rows">
-	<aui:col width="100">
-	<div class="label">
-		<liferay-ui:message key="service-method"/>
-	</div>
-		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_METHOD %>" 
-			toolbarSet="simple" initMethod="initMethod"/>
+<aui:row>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-method"/></label>
+		<liferay-ui:input-editor 
+			name="<%= ServiceDisplayTerms.SERVICE_METHOD %>" 
+			toolbarSet="simple" initMethod="initMethod"
+		/>
 	</aui:col>
 </aui:row>
 
 <aui:row >
-	<aui:col width="100">
-		<%-- <aui:input name="<%= ServiceDisplayTerms.SERVICE_DOSSIER %>" type="textarea" cssClass="txtarea-medium">
-		</aui:input> --%>
-		<div class="label">
-			<liferay-ui:message key="service-dossier"/>
-		</div>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-dossier"/></label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_DOSSIER %>" initMethod="service_dossier"/>
 	</aui:col>
 </aui:row>
 
 <aui:row >
-	<aui:col width="100">
-		<%-- <aui:input name="<%= ServiceDisplayTerms.SERVICE_CONDITION %>" type="textarea" cssClass="txtarea-medium">
-		</aui:input> --%>
-		<div class="label">
-			<liferay-ui:message key="service-condition"/>
-		</div>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-condition"/></label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_CONDITION %>" initMethod="service_condition"/>
 	</aui:col>
 </aui:row>
 
 <aui:row >
-	<aui:col width="100">
-		<%-- <aui:input name="<%= ServiceDisplayTerms.SERVICE_DURATION %>" type="textarea" cssClass="txtarea-medium">
-		</aui:input>
-		 --%>
-		 <div class="label">
-			<liferay-ui:message key="service-duration"/>
-		</div>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-duration"/></label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_DURATION %>" initMethod="service_duration"/>
 	</aui:col>
 </aui:row>
 
 <aui:row >
-	<aui:col width="100">
-		<%-- <aui:input name="<%= ServiceDisplayTerms.SERVICE_ACTORS %>" type="textarea" cssClass="txtarea-medium">
-		</aui:input> --%>
-		<div class="label">
+	<aui:col>
+		<label class="pd_t20 pd_b10">
 			<liferay-ui:message key="service-actors"/>
-		</div>
+		</label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_ACTORS %>" initMethod="service_actors"/>
 	</aui:col>
 </aui:row>
 
 <aui:row >
-	<aui:col width="100">
-		<%-- <aui:input name="<%= ServiceDisplayTerms.SERVICE_FEE %>" type="textarea" cssClass="txtarea-medium">
-		</aui:input>
-		 --%>
-		 <div class="label">
-			<liferay-ui:message key="service-fee"/>
-		</div>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-fee"/></label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_FEE %>" initMethod="service_fee"/>
 	</aui:col>
 </aui:row>
 
 <aui:row >
-	<aui:col width="100">
-		<%-- <aui:input name="<%= ServiceDisplayTerms.SERVICE_RESULTS %>" type="textarea" cssClass="txtarea-medium">
-		</aui:input> --%>
-		 <div class="label">
-			<liferay-ui:message key="service-results"/>
-		</div>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-results"/></label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_RESULTS %>" initMethod="service_results"/>
 	</aui:col>
 </aui:row>
 
 <aui:row >
-	<aui:col width="100">
-		<%-- <aui:input name="<%= ServiceDisplayTerms.SERVICE_RECORDS %>" type="textarea" cssClass="txtarea-medium">
-		</aui:input> --%>
-		 <div class="label">
-			<liferay-ui:message key="service-records"/>
-		</div>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-records"/></label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_RECORDS %>" initMethod="service_records"/>
 		
 	</aui:col>
 </aui:row>
 
 <aui:row >
-	<aui:col width="100">
-		<div class="label">
-			<liferay-ui:message key="service-instructions"/>
-		</div>
+	<aui:col>
+		<label class="pd_t20 pd_b10"><liferay-ui:message key="service-instructions"/></label>
 		<liferay-ui:input-editor name="<%= ServiceDisplayTerms.SERVICE_INSTRUCTIONS %>" 
 			toolbarSet="simple" initMethod="initInstructions"/>
 	</aui:col>
@@ -174,7 +145,7 @@
 	}
 	
 	function <portlet:namespace />service_records() {
-		return "<%= Validator.isNotNull(serviceInfo) ? UnicodeFormatter.toString(serviceInfo.getServiceResults()) : StringPool.BLANK %>";
+		return "<%= Validator.isNotNull(serviceInfo) ? UnicodeFormatter.toString(serviceInfo.getServiceRecords()) : StringPool.BLANK %>";
 	}
 
 </aui:script>

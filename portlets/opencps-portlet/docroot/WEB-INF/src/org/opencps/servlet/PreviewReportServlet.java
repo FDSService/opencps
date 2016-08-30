@@ -57,6 +57,7 @@ public class PreviewReportServlet extends HttpServlet {
 		
 		//fix encoding preview html
 		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html");
 		
 		PrintWriter writer = response
 		    .getWriter();

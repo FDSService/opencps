@@ -68,8 +68,8 @@
 				try{
 					serviceBeansRecent = ServiceConfigLocalServiceUtil.getServiceConfigRecent(scopeGroupId, 
 						themeDisplay.getUserId(), 1, -1, -1, 
-						citizen != null ? 1 : -1, business != null ? 1 :-1, searchContainer.getStart(), 
-						searchContainer.getEnd(), searchContainer.getOrderByComparator());
+						citizen != null ? 1 : -1, business != null ? 1 :-1, 0, 
+						5, searchContainer.getOrderByComparator());
 				}catch(Exception e){}
 			
 				total = serviceBeansRecent.size();
@@ -151,7 +151,7 @@
 				%>	
 			</liferay-ui:search-container-row> 
 		
-		<liferay-ui:search-iterator type="opencs_page_iterator"/>
+		<liferay-ui:search-iterator paginate="false" />
 	</liferay-ui:search-container>
 </div>
 
@@ -180,7 +180,7 @@
 					}
 					
 					if(govAgencyId > 0){
-						govAgencygovItem = DictItemLocalServiceUtil.getDictItem(serviceDomainId);
+						govAgencygovItem = DictItemLocalServiceUtil.getDictItem(govAgencyId);
 					}
 	
 					if(domainItem != null){

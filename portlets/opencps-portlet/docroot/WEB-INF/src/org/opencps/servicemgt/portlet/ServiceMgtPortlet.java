@@ -94,6 +94,110 @@ public class ServiceMgtPortlet extends MVCPortlet {
 			}
 		}
 	}
+	
+	/**
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 */
+	public void updateAdministration(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException {
+
+		long dictItemId =
+			ParamUtil.getLong(actionRequest, DictItemDisplayTerms.DICTITEM_ID);
+		long parentItemId =
+			ParamUtil.getLong(actionRequest, DictItemDisplayTerms.PARENTITEM_ID);
+		String itemName =
+			ParamUtil.getString(actionRequest, DictItemDisplayTerms.ITEM_NAME);
+		String itemCode =
+			ParamUtil.getString(actionRequest, DictItemDisplayTerms.ITEM_CODE);
+		String isAddchirld = ParamUtil.getString(actionRequest, "isAddchirld");
+		String backURL = ParamUtil.getString(actionRequest, "backURL");
+		String currentURL = ParamUtil.getString(actionRequest, "currentURL");
+
+		Map<Locale, String> itemNameMap =
+			LocalizationUtil.getLocalizationMap(
+				actionRequest, DictItemDisplayTerms.ITEM_NAME);
+		DictCollection dictCollection = null;
+
+		try {
+
+			ServiceContext serviceContext =
+				ServiceContextFactory.getInstance(actionRequest);
+			dictCollection =
+				DictCollectionLocalServiceUtil.getDictCollection(
+					serviceContext.getScopeGroupId(),
+					PortletPropsValues.DATAMGT_MASTERDATA_SERVICE_ADMINISTRATION);
+			DataMamagementPortlet.validatetDictItem(
+				dictItemId, itemName, itemCode, serviceContext);
+			if (dictItemId == 0) {
+				DictItemLocalServiceUtil.addDictItem(
+					serviceContext.getUserId(),
+					dictCollection.getDictCollectionId(), itemCode,
+					itemNameMap, parentItemId, serviceContext);
+				SessionMessages.add(
+					actionRequest, MessageKeys.DATAMGT_ADD_SUCESS);
+			}
+			else {
+
+				if (Validator.isNotNull(isAddchirld)) {
+					DictItemLocalServiceUtil.addDictItem(
+						serviceContext.getUserId(),
+						dictCollection.getDictCollectionId(), itemCode,
+						itemNameMap, parentItemId, serviceContext);
+					SessionMessages.add(
+						actionRequest, MessageKeys.DATAMGT_ADD_SUCESS);
+				}
+				else {
+					// tam thoi hard code dictversionId = 0
+
+					DictItemLocalServiceUtil.updateDictItem(
+						dictItemId, dictCollection.getDictCollectionId(), 0,
+						itemCode, itemNameMap, parentItemId, serviceContext);
+					SessionMessages.add(
+						actionRequest, MessageKeys.DATAMGT_UPDATE_SUCESS);
+				}
+			}
+
+			if (Validator.isNotNull(backURL)) {
+				actionResponse.sendRedirect(backURL);
+			}
+		}
+		catch (Exception e) {
+			if (e instanceof EmptyItemCodeException) {
+				SessionErrors.add(actionRequest, EmptyItemCodeException.class);
+			}
+			else if (e instanceof OutOfLengthItemCodeException) {
+				SessionErrors.add(
+					actionRequest, OutOfLengthItemCodeException.class);
+			}
+			else if (e instanceof EmptyDictItemNameException) {
+				SessionErrors.add(
+					actionRequest, EmptyDictItemNameException.class);
+			}
+			else if (e instanceof OutOfLengthItemNameException) {
+				SessionErrors.add(
+					actionRequest, OutOfLengthItemNameException.class);
+			}
+			else if (e instanceof DuplicateItemException) {
+				SessionErrors.add(actionRequest, DuplicateItemException.class);
+			}
+			else if (e instanceof NoSuchDictItemException) {
+				SessionErrors.add(actionRequest, NoSuchDictItemException.class);
+			}
+			else {
+				SessionErrors.add(
+					actionRequest,
+					MessageKeys.DATAMGT_SYSTEM_EXCEPTION_OCCURRED);
+			}
+
+			if (Validator.isNotNull(currentURL)) {
+				actionResponse.sendRedirect(currentURL);
+			}
+		}
+	}
+	
 	/**
 	 * @param actionRequest
 	 * @param actionResponse

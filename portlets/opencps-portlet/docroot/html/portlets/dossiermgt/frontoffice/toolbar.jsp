@@ -1,3 +1,4 @@
+<%@page import="org.opencps.dossiermgt.search.DossierDisplayTerms"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -51,6 +52,9 @@
 	}else if(!isListServiceConfig && tabs1.equals(DossierMgtUtil.TOP_TABS_DOSSIER)){
 		searchURL.setParameter("mvcPath", templatePath + "frontofficedossierlist.jsp");
 		searchURL.setParameter("tabs1", DossierMgtUtil.TOP_TABS_DOSSIER);
+	} else {
+		searchURL.setParameter("mvcPath", templatePath + "frontofficedossierfilelist.jsp");
+		searchURL.setParameter("tabs1", DossierMgtUtil.TOP_TABS_DOSSIER_FILE);
 	}
 	
 %>
@@ -75,6 +79,7 @@
 						<portlet:param name="mvcPath" value="/html/portlets/dossiermgt/frontoffice/frontofficeservicelist.jsp"/>
 						<portlet:param name="isListServiceConfig" value="<%=String.valueOf(true) %>"/>
 						<portlet:param name="backURL" value="<%=currentURL %>"/>
+						<portlet:param name="backURLFromList" value="<%=currentURL %>"/>
 					</portlet:renderURL>
 					<%-- <aui:nav-item 
 						id="addDictItem" 
@@ -112,7 +117,7 @@
 									itemsEmptyOption="true"
 									itemNames="serviceDomainId"
 									selectedItems="<%=String.valueOf(serviceDomainId)%>"
-									cssClass="search-input select-box"
+									cssClass="search-input select-box input100"
 								/>
 							</aui:col>
 							<aui:col width="30" cssClass="search-col">
@@ -127,14 +132,14 @@
 									itemsEmptyOption="true"
 									itemNames="govAgencyId"
 									selectedItems="<%=String.valueOf(govAgencyId)%>"
-									cssClass="search-input select-box"
+									cssClass="search-input select-box input100"
 								/>
 							</aui:col>
 							<aui:col width="30" cssClass="search-col">
 								<liferay-ui:input-search 
 									id="keywords1"
 									name="keywords"
-									title="keywords"
+									title='<%= LanguageUtil.get(locale, "keywords") %>'
 									placeholder='<%= LanguageUtil.get(locale, "keywords") %>'
 									cssClass="search-input input-keyword"
 								/>
@@ -156,37 +161,28 @@
 										itemsEmptyOption="true"
 										itemNames="serviceDomainId"
 										selectedItems="<%=String.valueOf(serviceDomainId)%>"
-										cssClass="search-input select-box"
+										cssClass="search-input select-box input100"
 									/>
 								</aui:col>
 								<aui:col width="30" cssClass="search-col">
-									<aui:select name="dossierStatus" 
-										label="<%=StringPool.BLANK %>" 
-										inlineField="<%=true %>" 
-										inlineLabel="left" 
-										cssClass="search-input select-box"
-									>
-										<aui:option><liferay-ui:message key="dossier-status"/></aui:option>
-										<aui:option value="<%=StringPool.BLANK %>" selected="<%=dossierStatus.equals(StringPool.BLANK)%>"><liferay-ui:message key="all"/></aui:option>
-											<%
-												for(String status : PortletUtil.getDossierStatus()){
-													%>
-														<aui:option 
-															value="<%= status%>"
-															selected="<%=dossierStatus.equals(status)%>"
-														>
-															<%=PortletUtil.getDossierStatusLabel(status, locale) %>
-														</aui:option>
-													<%
-												}
-											%>
-									</aui:select>
+									
+									<datamgt:ddr 
+										depthLevel="1" 
+										dictCollectionCode="DOSSIER_STATUS" 
+										showLabel="<%=false%>"
+										emptyOptionLabels="dossier-status"
+										itemsEmptyOption="true"
+										itemNames="<%=DossierDisplayTerms.DOSSIER_STATUS %>"
+										optionValueType="code"
+										cssClass="search-input select-box input100"
+									/>
+									
 								</aui:col>
 								<aui:col width="30" cssClass="search-col">
 									<liferay-ui:input-search 
 										id="keywords1"
 										name="keywords"
-										title="keywords"
+										title='<%= LanguageUtil.get(locale, "keywords") %>'
 										placeholder='<%=LanguageUtil.get(locale, "keywords") %>'
 										cssClass="search-input input-keyword"
 									/>

@@ -1,9 +1,5 @@
-<%@page import="org.opencps.util.PortletPropsValues"%>
-<%@page import="org.opencps.util.PortletUtil"%>
-<%@page import="org.opencps.datamgt.service.DictItemLocalServiceUtil"%>
-<%@page import="org.opencps.datamgt.model.DictItem"%>
-<%@page import="org.opencps.dossiermgt.service.ServiceConfigLocalServiceUtil"%>
-<%@page import="org.opencps.dossiermgt.model.ServiceConfig"%>
+
+<%@page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -22,12 +18,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 %>
-
-<%@ include file="../../init.jsp" %>
+<%@page import="org.opencps.util.PortletPropsValues"%>
+<%@page import="org.opencps.util.PortletUtil"%>
+<%@page import="org.opencps.datamgt.service.DictItemLocalServiceUtil"%>
+<%@page import="org.opencps.datamgt.model.DictItem"%>
+<%@page import="org.opencps.dossiermgt.service.ServiceConfigLocalServiceUtil"%>
+<%@page import="org.opencps.dossiermgt.model.ServiceConfig"%>
 <%@page import="org.opencps.util.DictItemUtil"%>
 <%@page import="org.opencps.servicemgt.service.ServiceInfoLocalServiceUtil"%>
 <%@page import="org.opencps.processmgt.service.ServiceInfoProcessLocalServiceUtil"%>
 <%@page import="org.opencps.processmgt.model.ServiceInfoProcess"%>
+
+<%@ include file="../../init.jsp" %>
+
 
 <%
 	ServiceProcess serviceProcess = (ServiceProcess) request.getAttribute(WebKeys.SERVICE_PROCESS_ENTRY);
@@ -64,7 +67,7 @@
 	<portlet:param name="mvcPath" value='<%=templatePath + "choose_service.jsp" %>'/>
 </portlet:renderURL>
 
-<aui:button name="chooseService" value="choose-service" />
+<aui:button name="chooseService" value="choose-service" cssClass="mg-b-20"/>
 
 
 <liferay-ui:search-container 
@@ -126,7 +129,7 @@
 			/>
 		<liferay-ui:search-container-column-text 
 				name="service-administration-action" 
-				value="<%=PortletUtil.getDictItem(PortletPropsValues.DATAMGT_MASTERDATA_SERVICE_ADMINISTRATION, serviceConfig.getGovAgencyCode(), scopeGroupId).getItemName(locale,true) %>"
+				value="<%=PortletUtil.getDictItem(PortletPropsValues.DATAMGT_MASTERDATA_GOVERNMENT_AGENCY, serviceConfig.getGovAgencyCode(), scopeGroupId).getItemName(locale,true) %>"
 			/>
 		<%
 			 final String hrefFix = "location.href='" + deteleRelaSeInfoAndProcessURL .toString()+"'";
@@ -142,29 +145,9 @@
 
 <aui:script use="liferay-util-window">
 	A.one('#<portlet:namespace/>chooseService').on('click', function(event) {
-		Liferay.Util.openWindow({
-			dialog : {
-				centered : true,
-				height : 900,
-				modal : true,
-				width : 1100
-			},
-			id : '<portlet:namespace/>dialog',
-			title : '',
-			uri : '<%=chooseServiceURL %>'
-		});
+		
+		openDialog('<%=chooseServiceURL %>', '<portlet:namespace/>chooseService' , '<%=UnicodeLanguageUtil.get(pageContext, "choose-service")%>');
+		
 	});
 </aui:script>
 
-<aui:script>
-	Liferay.provide(window, '<portlet:namespace/>closePopup', function(
-			dialogId) {
-		var A = AUI();
-		// Closing the dialog
-		var dialog = Liferay.Util.Window.getById(dialogId);
-		dialog.destroy();
-		
-		Liferay.Util.getOpener().Liferay.Portlet.refresh('#p_p_id' + '<portlet:namespace/>');
-		
-	}, [ 'liferay-util-window' ]);
-</aui:script>

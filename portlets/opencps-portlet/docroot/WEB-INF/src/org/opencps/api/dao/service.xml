@@ -25,5 +25,7 @@
 		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
 		<reference entity="DLFileEntry" package-path="com.liferay.portlet.documentlibrary"/>
 		<reference entity="ServiceInfo" package-path="org.opencps.servicemgt.dao" />
+		<reference entity="ProcessWorkflow" package-path="org.opencps.processmgt.dao" />
+		<reference entity="ProcessOrder" package-path="org.opencps.processmgt.dao" />
 	</entity>
 </service-builder>

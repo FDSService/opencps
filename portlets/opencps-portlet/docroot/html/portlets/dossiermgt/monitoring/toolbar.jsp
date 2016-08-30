@@ -1,6 +1,4 @@
-<%@page import="org.opencps.dossiermgt.util.DossierMgtUtil"%>
-<%@page import="javax.portlet.PortletURL"%>
-<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -19,9 +17,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
+<%@page import="org.opencps.dossiermgt.util.DossierMgtUtil"%>
+<%@page import="javax.portlet.PortletURL"%>
+<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@ taglib prefix="opencps-ui" uri="/WEB-INF/tld/opencps-ui.tld"%>
 <%@page import="com.liferay.portal.kernel.log.LogFactoryUtil"%>
 <%@page import="com.liferay.portal.kernel.log.Log"%>
+
 <%@ include file="../init.jsp"%>
 
 <%
@@ -49,15 +51,12 @@
 	String urlSelect = viewMonitoringSearchURL /*+ "," + dossierFileSearchUrl */ + "," + viewMonitoringServiceURL;
 %>
 <aui:nav-bar cssClass="opencps-toolbar custom-toolbar">
-	<aui:nav id="toolbarContainer" cssClass="nav-display-style-buttons pull-left" >
-		
-	</aui:nav>
 	<c:choose>
 		<c:when test="<%= tabs1.equals(DossierMgtUtil.TOP_TABS_DOSSIER_MONITORING_SEARCH) %>">
-			<aui:nav-bar-search cssClass="pull-left" style="width: 98%">
+			<aui:nav-bar-search cssClass="pull-left">
 				<div class="form-search">
 					<aui:form action="<%= searchUrl %>" method="post" name="fm">
-						<div class="toolbar_search_input" style="width: 98%">
+						<div class="toolbar_search_input">
 							<aui:row>
 								<aui:col>
 									<label>
@@ -82,10 +81,10 @@
 			</aui:nav-bar-search>
 		</c:when>
 		<c:when test="<%= tabs1.equals(DossierMgtUtil.TOP_TABS_DOSSIER_MONITORING_DOSSIER_FILE_LIST) %>">
-			<aui:nav-bar-search cssClass="pull-left" style="width: 98%">
+			<aui:nav-bar-search cssClass="pull-left">
 				<div class="form-search">
 					<aui:form action="<%= dossierFileSearchUrl %>" method="post" name="fm">
-						<div class="toolbar_search_input" style="width: 98%">
+						<div class="toolbar_search_input">
 							<aui:row>
 								<aui:col width="65">
 									<label>
@@ -110,10 +109,10 @@
 			</aui:nav-bar-search>
 		</c:when>
 		<c:when test="<%= tabs1.equals(DossierMgtUtil.TOP_TABS_DOSSIER_MONITORING_SERVICE) %>">
-			<aui:nav-bar-search cssClass="pull-left" style="width: 98%">
+			<aui:nav-bar-search cssClass="pull-left">
 				<div class="form-search">
 					<aui:form action="<%= serviceUrl %>" method="post" name="fm">
-						<div class="toolbar_search_input" style="width: 98%">
+						<div class="toolbar_search_input">
 							<aui:row>
 								<aui:col width="65">
 									<label>

@@ -1,3 +1,9 @@
+.center{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
 .bold {
 	font-family: "roboto-bold";
 }
@@ -10,12 +16,28 @@
 	border-top: 1px solid #e1e1e1;
 }
 
+.font16{
+	font-size: 16px;
+}
+
+.font18{
+	font-size: 18px;
+}
+
 .radius8 {
 	border-radius: 8px !important
 }
 
 .radius20 {
 	border-radius: 20px !important;
+}
+
+.pd20{
+	padding: 20px;
+}
+
+.pd_b10{
+	padding-bottom: 10px;
 }
 
 .pd_b20 {
@@ -111,11 +133,39 @@
 	text-transform: uppercase;
 }
 
+.mg-b-20{
+	margin-bottom: 20px;
+}
+
+.mg-t-20{
+	margin-top: 20px;
+}
+
 .mg-l-30{
 	margin-left: -30px;
 } 
 .mg-r-30{
 	margin-right: -30px;
+}
+
+.min-width10{
+	min-width: 10px !important;
+}
+
+.min-width20{
+	min-width: 20px !important;
+}
+
+.min-width30{
+	min-width: 30px !important;
+}
+
+.min-width40{
+	min-width: 40px !important;
+}
+
+.min-width50{
+	min-width: 50px !important;
 }
 
 .min-width60{
@@ -124,6 +174,18 @@
 
 .min-width70{
 	min-width: 70px !important;
+}
+
+.min-width80{
+	min-width: 80px !important;
+}
+
+.min-width90{
+	min-width: 90px !important;
+}
+
+.min-width100{
+	min-width: 100px !important;
 }
 
 .min-width180{
@@ -145,3 +207,84 @@
 	text-align: right;
 }
 
+.height30{
+	height: 30px;
+}
+
+.height35{
+	height: 35px;
+}
+
+.height40{
+	height: 40px;
+}
+
+.width10{
+	width: 10px;
+}
+
+.width20{
+	width: 20px;
+}
+
+.width30{
+	width: 30px;
+}
+
+.width40{
+	width: 40px;
+}
+
+.width50{
+	width: 50px;
+}
+
+.width60{
+	width: 60px;
+}
+
+.width70{
+	width: 70px;
+}
+
+.width80{
+	width: 80px;
+}
+
+.width90{
+	width: 90px;
+}
+
+.width100{
+	width: 100px;
+}
+
+.width180{
+	width: 180px;
+}
+
+.width340{
+	width: 340px;
+}
+
+.opencps-theme.ux .opencps-bound-wrapper {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+}
+
+.opencps-theme.ux .button-add {
+	width: 108px;
+	border-radius: 17px 17px 17px 17px;
+	background-color: green;
+	height: 30px;
+	margin-top: 5px;
+}
+
+.opencps-theme.ux .button-del {
+	width: 108px;
+	border-radius: 17px 17px 17px 17px;
+	background-color: #b30e2c;
+	height: 30px;
+	margin-top: 5px;
+}

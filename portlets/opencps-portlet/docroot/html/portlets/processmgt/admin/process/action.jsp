@@ -1,9 +1,4 @@
-<%@page import="org.opencps.processmgt.util.ProcessUtils"%>
-<%@page import="com.liferay.portal.kernel.process.ProcessUtil"%>
-<%@page import="org.opencps.processmgt.service.ProcessWorkflowLocalServiceUtil"%>
-<%@page import="org.opencps.processmgt.search.WorkflowSearchTerms"%>
-<%@page import="org.opencps.processmgt.search.WorkflowSearch"%>
-<%@page import="org.opencps.processmgt.model.ProcessWorkflow"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -22,6 +17,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 %>
+
+<%@page import="org.opencps.processmgt.util.ProcessUtils"%>
+<%@page import="com.liferay.portal.kernel.process.ProcessUtil"%>
+<%@page import="org.opencps.processmgt.service.ProcessWorkflowLocalServiceUtil"%>
+<%@page import="org.opencps.processmgt.search.WorkflowSearchTerms"%>
+<%@page import="org.opencps.processmgt.search.WorkflowSearch"%>
+<%@page import="org.opencps.processmgt.model.ProcessWorkflow"%>
 
 <%@ include file="../../init.jsp" %>
 

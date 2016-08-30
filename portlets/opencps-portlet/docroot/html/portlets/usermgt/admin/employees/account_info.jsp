@@ -57,7 +57,7 @@
 </c:if>
 </liferay-ui:error>
 
-<aui:row>
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="100">
 		<aui:input 
 			name="isMappingUser" 
@@ -71,7 +71,7 @@
 </aui:row>
 
 <div id="<portlet:namespace/>accountInfo">
-	<aui:row>
+	<aui:row cssClass="nav-content-row-2">
 		<aui:col width="50">
 			<aui:input 
 				name="<%= EmployeeDisplayTerm.SCREEN_NAME%>"
@@ -79,6 +79,7 @@
 				required="<%=false %>"
 				id="mappingUserScreenName"
 				type="text"
+				cssClass="input100"
 			>
 			</aui:input>
 		</aui:col>
@@ -88,6 +89,7 @@
 				name="<%= EmployeeDisplayTerm.USER_EMAIL%>"
 				disabled="<%=mappingUser != null ? true : false  %>"
 				type="text"
+				cssClass="input100"
 			>
 				<%-- <aui:validator name="required"/> --%>
 				<aui:validator name="email"/>
@@ -98,13 +100,13 @@
 		</aui:col>
 	</aui:row>
 	
-	<aui:row>
+	<aui:row cssClass="nav-content-row-2">
 		<aui:col width="50">
-			<aui:input name="<%= EmployeeDisplayTerm.PASS_WORD%>" type="password"></aui:input>
+			<aui:input name="<%= EmployeeDisplayTerm.PASS_WORD%>" type="password" cssClass="input100"></aui:input>
 		</aui:col>
 		
 		<aui:col width="50">
-			<aui:input name="<%= EmployeeDisplayTerm.RE_PASS_WORD%>" type="password">
+			<aui:input name="<%= EmployeeDisplayTerm.RE_PASS_WORD%>" type="password" cssClass="input100">
 				<aui:validator name="equalTo">'#<portlet:namespace /><%= EmployeeDisplayTerm.PASS_WORD%>'</aui:validator>
 			</aui:input>
 		</aui:col>

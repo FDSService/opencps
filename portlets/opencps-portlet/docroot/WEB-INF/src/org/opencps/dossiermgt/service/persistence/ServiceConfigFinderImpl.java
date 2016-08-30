@@ -543,7 +543,7 @@ public class ServiceConfigFinderImpl extends BasePersistenceImpl<ServiceConfig>
 				.setCacheable(false);
 			q
 				.addEntity("ServiceConfig", ServiceConfigImpl.class);
-
+			System.out.println("#####111 SQL:"+ sql + " groupId:"+ groupId + "  govAgencyCode:"+ govAgencyCode + "  domainCode:"+ domainCode + "  keywords:"+ keywords + " #####");
 			QueryPos qPos = QueryPos
 				.getInstance(q);
 
@@ -569,7 +569,7 @@ public class ServiceConfigFinderImpl extends BasePersistenceImpl<ServiceConfig>
 				qPos
 					.add(domainCode);
 			}
-
+			System.out.println("##### SQL:"+ sql + " groupId:"+ groupId + "  govAgencyCode:"+ govAgencyCode + "  domainCode:"+ domainCode + "  keywords:"+ keywords + " #####");
 			return (List<ServiceConfig>) QueryUtil
 				.list(q, getDialect(), start, end);
 		}

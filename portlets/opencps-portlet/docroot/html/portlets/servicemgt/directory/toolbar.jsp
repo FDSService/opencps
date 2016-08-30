@@ -66,7 +66,7 @@
 							<liferay-ui:input-search 
 								id="keywords1"
 								name="keywords"
-								title="keywords"
+								title='<%= LanguageUtil.get(locale, "keywords") %>'
 								placeholder='<%= LanguageUtil.get(locale, "name") %>' 
 								cssClass="search-input input-keyword"
 							/>

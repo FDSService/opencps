@@ -16,20 +16,37 @@
 */
 package org.opencps.paymentmgt.portlet;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
+import org.opencps.accountmgt.NoSuchAccountException;
+import org.opencps.accountmgt.NoSuchAccountFolderException;
+import org.opencps.accountmgt.NoSuchAccountOwnOrgIdException;
+import org.opencps.accountmgt.NoSuchAccountOwnUserIdException;
+import org.opencps.accountmgt.NoSuchAccountTypeException;
 import org.opencps.dossiermgt.NoSuchDossierException;
+import org.opencps.dossiermgt.NoSuchDossierFileException;
+import org.opencps.dossiermgt.PermissionDossierException;
+import org.opencps.dossiermgt.bean.AccountBean;
 import org.opencps.dossiermgt.model.Dossier;
+import org.opencps.dossiermgt.model.DossierFile;
+import org.opencps.dossiermgt.model.DossierPart;
+import org.opencps.dossiermgt.search.DossierFileDisplayTerms;
+import org.opencps.dossiermgt.service.DossierFileLocalServiceUtil;
 import org.opencps.dossiermgt.service.DossierLocalServiceUtil;
+import org.opencps.dossiermgt.service.DossierPartLocalServiceUtil;
 import org.opencps.keypay.model.KeyPay;
 import org.opencps.paymentmgt.NoSuchPaymentConfigException;
 import org.opencps.paymentmgt.NoSuchPaymentFileException;
@@ -43,11 +60,16 @@ import org.opencps.servicemgt.DuplicateFileNameException;
 import org.opencps.servicemgt.DuplicateFileNoException;
 import org.opencps.servicemgt.IOFileUploadException;
 import org.opencps.servicemgt.service.TemplateFileLocalServiceUtil;
+import org.opencps.util.AccountUtil;
 import org.opencps.util.DateTimeUtil;
 import org.opencps.util.MessageKeys;
+import org.opencps.util.PortletPropsValues;
+import org.opencps.util.PortletUtil;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -61,6 +83,7 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
@@ -69,6 +92,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.assetpublisher.util.AssetPublisherUtil;
+import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
@@ -98,11 +122,11 @@ public class PaymentMgtFrontOfficePortlet extends MVCPortlet {
 		}
         catch (PortalException e) {
 	        // TODO Auto-generated catch block
-	        e.printStackTrace();
+	        _log.error(e);
         }
         catch (SystemException e) {
 	        // TODO Auto-generated catch block
-	        e.printStackTrace();
+	        _log.error(e);
         }
 		PaymentConfig paymentConfig = null;
 		try {
@@ -114,11 +138,11 @@ public class PaymentMgtFrontOfficePortlet extends MVCPortlet {
 		}
         catch (PortalException e) {
 	        // TODO Auto-generated catch block
-	        e.printStackTrace();
+	        _log.error(e);
         }
         catch (SystemException e) {
 	        // TODO Auto-generated catch block
-	        e.printStackTrace();
+	        _log.error(e);
         }
 		System.out.println("----REDIRECT KEYPAY----");
 		if (paymentConfig != null) {
@@ -143,11 +167,11 @@ public class PaymentMgtFrontOfficePortlet extends MVCPortlet {
 	        	}
                 catch (PortalException e) {
 	                // TODO Auto-generated catch block
-	                e.printStackTrace();
+	                _log.error(e);
                 }
                 catch (SystemException e) {
 	                // TODO Auto-generated catch block
-	                e.printStackTrace();
+	                _log.error(e);
                 }
 	        	//paymentFile.setKeypayGoodCode("GC_" + paymentFile.getDossierId());
 	        	good_code = paymentFile.getKeypayGoodCode();
@@ -172,6 +196,7 @@ public class PaymentMgtFrontOfficePortlet extends MVCPortlet {
 	        String country_code = "+84";
 	        String internal_bank = "all_card";
 	        String merchant_secure_key = paymentConfig.getKeypaySecureKey();
+	        paymentFile.setModifiedDate(new Date());
 	        paymentFile.setPaymentStatus(PaymentMgtUtil.PAYMENT_STATUS_REQUESTED);
 	        updatePaymentFile = true;
 	        if (updatePaymentFile) {
@@ -272,6 +297,7 @@ public class PaymentMgtFrontOfficePortlet extends MVCPortlet {
 						paymentFile.setConfirmFileEntryId(fileEntry.getFileEntryId());
 						paymentFile.setPaymentStatus(PaymentMgtUtil.PAYMENT_STATUS_CONFIRMED);
 						paymentFile.setPaymentMethod(PaymentMgtUtil.PAYMENT_METHOD_BANK);
+						paymentFile.setModifiedDate(new Date());
 						PaymentFileLocalServiceUtil.updatePaymentFile(paymentFile);
 					}
 				}
@@ -310,6 +336,73 @@ public class PaymentMgtFrontOfficePortlet extends MVCPortlet {
 
 	}
 
+	/**
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @return
+	 * @throws PortalException
+	 * @throws SystemException
+	 * @throws IOException
+	 */
+	public void requestBankPaymentItems(
+	    ActionRequest actionRequest, ActionResponse actionResponse)
+	    throws IOException {
+
+		long[] paymentFileIds =
+		    ParamUtil.getLongValues(actionRequest, PaymentFileDisplayTerms.PAYMENT_FILE_IDS);
+		
+		String redirectURL = ParamUtil.getString(actionRequest, "redirectURL");
+		String returnURL = ParamUtil.getString(actionRequest, "returnURL");
+
+		SessionMessages.add(
+		    actionRequest, PortalUtil.getPortletId(actionRequest) +
+		        SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+		System.out.println("----PAYMENT FILE ID----" + paymentFileIds);
+		try {
+			ServiceContext serviceContext =
+			    ServiceContextFactory.getInstance(actionRequest);
+
+			PaymentFile paymentFile = null;
+			for (int i = 0; i < paymentFileIds.length; i++) {
+				
+					paymentFile = PaymentFileLocalServiceUtil.getPaymentFile(paymentFileIds[i]);
+					if (paymentFile != null) {
+						paymentFile.setPaymentStatus(PaymentMgtUtil.PAYMENT_STATUS_CONFIRMED);
+						paymentFile.setPaymentMethod(PaymentMgtUtil.PAYMENT_METHOD_BANK);
+						paymentFile.setModifiedDate(new Date());
+						PaymentFileLocalServiceUtil.updatePaymentFile(paymentFile);
+					}
+			}
+			SessionMessages.add(
+				    actionRequest,
+				    MessageKeys.PAYMENT_FILE_CONFIRM_BANK_SUCCESS);
+		}
+		catch (Exception e) {
+			if (e instanceof DuplicateFileNameException) {
+				SessionErrors.add(
+				    actionRequest,
+				    MessageKeys.SERVICE_TEMPLATE_FILE_NAME_EXCEPTION);
+			}
+			else if (e instanceof DuplicateFileNoException) {
+				SessionErrors.add(
+				    actionRequest,
+				    MessageKeys.SERVICE_TEMPLATE_FILE_NO_EXCEPTION);
+
+			}
+			else if (e instanceof IOFileUploadException) {
+				SessionErrors.add(
+				    actionRequest,
+				    MessageKeys.SERVICE_TEMPLATE_UPLOAD_EXCEPTION);
+			}
+			else {
+				SessionErrors.add(
+				    actionRequest,
+				    MessageKeys.SERVICE_TEMPLATE_EXCEPTION_OCCURRED);
+			}
+		}
+
+	}
+	
 	/**
 	 * Upload file
 	 * 
@@ -402,7 +495,7 @@ public class PaymentMgtFrontOfficePortlet extends MVCPortlet {
 			return fileEntry;
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			_log.error(e);
 			UploadException uploadException =
 			    (UploadException) actionRequest.getAttribute(WebKeys.UPLOAD_EXCEPTION);
 
@@ -419,6 +512,43 @@ public class PaymentMgtFrontOfficePortlet extends MVCPortlet {
 		}
 		finally {
 			StreamUtil.cleanUp(inputStream);
+		}
+	}
+	
+	/**
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 */
+	public void doKeyPayURLRedirect(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException {
+
+		long paymentFileId =
+			ParamUtil.getLong(
+				actionRequest, "paymentFileId");
+		
+		String okURL = "false";
+		
+		JSONObject responseJSON = JSONFactoryUtil.createJSONObject();
+		
+		try {
+			if(paymentFileId > 0){
+				PaymentFile paymentFile = PaymentFileLocalServiceUtil.fetchPaymentFile(paymentFileId);
+				
+//				paymentFile.setPaymentResponseStatus(PaymentMgtUtil.PAYMENT_STATUS_KEYPAY_PENDING);
+				
+				PaymentFileLocalServiceUtil.updatePaymentFile(paymentFile);
+			}
+			okURL = "true";
+		}
+		catch (Exception e) {
+			okURL = "false";
+			_log.error(e);
+		}
+		finally {
+			responseJSON.put("okURL", okURL);
+			PortletUtil.writeJSON(actionRequest, actionResponse, responseJSON);
 		}
 	}
 

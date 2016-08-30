@@ -1,5 +1,4 @@
-<%@page import="org.opencps.util.PortletConstants"%>
-<%@page import="java.text.Format"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -18,8 +17,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
-<%@ include file="../init.jsp"%>
 
+<%@page import="org.opencps.util.PortletConstants"%>
+<%@page import="java.text.Format"%>
 <%@page import="javax.portlet.PortletRequest"%>
 <%@page import="com.liferay.portlet.PortletURLFactoryUtil"%>
 <%@page import="com.liferay.portal.theme.ThemeDisplay"%>
@@ -43,6 +43,14 @@
 <%@page import="org.opencps.dossiermgt.search.DossierSearchTerms"%>
 <%@page import="org.opencps.dossiermgt.search.DossierNewProcessingSearch"%>
 
+<%@ include file="../init.jsp"%>
+
+<div class="home-search-sologan">
+	<h2><liferay-ui:message key="beautiful-life"/></h2>
+	
+	<p><liferay-ui:message key="slogan-key"/></p>
+</div>
+
 <div class = "home-search">
 	<liferay-util:include page="/html/portlets/dossiermgt/monitoring/toolbar.jsp" servletContext="<%=application %>" />
 </div>
@@ -52,14 +60,11 @@
 	PortletURL iteratorURL = renderResponse.createRenderURL();
 	iteratorURL.setParameter("mvcPath", templatePath + "dossiermonitoringsearch.jsp");	
 %>
-	<h2><liferay-ui:message key="beautiful-life"/></h2>
-	<p><liferay-ui:message key="slogan-key"/></p>
-<c:if test="<%= false %>">
 
+<c:if test="<%= false %>">
 	<aui:row>
 		<aui:col width="50">
 			<liferay-ui:search-container searchContainer="<%= new DossierNewProcessingSearch(renderRequest, SearchContainer.DEFAULT_DELTA, iteratorURL) %>">
-			
 				<liferay-ui:search-container-results>
 					<%
 						DossierSearchTerms searchTerms = (DossierSearchTerms)searchContainer.getSearchTerms();
@@ -80,25 +85,26 @@
 						pageContext.setAttribute("total", total);
 					%>
 				</liferay-ui:search-container-results>	
-					<liferay-ui:search-container-row 
-						className="org.opencps.dossiermgt.model.Dossier" 
-						modelVar="dossier" 
-						keyProperty="dossierId"
-					>
-						<%						
-							// no column
-							row.addText(Validator.isNull(dossier.getModifiedDate()) ? "" : dateFormatDate.format(dossier.getModifiedDate()));
-	
-							//subjectname column
-							row.addText(dossier.getSubjectName());
-							
-							ServiceInfo serviceInfo = ServiceInfoLocalServiceUtil.getServiceInfo(dossier.getServiceInfoId());
-							//serviceinfo-name column
-							row.addText(serviceInfo.getServiceName());					
-						%>	
-					</liferay-ui:search-container-row> 
-				
+				<liferay-ui:search-container-row 
+					className="org.opencps.dossiermgt.model.Dossier" 
+					modelVar="dossier" 
+					keyProperty="dossierId"
+				>
+					<%						
+						// no column
+						row.addText(Validator.isNull(dossier.getModifiedDate()) ? "" : dateFormatDate.format(dossier.getModifiedDate()));
+
+						//subjectname column
+						row.addText(dossier.getSubjectName());
+						
+						ServiceInfo serviceInfo = ServiceInfoLocalServiceUtil.getServiceInfo(dossier.getServiceInfoId());
+						//serviceinfo-name column
+						row.addText(serviceInfo.getServiceName());					
+					%>	
+				</liferay-ui:search-container-row> 
+			
 				<liferay-ui:search-iterator type="opencs_page_iterator"/>
+				
 			</liferay-ui:search-container>	
 		</aui:col>
 		<aui:col width="50">

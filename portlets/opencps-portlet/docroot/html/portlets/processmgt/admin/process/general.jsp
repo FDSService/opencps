@@ -1,7 +1,4 @@
-<%@page import="org.opencps.dossiermgt.model.DossierTemplate"%>
-<%@page import="org.opencps.processmgt.util.ProcessUtils"%>
-<%@page import="com.liferay.portal.model.Role"%>
-<%@page import="org.opencps.processmgt.model.ServiceProcess"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -20,6 +17,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 %>
+<%@page import="org.opencps.dossiermgt.model.DossierTemplate"%>
+<%@page import="org.opencps.processmgt.util.ProcessUtils"%>
+<%@page import="com.liferay.portal.model.Role"%>
+<%@page import="org.opencps.processmgt.model.ServiceProcess"%>
 
 <%@ include file="../../init.jsp" %>
 
@@ -30,28 +31,30 @@
 
 <aui:model-context bean="<%= serviceProcess %>" model="<%= ServiceProcess.class %>"/>
 
-<aui:row>
+<aui:row cssClass="nav-content-row">
 	<aui:col width="100">
 		<aui:input cssClass="input100" name="processNo" >
 			<aui:validator name="required" errorMessage="not-empty"></aui:validator>
 		</aui:input>
 	</aui:col>
 </aui:row>
-<aui:row>
+
+<aui:row cssClass="nav-content-row">
 	<aui:col width="100">
 		<aui:input cssClass="input100" name="processName" >
 			<aui:validator name="required" errorMessage="not-empty"></aui:validator>
 		</aui:input>
 	</aui:col>
 </aui:row>
-<aui:row>
+
+<aui:row cssClass="nav-content-row">
 	<aui:col width="100">
 		<aui:input type="textarea" cssClass="input100" name="description" >
 		</aui:input>
 	</aui:col>
 </aui:row>
 
-<aui:row>
+<aui:row cssClass="nav-content-row">
 	<aui:col width="100">
 		<aui:select name="dossierTemplateId" showEmptyOption="true">
 			<%

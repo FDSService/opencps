@@ -1,3 +1,4 @@
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -16,15 +17,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
+
+<%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
+<%@page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil"%>
 <%@page import="org.opencps.datamgt.search.DictItemDisplayTerms"%>
 <%@page import="org.opencps.datamgt.permissions.DictItemPermission"%>
-<%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
+
 <%@ include file="../init.jsp" %>
+
 <%
+
 	ResultRow row = (ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 	DictItem dictItem = (DictItem) row.getObject();
-	
-	
 %>
 
 <%-- <liferay-ui:icon-menu> --%>
@@ -47,34 +51,35 @@
 	</portlet:actionURL>
 	
 	<c:if test="<%=DictItemPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE) %>">
-		
-		<liferay-ui:icon cssClass="search-container-action fa edit" image="edit" message="edit"
-					url="#" onClick="<%= \"javascript:\" + renderResponse.getNamespace() + \"showPopup('\" + updateDomainURL +\"');\" %>" />
+		<liferay-ui:icon 
+			cssClass="search-container-action fa edit" image="edit" message="edit"
+			url="<%=
+					\"javascript:\" +  \"openDialog('\" + 
+					updateDomainURL + \"','\" + 
+					renderResponse.getNamespace() + \"updateServiceDomain\" + \"','\" +
+					UnicodeLanguageUtil.get(pageContext, \"update-service-domain\") +
+					\"');\"  
+				%>" 
+		/>
 	</c:if>
 	
 	<c:if test="<%=DictItemPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_DICTITEM) %>">
-		<liferay-ui:icon cssClass="search-container-action fa add" image="add" message="add_chirld_dictitem"
-					url="#" onClick="<%= \"javascript:\" + renderResponse.getNamespace() + \"showPopup('\" + updateDomainChirldURL +\"');\" %>"/>
+		<liferay-ui:icon 
+			cssClass="search-container-action fa add" image="add" message="add_chirld_dictitem"
+			url="<%=
+					\"javascript:\" +  \"openDialog('\" + 
+					updateDomainChirldURL + \"','\" + 
+					renderResponse.getNamespace() + \"updateServiceDomain\" + \"','\" +
+					UnicodeLanguageUtil.get(pageContext, \"update-service-domain\") +
+					\"');\"  
+				%>"
+		/>
 	</c:if>
 	
 	<c:if test="<%=DictItemPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE) %>">
-		<liferay-ui:icon cssClass="search-container-action fa delete" image="delete" message="delete"
-					url="<%=deleteDomainURL.toString()%>" />
+		<liferay-ui:icon 
+			cssClass="search-container-action fa delete" image="delete" message="delete"
+			url="<%=deleteDomainURL.toString()%>" 
+		/>
 	</c:if>
 <%-- </liferay-ui:icon-menu> --%>
-
-<aui:script use="liferay-util-window">
-	Liferay.provide(window, '<portlet:namespace />showPopup', function(url){
-		Liferay.Util.openWindow({
-			dialog : {
-				centered : true,
-				height : 800,
-				modal : true,
-				width : 800
-			},
-			id : '<portlet:namespace/>dialog',
-			title : '',
-			uri : url
-		});
-	});
-</aui:script>

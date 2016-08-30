@@ -36,7 +36,7 @@
 				<div class="toolbar_search_input">
 					<aui:row>
 						<aui:col width="30">
-						
+							<aui:button cssClass="paymentBtnAll" type="button" onClick='<%= renderResponse.getNamespace() + \"addPaymentItems();\" %>' name="thanhToan" value="thanh-toan" ></aui:button>
 						</aui:col>
 						<aui:col width="35" cssClass="search-input select-box search-col">
 							<div class="select">

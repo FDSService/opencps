@@ -130,3 +130,19 @@
 .opencps-theme.ux .portlet-boundary_26_WAR_opencpsportlet_ .portlet-body .header-title {
 	text-transform: uppercase;
 }
+
+.opencps-theme.ux .portlet-boundary_26_WAR_opencpsportlet_ .opencps-searchcontainer-wrapper .opencps-searchcontainer-row .last{
+	width: 10%;
+}
+.opencps-theme.ux .portlet-boundary_26_WAR_opencpsportlet_ .opencps-searchcontainer-wrapper .opencps-searchcontainer-row .table-cell {
+	vertical-align: middle;
+}
+.opencps-theme.ux .portlet-boundary_26_WAR_opencpsportlet_ .opencps-searchcontainer-wrapper .des-sub-button{
+	width: 100%;
+    background: #0090ff;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Roboto-Medium';
+    border: 0;
+    padding: 10px;
+}

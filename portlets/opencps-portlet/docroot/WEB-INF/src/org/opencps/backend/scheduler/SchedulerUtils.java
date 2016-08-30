@@ -76,9 +76,9 @@ public class SchedulerUtils {
 
 			SendToEngineMsg engineMsg = new SendToEngineMsg();
 
-			engineMsg.setUserId(0);
-			engineMsg.setGroupId(0);
-			engineMsg.setCompanyId(0);
+			engineMsg.setUserId(dossier.getUserId());
+			engineMsg.setGroupId(dossier.getGroupId());
+			engineMsg.setCompanyId(dossier.getCompanyId());
 			engineMsg.setActionDatetime(now);
 			engineMsg.setAction(processWorkflow.getActionName());
 			engineMsg.setSignature(0);

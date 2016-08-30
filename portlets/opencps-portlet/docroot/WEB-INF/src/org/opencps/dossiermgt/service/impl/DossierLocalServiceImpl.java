@@ -1966,5 +1966,43 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 
 		return dossierPersistence.findByServiceInfoId(serviceinfoId);
 	}
+	
+	public List<Dossier> getDossierByG_DS_U(long groupId, String dossierStatus
+		, long userId, int start, int end) throws SystemException {
+		return dossierPersistence
+						.findByG_DS_U(groupId, dossierStatus, userId, start, end);
+	}
+	
+	public int countDossierByG_DS_U(long groupId, String dossierStatus
+		, long userId) throws SystemException {
+		return dossierPersistence.countByG_DS_U(groupId, dossierStatus, userId);
+	}
 
+	/**
+	 * @param groupId
+	 * @param userId
+	 * @return
+	 */
+	public int countDossierByUserNewRequest(
+		long groupId, long userId) {
+
+		return dossierFinder.countDossierByUserNewRequest(
+			groupId, userId);
+	}
+	
+	/**
+	 * @param groupId
+	 * @param userId
+	 * @param start
+	 * @param end
+	 * @param obc
+	 * @return
+	 */
+	public List getDossierByUserNewRequest(
+		long groupId, long userId, int start,
+		int end, OrderByComparator obc) {
+
+		return dossierFinder.searchDossierByUserNewRequest(
+			groupId, userId, start, end, obc);
+	}
 }

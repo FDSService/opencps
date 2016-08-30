@@ -20,8 +20,12 @@ package org.opencps.hook.events;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.opencps.util.AccountUtil;
+
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author trungnt
@@ -33,7 +37,17 @@ public class LoginAction extends Action {
 	public void run(HttpServletRequest request, HttpServletResponse response)
 	    throws ActionException {
 
-		//AccountUtil.initAccount(request, response);
+		try {
+			AccountUtil.initAccount(request, response);
+		}
+		catch (PortalException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (SystemException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

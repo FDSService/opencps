@@ -17,8 +17,10 @@
  */
 %>
 
-<%@ include file="../init.jsp"%>
 <%@page import="org.opencps.processmgt.permissions.ProcessPermission"%>
+
+<%@ include file="../init.jsp"%>
+
 
 <%
 	PortletURL searchURL = renderResponse.createRenderURL();
@@ -32,7 +34,14 @@
 %>
 <aui:nav-bar cssClass="opencps-toolbar custom-toolbar">
 	<aui:nav id="toolbarContainer" cssClass="nav-display-style-buttons pull-left" >
-		
+		<c:if test="<%= isPermission %>">
+			<portlet:renderURL var="editProcessURL">
+				<portlet:param name="mvcPath" value='<%= templatePath + "edit_process.jsp" %>'/>
+				<portlet:param name="redirectURL" value="<%=currentURL %>"/>
+				<portlet:param name="backURL" value="<%=currentURL %>"/>
+			</portlet:renderURL>
+			<aui:button icon="icon-plus" href="<%=editProcessURL %>" cssClass="action-button" value="add-process"/>
+		</c:if>
 	</aui:nav>
 	<aui:nav-bar-search cssClass="pull-right">
 		<div class="form-search">
@@ -41,7 +50,7 @@
 					<liferay-ui:input-search 
 						id="keywords1"
 						name="keywords"
-						title="keywords"
+						title='<%= LanguageUtil.get(locale, "keywords") %>'
 						placeholder='<%= LanguageUtil.get(locale, "name") %>'
 						cssClass="search-input input-keyword"
 					/>
@@ -50,18 +59,6 @@
 		</div>
 	</aui:nav-bar-search>
 </aui:nav-bar>
-
-<portlet:renderURL var="editProcessURL">
-	<portlet:param name="mvcPath" value='<%= templatePath + "edit_process.jsp" %>'/>
-	<portlet:param name="redirectURL" value="<%=currentURL %>"/>
-	<portlet:param name="backURL" value="<%=currentURL %>"/>
-</portlet:renderURL>
-
-<c:if test="<%= isPermission %>">
-	<aui:button-row>
-		<aui:button name="add-process" value="add-process" href="<%= editProcessURL %>"></aui:button>
-	</aui:button-row>
-</c:if>
 
 <%!
 	private Log _log = LogFactoryUtil.getLog("html.portlets.processmgt.admin.toolbar.jsp");

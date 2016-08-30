@@ -116,7 +116,7 @@
 	position: absolute;
 	right: 0;
 	padding-left: 20px;
-	background: url(../images/custom/icon_sua.png) 0 center no-repeat;
+	background: url(../images/custom/icon_edit_blue.png) 0 center no-repeat;
 	top: 0
 }
 
@@ -202,7 +202,7 @@
 .opencps-theme.ux .opencps-accountinfo-wrapper.account_company .left>div>p>label span
 	{
 	padding-left: 20px;
-	background: url(../images/icon_victory.png) 0 center no-repeat;
+	background: url(../images/icon_checked.png) 0 center no-repeat;
 	font-family: 'Roboto-Bold';
 	margin-bottom: 10px
 }

@@ -1,5 +1,4 @@
 
-<%@page import="org.opencps.dossiermgt.permissions.DossierTemplatePermission"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -18,12 +17,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
-<%@ include file="../init.jsp"%>
+
 <%@page import="org.opencps.dossiermgt.model.DossierTemplate"%>
 <%@page import="com.liferay.portal.kernel.util.WebKeys"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 <%@page import="org.opencps.dossiermgt.search.DossierTemplateDisplayTerms"%>
 <%@page import="org.opencps.util.ActionKeys"%>
+<%@page import="org.opencps.dossiermgt.permissions.DossierTemplatePermission"%>
+
+<%@ include file="../init.jsp"%>
+
 <%
 	ResultRow row = (ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 	DossierTemplate dossierTemplate = (DossierTemplate)row.getObject();

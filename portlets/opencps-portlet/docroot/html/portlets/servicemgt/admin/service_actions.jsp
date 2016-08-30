@@ -1,4 +1,4 @@
-<%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
+
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -18,6 +18,7 @@
  */
 %>
 
+<%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 <%@ include file="../init.jsp"%>
 <%
 	ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
@@ -31,6 +32,7 @@
 			<portlet:param name="<%= ServiceDisplayTerms.SERVICE_ID %>" value="<%=String.valueOf(service.getServiceinfoId()) %>"/>
 			<portlet:param name="mvcPath" value='<%= templatePath + "edit_service-ux.jsp" %>'/>
 			<portlet:param name="redirectURL" value="<%= currentURL %>"/>
+			<portlet:param name="backURL" value="<%= currentURL %>"/>
 		</portlet:renderURL> 
 		<liferay-ui:icon cssClass="search-container-action fa edit" image="edit" url="<%= updateServiceURL.toString() %>" label="edit" />
  	</c:if>

@@ -35,6 +35,7 @@
 <%@page import="com.liferay.portlet.documentlibrary.model.DLFileEntry"%>
 <%@page import="org.opencps.datamgt.service.DictItemLocalServiceUtil"%>
 <%@page import="org.opencps.datamgt.model.DictItem"%>
+
 <%@ include file="../../init.jsp" %>
 
 <%
@@ -103,7 +104,7 @@
 
 <aui:model-context bean="<%=citizen %>" model="<%=Citizen.class%>" />
 
-<aui:row>
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="100">
 		<aui:input 
 			name="<%=CitizenDisplayTerms.CITIZEN_ADDRESS %>" 
@@ -114,21 +115,23 @@
 	</aui:col>
 </aui:row>
 
-<aui:row>
+<aui:row cssClass="nav-content-row-2">
 	<aui:col width="100">
 		<datamgt:ddr 
-			cssClass="input100"
 			depthLevel="3" 
 			dictCollectionCode="ADMINISTRATIVE_REGION"
 			itemNames="cityId,districtId,wardId"
 			itemsEmptyOption="true,true,true"	
 			selectedItems="<%=selectItems.toString() %>"
+			emptyOptionLabels="cityId,districtId,wardId"
+			showLabel="<%=true%>"
+			cssClass="input100"
 		/>	
 	</aui:col>
 </aui:row>
 
-<aui:row>
-	<aui:col width="30">
+<aui:row cssClass="nav-content-row-2">
+	<aui:col width="50">
 		<aui:input 
 			name="<%=CitizenDisplayTerms.CITIZEN_EMAIL %>"
 			disabled="<%=isViewProfile ||  isAdminViewProfile%>"
@@ -140,25 +143,24 @@
 		</aui:input>
 	</aui:col>
 	
-	<aui:col width="30">
+	<aui:col width="50">
 		<aui:input name="<%=CitizenDisplayTerms.CITIZEN_TELNO %>" cssClass="input100">
 			<aui:validator name="minLength">10</aui:validator>
 		</aui:input>
 	</aui:col>
 </aui:row>
-	<c:if test="<%= !isViewProfile && !isAdminViewProfile %>">
-		<aui:row>
-			<aui:col width="30">
-				<aui:input type="file" name="<%=CitizenDisplayTerms.CITIZEN_ATTACHFILE %>" cssClass="input100">
-					<aui:validator name="acceptFiles">
-						'<%= StringUtil.merge( PortletPropsValues.ACCOUNTMGT_FILE_TYPE) %>'
-					</aui:validator>
-				</aui:input>
-			</aui:col>
-		</aui:row>
-	</c:if>
-	
 
+<c:if test="<%= !isViewProfile && !isAdminViewProfile %>">
+	<aui:row cssClass="nav-content-row-2">
+		<aui:col width="100">
+			<aui:input type="file" name="<%=CitizenDisplayTerms.CITIZEN_ATTACHFILE %>" cssClass="input100">
+				<aui:validator name="acceptFiles">
+					'<%= StringUtil.merge( PortletPropsValues.ACCOUNTMGT_FILE_TYPE) %>'
+				</aui:validator>
+			</aui:input>
+		</aui:col>
+	</aui:row>
+</c:if>
 
 <c:if test="<%=isAdminViewProfile && citizenId > 0 %>">
 	<a href="<%=url%>"><liferay-ui:message key="url.file.entry"></liferay-ui:message></a>

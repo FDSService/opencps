@@ -63,7 +63,7 @@
 			if(isChildDossierPart && fileGroupId > 0){
 				version = DossierFileLocalServiceUtil.countDossierFile(dossierId, childDossierPartId, fileGroupId);
 			}else{
-				if(partType == PortletConstants.DOSSIER_PART_TYPE_OTHER){
+				if(partType == PortletConstants.DOSSIER_PART_TYPE_OTHER || partType==PortletConstants.DOSSIER_PART_TYPE_MULTIPLE_RESULT){
 					version = 1;
 				}else{
 					version = DossierFileLocalServiceUtil.countDossierFile(dossierId, dossierPartId);
@@ -190,7 +190,7 @@
 				</td>
 			</c:when>
 			
-			<c:when test="<%=partType == PortletConstants.DOSSIER_PART_TYPE_OTHER && level == 0 %>">
+			<c:when test="<%=(partType == PortletConstants.DOSSIER_PART_TYPE_OTHER || partType==PortletConstants.DOSSIER_PART_TYPE_MULTIPLE_RESULT) && level == 0 %>">
 				<td width="80%" align="right">
 					<c:if test="<%=isEditDossier %>">
 						<aui:a 
@@ -216,7 +216,7 @@
 				</td>
 			</c:when>
 			
-			<c:when test="<%=partType == PortletConstants.DOSSIER_PART_TYPE_OTHER && level > 0 %>">
+			<c:when test="<%=(partType == PortletConstants.DOSSIER_PART_TYPE_OTHER || partType==PortletConstants.DOSSIER_PART_TYPE_MULTIPLE_RESULT) && level > 0 %>">
 				<td width="80" align="right">
 					<c:choose>
 						<c:when test="<%=fileEntryId > 0 %>">
@@ -389,20 +389,22 @@
 					</span>
 				</td>
 				<td width="10%" align="right">
-					<aui:a 
-						cssClass="opencps dossiermgt part-file-ctr remove-dossier-file"
-						dossier-file="<%=String.valueOf(dossierFileId) %>"
-						dossier-part="<%=String.valueOf(isChildDossierPart ? childDossierPartId : dossierPartId) %>"
-						group-dossier-part="<%=String.valueOf(groupDossierPartId) %>"
-						group-name="<%=groupName %>"
-						level = "<%=level %>"
-						href="javascript:void(0);" 
-						id="<%=String.valueOf(dossierPartId) %>"
-						title="remove"
-					>
-						<i class="fa fa-times" aria-hidden="true"></i>
-						
-					</aui:a>
+					<c:if test="<%=isEditDossier %>">
+						<aui:a 
+							cssClass="opencps dossiermgt part-file-ctr remove-dossier-file"
+							dossier-file="<%=String.valueOf(dossierFileId) %>"
+							dossier-part="<%=String.valueOf(isChildDossierPart ? childDossierPartId : dossierPartId) %>"
+							group-dossier-part="<%=String.valueOf(groupDossierPartId) %>"
+							group-name="<%=groupName %>"
+							level = "<%=level %>"
+							href="javascript:void(0);" 
+							id="<%=String.valueOf(dossierPartId) %>"
+							title="remove"
+						>
+							<i class="fa fa-times" aria-hidden="true"></i>
+							
+						</aui:a>
+					</c:if>
 				</td>
 			</c:when>
 			

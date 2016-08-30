@@ -17,11 +17,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 %>
-
-<%@ include file="../../init.jsp" %>
 <%@page import="org.opencps.servicemgt.service.ServiceInfoLocalServiceUtil"%>
 <%@page import="org.opencps.servicemgt.model.ServiceFileTemplate"%>
 <%@page import="org.opencps.servicemgt.service.ServiceFileTemplateLocalServiceUtil"%>
+
+<%@ include file="../../init.jsp" %>
+
 <%
 	TemplateFile templateFile = (TemplateFile) request.getAttribute(WebKeys.SERVICE_TEMPLATE_ENTRY);
 	long templateFileId = Validator.isNotNull(templateFile) ? templateFile.getTemplatefileId() : 0L;

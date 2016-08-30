@@ -27,6 +27,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.opencps.usermgt.model.WorkingUnit"%>
 <%@page import="com.liferay.portal.kernel.dao.search.SearchContainer"%>
+
 <%@ include file="../../init.jsp"%>
 
 <%	
@@ -62,8 +63,9 @@
         <aui:model-context bean="<%=workingUnit%>" model="<%=WorkingUnit.class%>" />
     </c:otherwise>
 </c:choose>
-<aui:row>
-    <aui:select name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_PARENTWORKINGUNITID%>">
+
+<aui:row cssClass="nav-content-row-2">
+    <aui:select name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_PARENTWORKINGUNITID%>" cssClass="input100">
 		<c:choose>
 		   <c:when test="<%=Validator.isNotNull(isAddChild) %>">
 		       <aui:option value="<%=workingUnitId %>">
@@ -86,12 +88,12 @@
 		</c:choose>
 	</aui:select>
 	
-	<aui:input name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_NAME%>">
+	<aui:input name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_NAME%>" cssClass="input100">
 		<aui:validator name="required" />
 		<aui:validator name="maxLength">255</aui:validator>
 	</aui:input>
 	
-	<aui:input name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_ENNAME%>" >
+	<aui:input name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_ENNAME%>" cssClass="input100">
 		<aui:validator name="maxLength">255</aui:validator>
 	</aui:input>
 	
@@ -113,7 +115,7 @@
 			</c:otherwise>
 		</c:choose>
 		<div id="<portlet:namespace/>workingUnitGovAgencyCodeContainer">
-			<aui:input name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_GOVAGENCYCODE%>"/>
+			<aui:input name="<%=WorkingUnitDisplayTerms.WORKINGUNIT_GOVAGENCYCODE%>" cssClass="input100"/>
 		</div>
 	</div>
 	

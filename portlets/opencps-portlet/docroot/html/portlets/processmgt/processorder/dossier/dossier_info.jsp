@@ -37,7 +37,7 @@
 <table class="table table-bordered dossier-info-table">
 	<tr>
 		<td width="150">
-			<liferay-ui:message key="dossier-no"/>
+			<liferay-ui:message key="reception-no"/>
 		</td>
 		<td >
 			<%=dossier != null ? dossier.getReceptionNo() :  StringPool.BLANK %>

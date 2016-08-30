@@ -178,6 +178,23 @@ public class PaymentFileLocalServiceImpl extends PaymentFileLocalServiceBaseImpl
 		    obc);
 	}
 
+	public int countCustomerPaymentFileNewRequest(
+		    long groupId, String keyword, boolean isCitizen, long customerId,
+		    int[] paymentStatus) {
+
+			return paymentFileFinder.countCustomerPaymentFileNewRequest(
+			    groupId, keyword, isCitizen, customerId, paymentStatus);
+		}
+
+	public List<PaymentFile> searchCustomerPaymentFileNewRequest(
+		    long groupId, String keyword, boolean isCitizen, long customerId,
+		    int[] paymentStatus, int start, int end, OrderByComparator obc) {
+
+			return paymentFileFinder.searchCustomerPaymentFileNewRequest(
+			    groupId, keyword, isCitizen, customerId, paymentStatus, start, end,
+			    obc);
+	}
+		
 	public PaymentFile getPaymentFileByGoodCode(
 	    long groupId, String keypayGoodCode)
 	    throws SystemException {
@@ -317,4 +334,5 @@ public class PaymentFileLocalServiceImpl extends PaymentFileLocalServiceBaseImpl
 		return paymentFile;
 
 	}
+	
 }

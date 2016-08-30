@@ -162,6 +162,7 @@
 		<column name="domainCode" type="String" />
 		<column name="serviceMode" type="int"/>
         <column name="govAgencyIndex" type="String"></column>
+        <column name="serviceUrl" type="String"></column>
 
 		<finder return-type="Collection" name="DossierTemplateId">
 			<finder-column name="dossierTemplateId" />
@@ -187,6 +188,11 @@
 		<finder return-type="Collection" name="G_M">
 			<finder-column name="groupId" />
 			<finder-column name="serviceMode"/>
+		</finder>
+		
+		<finder return-type="Collection" name="S_G">
+			<finder-column name="serviceInfoId"/>
+			<finder-column name="groupId" />
 		</finder>
 
 	</entity>
@@ -257,6 +263,11 @@
         <finder name="G_DS" return-type="Collection">
             <finder-column name="groupId"></finder-column>
             <finder-column name="dossierStatus"></finder-column>
+        </finder>
+        <finder name="G_DS_U" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="dossierStatus"></finder-column>
+            <finder-column name="userId"></finder-column>
         </finder>
         <finder name="ReceptionNo" return-type="Dossier">
             <finder-column name="receptionNo"></finder-column>
@@ -526,6 +537,7 @@
         <exception>OutOfLengthFIileGroup</exception>
         <exception>DuplicateFileGroup</exception>
         <exception>RequiredDossierPart</exception>
+        <exception>ServiceUrlHasExisted</exception>
 	</exceptions>
 
 </service-builder>

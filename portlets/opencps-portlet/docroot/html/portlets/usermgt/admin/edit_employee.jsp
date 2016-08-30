@@ -129,15 +129,17 @@
 	<aui:input name="<%=EmployeeDisplayTerm.EMPLOYEE_ID %>" type="hidden" value="<%= employee != null ? employee.getEmployeeId() : 0L%>"/>
 	<aui:input name="<%=EmployeeDisplayTerm.GROUP_ID %>" type="hidden" value="<%= scopeGroupId%>"/>
 	<aui:input name="<%=EmployeeDisplayTerm.COMPANY_ID %>" type="hidden" value="<%= company.getCompanyId()%>"/>
-
-	<liferay-ui:form-navigator
-		backURL="<%= backURL %>"
-		categoryNames="<%= UserMgtUtil._EMPLOYESS_CATEGORY_NAMES %>"
-		categorySections="<%= categorySections %>"
-		htmlBottom="<%= htmlBottom %>"
-		htmlTop="<%= htmlTop %>"
-		jspPath='<%=templatePath + "employees/" %>'
-	/>
+	<div class="opencps-form-navigator-container radius8">
+		<liferay-ui:form-navigator
+			backURL="<%= backURL %>"
+			categoryNames="<%= UserMgtUtil._EMPLOYESS_CATEGORY_NAMES %>"
+			categorySections="<%= categorySections %>"
+			htmlBottom="<%= htmlBottom %>"
+			htmlTop="<%= htmlTop %>"
+			jspPath='<%=templatePath + "employees/" %>'
+			displayStyle="left-navigator"
+		/>
+	</div>
 </aui:form>
 
 <aui:script use="liferay-auto-fields">

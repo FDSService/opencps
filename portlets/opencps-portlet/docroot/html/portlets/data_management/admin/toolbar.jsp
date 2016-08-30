@@ -65,12 +65,13 @@
 				<portlet:param name="mvcPath" value="/html/portlets/data_management/admin/edit_dictitem.jsp"/>
 				<portlet:param name="backURL" value="<%=currentURL %>"/>
 			</portlet:renderURL>
-			<aui:nav-item 
+			<%-- <aui:nav-item 
 				id="addDictItem" 
 				label="add-dictitem" 
 				iconCssClass="icon-plus"  
 				href="<%=addDictItemURL %>"
-			/>
+			/> --%>
+			<aui:button icon="icon-plus" href="<%=addDictItemURL %>" cssClass="action-button" value="add-dictitem"/>
 		</c:if>
 		<c:if test="<%=DictCollectionPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_DICTCOLLECTION) && tabs1.equals(DataMgtUtil.TOP_TABS_DICTCOLLECTION)%>">
 			<%
@@ -81,12 +82,14 @@
 				<portlet:param name="mvcPath" value="/html/portlets/data_management/admin/edit_dictcollection.jsp"/>
 				<portlet:param name="backURL" value="<%=currentURL %>"/>
 			</portlet:renderURL>
-			<aui:nav-item 
+			<%-- <aui:nav-item 
 				id="addDictCollection" 
 				label="add-dictcollection" 
 				iconCssClass="icon-plus"  
 				href="<%=addDictCollectionURL %>"
-			/>
+			/> --%>
+			
+			<aui:button icon="icon-plus" href="<%=addDictCollectionURL %>" cssClass="action-button" value="add-dictcollection"/>
 		</c:if>
 	</aui:nav>
 	
@@ -94,29 +97,39 @@
 		<div class="form-search">
 			<aui:form action="<%= searchURL %>" method="post" name="fm">
 				<div class="toolbar_search_input">
-					<c:if test="<%=tabs1.equals(DataMgtUtil.TOP_TABS_DICTITEM)%>">
-						<%
-							searchURL.setParameter(DictItemSearchTerms.DICTCOLLECTION_ID, String.valueOf(dictCollectionId));
-						%>
-						<aui:select name="<%=DictItemDisplayTerms.DICTCOLLECTION_ID %>" inlineField="true" label="dict-collection">
-						<%
-							if(dictCollections != null){
-								for(DictCollection dictCollection : dictCollections){
-									%>
-										<aui:option value="<%=dictCollection.getDictCollectionId() %>" selected="<%=dictCollectionId == dictCollection.getDictCollectionId()%>">
-											<%=dictCollection.getCollectionName(locale) %>
-										</aui:option>
-									<%
-								}
-							}
-						%>
-					</aui:select> 
-					</c:if>
-					<liferay-ui:input-search 
-						id="keywords1" 
-						name="keywords" 
-						placeholder='<%= LanguageUtil.get(locale, "name") %>' 
-					/>
+					<aui:row>
+						
+						<c:if test="<%=tabs1.equals(DataMgtUtil.TOP_TABS_DICTITEM)%>">
+							<%
+								searchURL.setParameter(DictItemSearchTerms.DICTCOLLECTION_ID, String.valueOf(dictCollectionId));
+							%>
+							<aui:col width="50">
+								<aui:select name="<%=DictItemDisplayTerms.DICTCOLLECTION_ID %>" label="<%=StringPool.BLANK %>">
+								<%
+									if(dictCollections != null){
+										for(DictCollection dictCollection : dictCollections){
+											%>
+												<aui:option value="<%=dictCollection.getDictCollectionId() %>" selected="<%=dictCollectionId == dictCollection.getDictCollectionId()%>">
+													<%=dictCollection.getCollectionName(locale) %>
+												</aui:option>
+											<%
+										}
+									}
+								%>
+								</aui:select> 
+							</aui:col>
+						</c:if>
+						
+						<aui:col width="<%=tabs1.equals(DataMgtUtil.TOP_TABS_DICTITEM) ? 50 : 100 %>">
+							<liferay-ui:input-search 
+								id="keywords1" 
+								name="keywords" 
+								title='<%= LanguageUtil.get(locale, "keywords") %>'
+								placeholder='<%= LanguageUtil.get(locale, "name") %>' 
+							/>
+							
+						</aui:col>
+					</aui:row>
 				</div>
 			</aui:form>
 		</div>

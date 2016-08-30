@@ -73,7 +73,7 @@
 <aui:model-context bean="<%=citizen %>" model="<%=Citizen.class%>" />
 
 <c:if test="<%=isAdminViewProfile && citizenId > 0%>">
-	<aui:row>
+	<aui:row cssClass="nav-content-row-2">
 		<aui:col width="50">
 			<aui:input 
 				type="text"
@@ -81,10 +81,15 @@
 				value="<%=DateTimeUtil.convertDateToString(citizen.getCreateDate(), DateTimeUtil._VN_DATE_FORMAT) %>"
 				disabled="<%=isAdminViewProfile %>"
 				label="create-date"
+				cssClass="input100"
 			/>
 		</aui:col>
 		<aui:col width="50">
-			<aui:input name="<%=CitizenDisplayTerms.CITIZEN_ACCOUNTSTATUS%>" disabled="<%=isAdminViewProfile %>" />
+			<aui:input 
+				name="<%=CitizenDisplayTerms.CITIZEN_ACCOUNTSTATUS%>" 
+				disabled="<%=isAdminViewProfile %>" 
+				cssClass="input100"
+			/>
 		</aui:col>
 		
 	</aui:row>
@@ -92,15 +97,15 @@
 
 <c:choose>
 	<c:when test="<%=isAdminViewProfile && citizenId > 0%>">
-		<aui:row>
+		<aui:row cssClass="nav-content-row-2">
 			<aui:col width="50">
 				<aui:input 
 					name="<%=CitizenDisplayTerms.CITIZEN_FULLNAME %>" 
 					disabled="<%=isViewProfile %>" 
 					cssClass="input100"
 				>
-				<aui:validator name="required" />
-				<aui:validator name="maxLength">255</aui:validator>
+					<aui:validator name="required" />
+					<aui:validator name="maxLength">255</aui:validator>
 				</aui:input>
 			</aui:col>
 			
@@ -113,9 +118,9 @@
 			</aui:col>
 		</aui:row>
 		
-		<aui:row>
+		<aui:row cssClass="nav-content-row-2">
 			<aui:col width="50">
-				<label class="control-label custom-lebel" for='<portlet:namespace/><%=CitizenDisplayTerms.CITIZEN_BIRTHDATE %>'>
+				<label class="control-label custom-lebel bold" for='<portlet:namespace/><%=CitizenDisplayTerms.CITIZEN_BIRTHDATE %>'>
 					<liferay-ui:message key="birth-date"/>
 				</label>
 				<liferay-ui:input-date 
@@ -162,7 +167,7 @@
 		</aui:row>
 	</c:when>
 	<c:otherwise>
-		<aui:row>
+		<aui:row cssClass="nav-content-row-2">
 			<aui:col width="25">
 				<aui:input 
 					name="<%=CitizenDisplayTerms.CITIZEN_FULLNAME %>" 

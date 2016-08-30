@@ -24,6 +24,8 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
 	public static final String DATA_MANAGEMENT_ADMIN_PORTLET =
 		"1_WAR_opencpsportlet";
+	
+	public static final String USER_MGT_PORTLET = "2_WAR_opencpsportlet";
 
 	public static final String DOSSIER_MGT_PORTLET = "13_WAR_opencpsportlet";
 

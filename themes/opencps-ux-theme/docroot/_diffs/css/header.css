@@ -20,7 +20,7 @@
     padding: 38px 0;
 }
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
 	.opencps-theme.ux header.opencps-header-wrapper.guest .logo {
      	padding: 38px 0;
         width: 246px;
@@ -53,7 +53,7 @@
      	padding: 9px 0;
         width: 246px;
     }
-}
+} */
 
 .opencps-theme.ux header.opencps-header-wrapper.guest .hotline{
 	background: rgba(0, 0, 0, 0) url("../images/custom/icon_hotline.png") no-repeat scroll 0 center;

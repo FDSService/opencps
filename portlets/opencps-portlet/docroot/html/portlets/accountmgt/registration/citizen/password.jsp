@@ -16,9 +16,29 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 %>
-<%@ include file="/init.jsp" %> 
+
 <%@page import="org.opencps.accountmgt.search.CitizenDisplayTerms"%>
 
-<aui:input type="password" name="<%=CitizenDisplayTerms.CURRENT_PASSWORD %>" />
-<aui:input type="password" name="<%=CitizenDisplayTerms.NEW_PASSWORD %>" />
-<aui:input type="password" name="<%=CitizenDisplayTerms.RE_PASSWORD %>" />
+<%@ include file="/init.jsp" %> 
+
+
+<aui:row cssClass="nav-content-row-2">
+	<aui:col>
+		<aui:input type="password" name="<%=CitizenDisplayTerms.CURRENT_PASSWORD %>" />
+	</aui:col>
+</aui:row>
+
+<aui:row cssClass="nav-content-row-2">
+	<aui:col>
+		<aui:input type="password" name="<%=CitizenDisplayTerms.NEW_PASSWORD %>" />
+	</aui:col>
+</aui:row>
+
+<aui:row cssClass="nav-content-row-2">
+	<aui:col>
+		<aui:input type="password" name="<%=CitizenDisplayTerms.RE_PASSWORD %>" />
+	</aui:col>
+</aui:row>
+
+
+
