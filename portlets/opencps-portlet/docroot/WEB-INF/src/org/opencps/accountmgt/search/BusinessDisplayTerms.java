@@ -102,7 +102,7 @@ public class BusinessDisplayTerms extends DisplayTerms{
 		mappingOrganizationId = ParamUtil.getLong(request,
 			BUSINESS_MAPPINGORGANIZATIONID);
 		
-		accountStatus = ParamUtil.getInteger(request, BUSINESS_ACCOUNTSTATUS);
+		accountStatus = ParamUtil.getInteger(request, BUSINESS_ACCOUNTSTATUS, -1 );
 		
 	}
 	

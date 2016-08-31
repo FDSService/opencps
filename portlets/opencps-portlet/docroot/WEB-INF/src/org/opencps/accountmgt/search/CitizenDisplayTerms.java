@@ -86,7 +86,8 @@ public class CitizenDisplayTerms extends DisplayTerms{
 		attachFile = ParamUtil.getLong(request, CITIZEN_ATTACHFILE);
 		groupId = setGroupId(request);
 		
-		accountStatus =ParamUtil.getInteger(request, CITIZEN_ACCOUNTSTATUS);
+		accountStatus = ParamUtil.getInteger(request, CITIZEN_ACCOUNTSTATUS, -1);
+		
 		gender =ParamUtil.getInteger(request, CITIZEN_GENDER);
 	}
 	

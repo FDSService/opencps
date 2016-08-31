@@ -50,7 +50,7 @@
 
 	long businessId = business != null ? business.getBusinessId() : 0L;
 	
-	int accountStatus = ParamUtil.getInteger(request, BusinessDisplayTerms.BUSINESS_ACCOUNTSTATUS);
+	int accountStatus = ParamUtil.getInteger(request, BusinessDisplayTerms.BUSINESS_ACCOUNTSTATUS, -1);
 	
 	int countRegistered = BusinessLocalServiceUtil.countByG_S(scopeGroupId, PortletConstants.ACCOUNT_STATUS_REGISTERED);
 	

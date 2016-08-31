@@ -83,8 +83,8 @@ public class CitizenSearch extends SearchContainer<Citizen>{
 			displayTerms.getBirthDate(), DateTimeUtil._VN_DATE_FORMAT));
 		iteratorURL.setParameter(CitizenSearchTerm.CITIZEN_EMAIL, 
 			displayTerms.getEmail());
-		iteratorURL.setParameter(CitizenSearchTerm.CITIZEN_ACCOUNTSTATUS, 
-			String.valueOf(displayTerms.getAccountStatus()));
+		/*iteratorURL.setParameter(CitizenSearchTerm.CITIZEN_ACCOUNTSTATUS, 
+			String.valueOf(displayTerms.getAccountStatus()));*/
 		
 		try {
 

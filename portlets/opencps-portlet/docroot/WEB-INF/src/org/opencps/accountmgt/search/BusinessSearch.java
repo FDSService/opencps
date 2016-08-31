@@ -79,8 +79,8 @@ public class BusinessSearch extends SearchContainer<Business>{
 				displayTerms.getBusinessType());
 			iteratorURL.setParameter(BusinessDisplayTerms.BUSINESS_EMAIL, 
 				displayTerms.getEmail());
-			iteratorURL.setParameter(BusinessDisplayTerms.BUSINESS_ACCOUNTSTATUS, 
-				String.valueOf(displayTerms.getAccountStatus()));
+			/*iteratorURL.setParameter(BusinessDisplayTerms.BUSINESS_ACCOUNTSTATUS, 
+				String.valueOf(displayTerms.getAccountStatus()));*/
 			
 
 			try {

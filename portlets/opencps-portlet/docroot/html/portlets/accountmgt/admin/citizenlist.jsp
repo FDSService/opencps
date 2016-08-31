@@ -53,7 +53,7 @@
 	
 	long citizenId = citizen != null ? citizen.getCitizenId() : 0L;
 	
-	int accountStatus = ParamUtil.getInteger(request, CitizenDisplayTerms.CITIZEN_ACCOUNTSTATUS);
+	int accountStatus = ParamUtil.getInteger(request, CitizenDisplayTerms.CITIZEN_ACCOUNTSTATUS, -1);
 	
 	int countRegistered = CitizenLocalServiceUtil.countByG_S(scopeGroupId, PortletConstants.ACCOUNT_STATUS_REGISTERED);
 	
