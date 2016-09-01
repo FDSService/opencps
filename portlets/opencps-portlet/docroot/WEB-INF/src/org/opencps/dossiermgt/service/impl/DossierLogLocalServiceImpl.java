@@ -43,6 +43,7 @@ import com.liferay.portal.service.ServiceContext;
  * @see org.opencps.dossiermgt.service.DossierLogLocalServiceUtil
  */
 public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
+
 	/*
 	 * NOTE FOR DEVELOPERS: Never reference this interface directly. Always use
 	 * {@link org.opencps.dossiermgt.service.DossierLogLocalServiceUtil} to
@@ -69,45 +70,30 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 		Date updateDatetime, int level)
 		throws SystemException {
 
-		long dossierLogId = counterLocalService
-			.increment(DossierLog.class
-				.getName());
-		DossierLog dossierLog = dossierLogPersistence
-			.create(dossierLogId);
+		long dossierLogId =
+			counterLocalService.increment(DossierLog.class.getName());
+		DossierLog dossierLog = dossierLogPersistence.create(dossierLogId);
 
-		dossierLog
-			.setGroupId(groupId);
-		dossierLog
-			.setCompanyId(companyId);
+		dossierLog.setGroupId(groupId);
+		dossierLog.setCompanyId(companyId);
 
 		Date now = new Date();
 
-		dossierLog
-			.setUserId(userId);
+		dossierLog.setUserId(userId);
 
-		dossierLog
-			.setCreateDate(now);
+		dossierLog.setCreateDate(now);
 
-		dossierLog
-			.setModifiedDate(now);
+		dossierLog.setModifiedDate(now);
 
-		dossierLog
-			.setDossierId(dossierId);
-		dossierLog
-			.setFileGroupId(fileGroupId);
-		dossierLog
-			.setDossierStatus(status);
-		dossierLog
-			.setActionInfo(actionInfo);
-		dossierLog
-			.setMessageInfo(messageInfo);
-		dossierLog
-			.setUpdateDatetime(updateDatetime);
-		dossierLog
-			.setLevel(level);
+		dossierLog.setDossierId(dossierId);
+		dossierLog.setFileGroupId(fileGroupId);
+		dossierLog.setDossierStatus(status);
+		dossierLog.setActionInfo(actionInfo);
+		dossierLog.setMessageInfo(messageInfo);
+		dossierLog.setUpdateDatetime(updateDatetime);
+		dossierLog.setLevel(level);
 
-		return dossierLogPersistence
-			.update(dossierLog);
+		return dossierLogPersistence.update(dossierLog);
 
 	}
 
@@ -126,47 +112,30 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 	 */
 	public DossierLog addDossierLog(
 		long userId, long dossierId, long fileGroupId, String status,
-		String actionInfo, String messageInfo, Date updateDatetime, int level,
-		ServiceContext serviceContext)
+		String actor, String actionInfo, String messageInfo,
+		Date updateDatetime, int level, ServiceContext serviceContext)
 		throws SystemException {
 
-		long dossierLogId = counterLocalService
-			.increment(DossierLog.class
-				.getName());
-		DossierLog dossierLog = dossierLogPersistence
-			.create(dossierLogId);
+		long dossierLogId =
+			counterLocalService.increment(DossierLog.class.getName());
+		DossierLog dossierLog = dossierLogPersistence.create(dossierLogId);
 		Date now = new Date();
 
-		dossierLog
-			.setUserId(userId);
-		dossierLog
-			.setGroupId(serviceContext
-				.getScopeGroupId());
-		dossierLog
-			.setCompanyId(serviceContext
-				.getCompanyId());
-		dossierLog
-			.setCreateDate(now);
-		dossierLog
-			.setModifiedDate(now);
+		dossierLog.setUserId(userId);
+		dossierLog.setGroupId(serviceContext.getScopeGroupId());
+		dossierLog.setCompanyId(serviceContext.getCompanyId());
+		dossierLog.setCreateDate(now);
+		dossierLog.setModifiedDate(now);
 
-		dossierLog
-			.setDossierId(dossierId);
-		dossierLog
-			.setFileGroupId(fileGroupId);
-		dossierLog
-			.setDossierStatus(status);
-		dossierLog
-			.setActionInfo(actionInfo);
-		dossierLog
-			.setMessageInfo(messageInfo);
-		dossierLog
-			.setUpdateDatetime(updateDatetime);
-		dossierLog
-			.setLevel(level);
+		dossierLog.setDossierId(dossierId);
+		dossierLog.setFileGroupId(fileGroupId);
+		dossierLog.setDossierStatus(status);
+		dossierLog.setActionInfo(actionInfo);
+		dossierLog.setMessageInfo(messageInfo);
+		dossierLog.setUpdateDatetime(updateDatetime);
+		dossierLog.setLevel(level);
 
-		return dossierLogPersistence
-			.update(dossierLog);
+		return dossierLogPersistence.update(dossierLog);
 
 	}
 
@@ -191,50 +160,32 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 		String requestCommand, String actionInfo, String messageInfo, int level)
 		throws SystemException {
 
-		long dossierLogId = counterLocalService
-			.increment(DossierLog.class
-				.getName());
-		DossierLog dossierLog = dossierLogPersistence
-			.create(dossierLogId);
+		long dossierLogId =
+			counterLocalService.increment(DossierLog.class.getName());
+		DossierLog dossierLog = dossierLogPersistence.create(dossierLogId);
 		Date now = new Date();
 
-		dossierLog
-			.setUserId(userId);
-		dossierLog
-			.setGroupId(groupId);
-		dossierLog
-			.setCompanyId(companyId);
-		dossierLog
-			.setCreateDate(now);
-		dossierLog
-			.setModifiedDate(now);
+		dossierLog.setUserId(userId);
+		dossierLog.setGroupId(groupId);
+		dossierLog.setCompanyId(companyId);
+		dossierLog.setCreateDate(now);
+		dossierLog.setModifiedDate(now);
 
-		dossierLog
-			.setDossierId(dossierId);
-		dossierLog
-			.setFileGroupId(fileGroupId);
-		dossierLog
-			.setDossierStatus(dossierStatus);
-		dossierLog
-			.setActionInfo(actionInfo);
-		dossierLog
-			.setMessageInfo(messageInfo);
-		dossierLog
-			.setUpdateDatetime(now);
-		dossierLog
-			.setActor(actor);
+		dossierLog.setDossierId(dossierId);
+		dossierLog.setFileGroupId(fileGroupId);
+		dossierLog.setDossierStatus(dossierStatus);
+		dossierLog.setActionInfo(actionInfo);
+		dossierLog.setMessageInfo(messageInfo);
+		dossierLog.setUpdateDatetime(now);
+		dossierLog.setActor(actor);
 
-		dossierLog
-			.setLevel(level);
+		dossierLog.setLevel(level);
 
-		dossierLog
-			.setActionInfo(actionInfo);
+		dossierLog.setActionInfo(actionInfo);
 
-		dossierLog
-			.setRequestCommand(requestCommand);
+		dossierLog.setRequestCommand(requestCommand);
 
-		return dossierLogPersistence
-			.update(dossierLog);
+		return dossierLogPersistence.update(dossierLog);
 
 	}
 
@@ -246,8 +197,7 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 	public int countDossierLogByDossierId(long dossierId)
 		throws SystemException {
 
-		return dossierLogPersistence
-			.countByDossierId(dossierId);
+		return dossierLogPersistence.countByDossierId(dossierId);
 	}
 
 	/**
@@ -261,8 +211,8 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 		long dossierId, String[] actors, String[] requestCommands)
 		throws SystemException {
 
-		return dossierLogFinder
-			.findRequiredProcessDossier(dossierId, actors, requestCommands);
+		return dossierLogFinder.findRequiredProcessDossier(
+			dossierId, actors, requestCommands);
 
 	}
 
@@ -274,8 +224,7 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 	public List<DossierLog> getDossierLogByDossierId(long doosierId)
 		throws SystemException {
 
-		return dossierLogPersistence
-			.findByDossierId(doosierId);
+		return dossierLogPersistence.findByDossierId(doosierId);
 	}
 
 	/**
@@ -284,12 +233,13 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 	 * @return
 	 * @throws SystemException
 	 */
-	public List<DossierLog> getDossierLogByDossierId(long dossierId, int[] syncStatus)
+	public List<DossierLog> getDossierLogByDossierId(
+		long dossierId, int[] syncStatus)
 		throws SystemException {
 
-		return dossierLogPersistence
-			.findByDossierIdSync(dossierId, syncStatus);
+		return dossierLogPersistence.findByDossierIdSync(dossierId, syncStatus);
 	}
+
 	/**
 	 * @param dossierId
 	 * @param start
@@ -305,8 +255,8 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 
 		DossierLogUpdateDatetimeComparator orderByComparator =
 			new DossierLogUpdateDatetimeComparator(orderByAsc);
-		return dossierLogPersistence
-			.findByDossierId(dossierId, start, end, orderByComparator);
+		return dossierLogPersistence.findByDossierId(
+			dossierId, start, end, orderByComparator);
 
 	}
 
@@ -322,8 +272,7 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 		long dossierId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 
-		return dossierLogPersistence
-			.findByDossierId(dossierId, start, end, obc);
+		return dossierLogPersistence.findByDossierId(dossierId, start, end, obc);
 	}
 
 	/**
@@ -337,8 +286,7 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 		long dossierId, String requestCommand)
 		throws PortalException, SystemException {
 
-		return dossierLogPersistence
-			.countByD_RC(dossierId, requestCommand);
+		return dossierLogPersistence.countByD_RC(dossierId, requestCommand);
 	}
 
 	/**
@@ -353,8 +301,7 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 		boolean orderByAsc = true;
 		DossierLogUpdateDatetimeComparator comparator =
 			new DossierLogUpdateDatetimeComparator(orderByAsc);
-		return dossierLogPersistence
-			.findAll(start, end, comparator);
+		return dossierLogPersistence.findAll(start, end, comparator);
 	}
 
 	/**
@@ -364,8 +311,7 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 	public int CountAllDossierLog()
 		throws SystemException {
 
-		return dossierLogPersistence
-			.countAll();
+		return dossierLogPersistence.countAll();
 	}
 
 	/**
@@ -381,9 +327,9 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 		Date fromUpdateDatetime, Date toUpdateDatetime, int level,
 		String dossierStatus, int start, int end) {
 
-		return dossierLogFinder
-			.searchAdminLog(fromUpdateDatetime, toUpdateDatetime, level,
-				dossierStatus, start, end);
+		return dossierLogFinder.searchAdminLog(
+			fromUpdateDatetime, toUpdateDatetime, level, dossierStatus, start,
+			end);
 
 	}
 
@@ -398,8 +344,7 @@ public class DossierLogLocalServiceImpl extends DossierLogLocalServiceBaseImpl {
 		Date fromUpdateDatetime, Date toUpdateDatetime, int level,
 		String dossierStatus) {
 
-		return dossierLogFinder
-			.countAdminLog(fromUpdateDatetime, toUpdateDatetime, level,
-				dossierStatus);
+		return dossierLogFinder.countAdminLog(
+			fromUpdateDatetime, toUpdateDatetime, level, dossierStatus);
 	}
 }

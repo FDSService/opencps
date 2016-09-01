@@ -211,6 +211,7 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 			dossierId,
 			0,
 			PortletConstants.DOSSIER_STATUS_NEW,
+			"nltt",
 			PortletUtil.getActionInfo(
 				PortletConstants.DOSSIER_STATUS_NEW, serviceContext.getLocale()),
 			PortletUtil.getMessageInfo(
@@ -1170,6 +1171,7 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 			dossierId,
 			0,
 			PortletConstants.DOSSIER_STATUS_NEW,
+			"nltt",
 			PortletUtil.getActionInfo(
 				PortletConstants.DOSSIER_STATUS_NEW, serviceContext.getLocale()),
 			PortletUtil.getMessageInfo(
@@ -1522,6 +1524,7 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 			dossier.getDossierId(),
 			0,
 			PortletConstants.DOSSIER_STATUS_NEW,
+			"nltt",
 			PortletUtil.getActionInfo(
 				PortletConstants.DOSSIER_STATUS_NEW, serviceContext.getLocale()),
 			PortletUtil.getMessageInfo(
@@ -1767,7 +1770,7 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 		Dossier dossier = dossierPersistence.findByPrimaryKey(dossierId);
 
 		dossier = getDossier(dossier, userId, govAgencyOrganizationId, status);
-		
+
 		int flagStatus = PortletConstants.DOSSIER_FILE_SYNC_STATUS_NOSYNC;
 
 		if (syncStatus == PortletConstants.DOSSIER_FILE_SYNC_STATUS_SYNCSUCCESS ||
@@ -1779,8 +1782,8 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 			FileGroup fileGroup =
 				fileGroupLocalService.getFileGroup(fileGroupId);
 			List<DossierFile> dossierFiles =
-					dossierFileLocalService.findByF_D_S_R(
-						fileGroupId, dossierId, flagStatus, 0);
+				dossierFileLocalService.findByF_D_S_R(
+					fileGroupId, dossierId, flagStatus, 0);
 			if (dossierFiles != null) {
 				for (DossierFile dossierFile : dossierFiles) {
 					dossierFile.setSyncStatus(syncStatus);
@@ -1966,15 +1969,19 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 
 		return dossierPersistence.findByServiceInfoId(serviceinfoId);
 	}
-	
-	public List<Dossier> getDossierByG_DS_U(long groupId, String dossierStatus
-		, long userId, int start, int end) throws SystemException {
-		return dossierPersistence
-						.findByG_DS_U(groupId, dossierStatus, userId, start, end);
+
+	public List<Dossier> getDossierByG_DS_U(
+		long groupId, String dossierStatus, long userId, int start, int end)
+		throws SystemException {
+
+		return dossierPersistence.findByG_DS_U(
+			groupId, dossierStatus, userId, start, end);
 	}
-	
-	public int countDossierByG_DS_U(long groupId, String dossierStatus
-		, long userId) throws SystemException {
+
+	public int countDossierByG_DS_U(
+		long groupId, String dossierStatus, long userId)
+		throws SystemException {
+
 		return dossierPersistence.countByG_DS_U(groupId, dossierStatus, userId);
 	}
 
@@ -1983,13 +1990,11 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 	 * @param userId
 	 * @return
 	 */
-	public int countDossierByUserNewRequest(
-		long groupId, long userId) {
+	public int countDossierByUserNewRequest(long groupId, long userId) {
 
-		return dossierFinder.countDossierByUserNewRequest(
-			groupId, userId);
+		return dossierFinder.countDossierByUserNewRequest(groupId, userId);
 	}
-	
+
 	/**
 	 * @param groupId
 	 * @param userId
@@ -1999,8 +2004,7 @@ public class DossierLocalServiceImpl extends DossierLocalServiceBaseImpl {
 	 * @return
 	 */
 	public List getDossierByUserNewRequest(
-		long groupId, long userId, int start,
-		int end, OrderByComparator obc) {
+		long groupId, long userId, int start, int end, OrderByComparator obc) {
 
 		return dossierFinder.searchDossierByUserNewRequest(
 			groupId, userId, start, end, obc);

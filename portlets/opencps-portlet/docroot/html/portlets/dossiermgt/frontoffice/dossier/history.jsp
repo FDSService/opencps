@@ -141,7 +141,7 @@
 					</span>
 					
 					<span class="span8">
-						<%= Validator.isNotNull(dossierLog.getActor())? LanguageUtil.get(pageContext, dossierLog.getActor()+"-cus"):StringPool.BLANK %>
+						<liferay-ui:message key="<%= dossierLog.getActor() %>"/>
 					</span>
 				</aui:row>
 				

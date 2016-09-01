@@ -33,7 +33,10 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.MessageListenerException;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 
 /**
@@ -61,7 +64,7 @@ public class SyncFromBackOffice implements MessageListener{
 
 		boolean statusUpdate = false;
 
-		String actor = _getActor(toBackOffice.getRequestCommand());
+		String actor = _getActor(toBackOffice.getUserActorAction());
 
 		try {
 			statusUpdate =
@@ -101,26 +104,26 @@ public class SyncFromBackOffice implements MessageListener{
 		    "opencps/backoffice/engine/callback", sendToCallBack);
 	}    
     
+
     /**
-     * @param requestComand
+     * @param userActionId
      * @return
      */
-    private String _getActor(String requestComand) {
+    private String _getActor(long userActionId) {
+    	String actor = StringPool.BLANK;
     	
-    	String actor = WebKeys.ACTOR_ACTION_SYSTEM;
+    	try {
+        	if (Validator.isNotNull(userActionId) && userActionId > 0) {
+        		User userActor = UserLocalServiceUtil.fetchUser(userActionId);
+        		
+        		actor = "[CB]" + StringPool.SPACE + userActor.getFullName();
+        	}
+        }
+        catch (Exception e) {
+	        actor = "system";
+        }
     	
-		if (Validator.equals(WebKeys.DOSSIER_LOG_PAYMENT_REQUEST, requestComand) ||
-		    Validator.equals(
-		        WebKeys.DOSSIER_LOG_RESUBMIT_REQUEST, requestComand)) {
-			actor = WebKeys.ACTOR_ACTION_EMPLOYEE;
-		} 
-		
-		if (Validator.equals(WebKeys.DOSSIER_LOG_CANCEL_REQUEST, requestComand) ||
-		    Validator.equals(WebKeys.DOSSIER_LOG_CHANGE_REQUEST, requestComand)) {
-			actor = WebKeys.ACTOR_ACTION_CITIZEN;
-		}
-		
-		return actor;
+    	return actor;
     }
     
     private Log _log = LogFactoryUtil.getLog(SyncFromBackOffice.class);

@@ -359,7 +359,7 @@
         <order by="desc">
             <order-column name="modifiedDate" order-by="desc"></order-column>
         </order>
-        <finder name="DossierId" return-type="Collection">
+        <finder name="DossierId" return-type="Collection" where="dossierStatus != 'system'">
             <finder-column name="dossierId"></finder-column>
         </finder>
          <finder name="DossierIdSync" return-type="Collection">

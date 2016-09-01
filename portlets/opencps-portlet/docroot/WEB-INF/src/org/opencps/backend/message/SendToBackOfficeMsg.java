@@ -351,6 +351,23 @@ public class SendToBackOfficeMsg{
 
 		this.requestCommand = requestCommand;
 	}
+	
+    /**
+     * @return the userActorAction
+     */
+    public long getUserActorAction() {
+    
+    	return userActorAction;
+    }
+
+	
+    /**
+     * @param userActorAction the userActorAction to set
+     */
+    public void setUserActorAction(long userActorAction) {
+    
+    	this.userActorAction = userActorAction;
+    }
 	protected String requestCommand;
 
 	protected long processOrderId;
@@ -371,5 +388,6 @@ public class SendToBackOfficeMsg{
 	protected String govAgencyCode;
 	protected Date submitDateTime;
 	protected PaymentFile paymentFile;
+	protected long userActorAction;
 
 }

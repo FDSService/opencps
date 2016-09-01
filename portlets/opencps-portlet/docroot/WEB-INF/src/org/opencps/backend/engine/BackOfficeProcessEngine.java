@@ -261,6 +261,7 @@ public class BackOfficeProcessEngine implements MessageListener {
 				toBackOffice.setProcessWorkflowId(processWorkflowId);
 				toBackOffice.setCompanyId(toEngineMsg.getCompanyId());
 				toBackOffice.setGovAgencyCode(govAgencyCode);
+				toBackOffice.setUserActorAction(toEngineMsg.getActionUserId());
 
 				long ownerUserId = 0;
 				long ownerOrganizationId = 0;
@@ -335,7 +336,8 @@ public class BackOfficeProcessEngine implements MessageListener {
 				toBackOffice.setCompanyId(toEngineMsg.getCompanyId());
 				toBackOffice.setGovAgencyCode(govAgencyCode);
 				toBackOffice.setReceptionNo(toEngineMsg.getReceptionNo());
-				
+				toBackOffice.setUserActorAction(toEngineMsg.getActionUserId());
+
 				Message sendToBackOffice = new Message();
 
 				sendToBackOffice.put("toBackOffice", toBackOffice);
