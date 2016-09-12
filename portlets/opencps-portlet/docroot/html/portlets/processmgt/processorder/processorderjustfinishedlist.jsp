@@ -34,6 +34,8 @@
 	iteratorURL.setParameter("mvcPath", templatePath + "processordertodolist.jsp");
 	iteratorURL.setParameter("tabs1", ProcessUtils.TOP_TABS_PROCESS_ORDER_FINISHED_PROCESSING);
 	
+	ProcessOrderModifiedDateComparator modifiDateComparator = new ProcessOrderModifiedDateComparator(oderByJustFinish);
+	
 	List<ProcessOrderBean> processOrders =  new ArrayList<ProcessOrderBean>();
 	
 	int totalCount = 0;

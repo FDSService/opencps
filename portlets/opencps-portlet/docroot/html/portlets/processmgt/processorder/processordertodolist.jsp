@@ -1,5 +1,4 @@
 
-<%@page import="org.opencps.util.MessageKeys"%>
 <%
 /**
  * OpenCPS is the open source Core Public Services software
@@ -18,6 +17,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 %>
+<%@page import="org.opencps.processmgt.util.comparator.ProcessOrderModifiedDateComparator"%>
+<%@page import="com.liferay.portal.kernel.util.OrderByComparator"%>
+<%@page import="org.opencps.util.MessageKeys"%>
 <%@page import="org.opencps.processmgt.search.ProcessOrderSearchTerms"%>
 <%@page import="org.opencps.processmgt.search.ProcessOrderSearch"%>
 <%@page import="org.opencps.processmgt.model.ProcessOrder"%>
@@ -38,6 +40,8 @@
 	PortletURL iteratorURL = renderResponse.createRenderURL();
 	iteratorURL.setParameter("mvcPath", templatePath + "processordertodolist.jsp");
 	iteratorURL.setParameter("tabs1", ProcessUtils.TOP_TABS_PROCESS_ORDER_WAITING_PROCESS);
+	
+	ProcessOrderModifiedDateComparator modifiDateComparator = new ProcessOrderModifiedDateComparator(oderByToDo);
 	
 	List<ProcessOrderBean> processOrders =  new ArrayList<ProcessOrderBean>();
 	
