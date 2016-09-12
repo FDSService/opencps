@@ -20,6 +20,7 @@
 
 <%@page import="org.opencps.util.PortletUtil"%>
 <%@page import="org.opencps.util.DateTimeUtil"%>
+<%@page import="org.opencps.util.DictItemUtil"%>
 <%@page import="org.opencps.dossiermgt.model.ServiceConfig"%>
 <%@page import="org.opencps.dossiermgt.model.Dossier"%>
 <%@page import="org.opencps.processmgt.model.ProcessOrder"%>
@@ -128,7 +129,7 @@
 			<liferay-ui:message key="dossier-status"/>
 		</td>
 		<td >
-			<%=dossier != null ? PortletUtil.getDossierStatusLabel(dossier.getDossierStatus(), locale) :  StringPool.BLANK %>
+			<%=dossier != null ? DictItemUtil.getDictItemName(dossier.getDossierStatus(), locale) :  StringPool.BLANK %>
 		</td>
 	</tr>
 	<tr>

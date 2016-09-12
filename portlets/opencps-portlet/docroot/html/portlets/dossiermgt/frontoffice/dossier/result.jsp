@@ -34,6 +34,7 @@
 <%@page import="org.opencps.dossiermgt.service.DossierLogLocalServiceUtil"%>
 <%@page import="org.opencps.dossiermgt.model.DossierLog"%>
 <%@page import="java.util.List"%>
+<%@page import="org.opencps.util.DictItemUtil"%>
 <%@page import="org.opencps.util.DateTimeUtil"%>
 <%@page import="org.opencps.util.PortletConstants"%>
 <%@page import="org.opencps.util.PortletUtil"%>
@@ -190,7 +191,7 @@
 						<liferay-ui:message key="log-status"/>
 					</aui:col>
 					<aui:col width="70">
-						<%=PortletUtil.getDossierStatusLabel(dossier.getDossierStatus(), locale) %>
+						<%=DictItemUtil.getDictItemName(dossier.getDossierStatus(), locale) %>
 					</aui:col>
 				</aui:row>
 			</aui:col>
