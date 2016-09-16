@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -113,6 +114,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
@@ -2205,8 +2207,13 @@ public class DossierMgtFrontOfficePortlet extends MVCPortlet {
 			MessageBusUtil.sendMessage(
 				"opencps/frontoffice/out/destination", message);
 
+			ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest
+					.getAttribute(WebKeys.THEME_DISPLAY);
+
 			// add default message success
-			SessionMessages.add(actionRequest, MessageKeys.DEFAULT_SUCCESS_KEY);
+			SessionMessages.add(actionRequest, 
+					MessageKeys.DEFAULT_SUCCESS_KEY_X, 
+					LanguageUtil.format(themeDisplay.getLocale(), MessageKeys.DEFAULT_SUCCESS_KEY_X, String.valueOf(dossier.getDossierId())));
 
 		}
 		catch (Exception e) {
