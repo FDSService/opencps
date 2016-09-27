@@ -48,11 +48,16 @@ public class ConfigurationImpl implements ConfigurationAction{
 		String portletResource =
 					    ParamUtil.getString(actionRequest, "portletResource");
 		
+		String messageSuccessfullRegistration = ParamUtil.getString(actionRequest, "messageSuccessfullRegistration");
+		
 		PortletPreferences preferences =
 					    PortletPreferencesFactoryUtil.getPortletSetup(
 					        actionRequest, portletResource);
 		preferences.setValue("businessRegStep", businessRegStep);
 		preferences.setValue("citizenRegStep", citizenRegStep);
+		
+		preferences.setValue("messageSuccessfullRegistration", messageSuccessfullRegistration);
+		
 		preferences.store();
 		
 		SessionMessages.add(actionRequest, "config-stored");

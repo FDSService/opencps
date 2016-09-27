@@ -22,4 +22,6 @@
 <%  
 	String businessRegStep_cfg = GetterUtil.getString(portletPreferences.getValue("businessRegStep", "3"));
 	String citizenRegStep_cfg = GetterUtil.getString(portletPreferences.getValue("citizenRegStep", "3"));
+	
+	String messageSuccessfullRegistration = GetterUtil.getString(portletPreferences.getValue("messageSuccessfullRegistration", StringPool.BLANK));
 %>
