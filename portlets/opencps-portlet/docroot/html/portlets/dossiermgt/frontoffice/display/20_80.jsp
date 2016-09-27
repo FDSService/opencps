@@ -112,7 +112,7 @@
 		
 		String serviceDomainJsonData = ProcessOrderUtils.generateTreeView(
 				PortletPropsValues.DATAMGT_MASTERDATA_SERVICE_DOMAIN, 
-				PortletConstants.TREE_VIEW_DEFAULT_ITEM_CODE, 
+				PortletConstants.TREE_VIEW_ALL_ITEM, 
 				LanguageUtil.get(locale, "filter-by-service-domain-left") , 
 				PortletConstants.TREE_VIEW_LEVER_2, 
 				"radio",
