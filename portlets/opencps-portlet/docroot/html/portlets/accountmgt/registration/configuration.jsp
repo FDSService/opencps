@@ -51,6 +51,12 @@
 		<aui:col width="40"></aui:col>
 	</aui:row>
 	
+	<aui:input 
+		type="checkbox"
+		name="showLabelTaglibDatamgt" 
+		value="<%= showLabelTaglibDatamgt %>"
+	/>
+	
     <aui:input name="action" type="hidden" id="action"></aui:input>
     
     <aui:button-row>

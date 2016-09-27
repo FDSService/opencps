@@ -47,12 +47,14 @@ public class ConfigurationImpl implements ConfigurationAction{
 		String citizenRegStep = ParamUtil.getString(actionRequest, "citizenRegStep");
 		String portletResource =
 					    ParamUtil.getString(actionRequest, "portletResource");
+		String showLabelTaglibDatamgt = ParamUtil.getString(actionRequest, "showLabelTaglibDatamgt");
 		
 		PortletPreferences preferences =
 					    PortletPreferencesFactoryUtil.getPortletSetup(
 					        actionRequest, portletResource);
 		preferences.setValue("businessRegStep", businessRegStep);
 		preferences.setValue("citizenRegStep", citizenRegStep);
+		preferences.setValue("showLabelTaglibDatamgt", showLabelTaglibDatamgt);
 		preferences.store();
 		
 		SessionMessages.add(actionRequest, "config-stored");

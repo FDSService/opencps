@@ -313,30 +313,61 @@
 				</aui:row>
 			
 				<aui:row>
-					<datamgt:ddr 
-						cssClass="input100"
-						depthLevel="3" 
-						dictCollectionCode="ADMINISTRATIVE_REGION"
-						itemNames="cityId,districtId,wardId"
-						itemsEmptyOption="true,true,true"	
-						displayStyle="vertical"
-						emptyOptionLabels="cityId,districtId,wardId"
-						showLabel="false"
-						selectedItems="<%= StringUtil.merge(cdw, StringPool.COMMA) %>"
-					/>	
+					<c:choose>
+						<c:when test="<%=!showLabelTaglibDatamgt %>">
+							<datamgt:ddr 
+								cssClass="input100"
+								depthLevel="3" 
+								dictCollectionCode="ADMINISTRATIVE_REGION"
+								itemNames="cityId,districtId,wardId"
+								itemsEmptyOption="true,true,true"	
+								displayStyle="vertical"
+								emptyOptionLabels="cityId,districtId,wardId"
+								showLabel="false"
+								selectedItems="<%= StringUtil.merge(cdw, StringPool.COMMA) %>"
+							/>
+						</c:when>
+						<c:otherwise>
+							<datamgt:ddr 
+								cssClass="input100"
+								depthLevel="3" 
+								dictCollectionCode="ADMINISTRATIVE_REGION"
+								itemNames="cityId,districtId,wardId"
+								itemsEmptyOption="true,true,true"	
+								displayStyle="vertical"
+								showLabel="true"
+								selectedItems="<%= StringUtil.merge(cdw, StringPool.COMMA) %>"
+							/>
+						</c:otherwise>
+					</c:choose>
 				</aui:row>
 				
 				<aui:row>
-					<datamgt:ddr
-						cssClass="input100"
-						depthLevel="1" 
-						dictCollectionCode="<%=PortletPropsValues.DATAMGT_MASTERDATA_BUSINESS_TYPE %>"
-						itemNames="businessType"
-						itemsEmptyOption="true"	
-						emptyOptionLabels="business-type"
-						showLabel="false"
-						selectedItems="<%= typeID %>"
-					/>
+					<c:choose>
+						<c:when test="<%=!showLabelTaglibDatamgt %>">
+							<datamgt:ddr
+								cssClass="input100"
+								depthLevel="1" 
+								dictCollectionCode="<%=PortletPropsValues.DATAMGT_MASTERDATA_BUSINESS_TYPE %>"
+								itemNames="businessType"
+								itemsEmptyOption="true"	
+								emptyOptionLabels="business-type"
+								showLabel="false"
+								selectedItems="<%= typeID %>"
+							/>
+						</c:when>
+						<c:otherwise>
+							<datamgt:ddr
+								cssClass="input100"
+								depthLevel="1" 
+								dictCollectionCode="<%=PortletPropsValues.DATAMGT_MASTERDATA_BUSINESS_TYPE %>"
+								itemNames="businessType"
+								itemsEmptyOption="true"	
+								showLabel="true"
+								selectedItems="<%= typeID %>"
+							/>
+						</c:otherwise>
+					</c:choose>
 				</aui:row>
 				
 				<aui:row>
