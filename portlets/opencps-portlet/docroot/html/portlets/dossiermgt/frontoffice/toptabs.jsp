@@ -81,12 +81,11 @@
 <div class="opencps-toptabs">
 	<div class="container">
 		<c:choose>
-			<c:when test="<%= !hideTabDossierFile %>">
+			<c:when test="<%= hideTabDossierFile %>">
 				<liferay-ui:tabs  
 					names="<%= StringUtil.merge(names) %>"
 					param="tabs1"
 					url0="<%=urls != null && urls.size() > 0 ? urls.get(0): StringPool.BLANK %>"
-					url1="<%=urls != null && urls.size() > 1 ? urls.get(1): StringPool.BLANK %>"
 				/>
 			</c:when>
 			<c:otherwise>
@@ -94,6 +93,7 @@
 					names="<%= StringUtil.merge(names) %>"
 					param="tabs1"
 					url0="<%=urls != null && urls.size() > 0 ? urls.get(0): StringPool.BLANK %>"
+					url1="<%=urls != null && urls.size() > 1 ? urls.get(1): StringPool.BLANK %>"
 				/>
 			</c:otherwise>
 		</c:choose>
