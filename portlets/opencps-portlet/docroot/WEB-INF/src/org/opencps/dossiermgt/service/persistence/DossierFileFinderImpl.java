@@ -334,7 +334,7 @@ public class DossierFileFinderImpl extends BasePersistenceImpl<DossierFile>
 			if (fileEntryId < 0) {
 				sql = StringUtil
 					.replace(sql,
-						" AND (opencps_dossier_file.fileEntryId IS NOT NULL AND opencps_dossier_file.fileEntryId = ?)",
+						"AND (opencps_dossier_file.fileEntryId = ?)",
 						StringPool.BLANK);
 			}
 			else {
@@ -837,7 +837,7 @@ public class DossierFileFinderImpl extends BasePersistenceImpl<DossierFile>
 			if (fileEntryId < 0) {
 				sql = StringUtil
 					.replace(sql,
-						" AND (opencps_dossier_file.fileEntryId IS NOT NULL AND opencps_dossier_file.fileEntryId = ?)",
+						"AND (opencps_dossier_file.fileEntryId = ?)",
 						StringPool.BLANK);
 			}
 			else {

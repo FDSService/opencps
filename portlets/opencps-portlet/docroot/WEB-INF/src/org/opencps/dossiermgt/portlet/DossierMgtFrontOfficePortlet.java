@@ -25,6 +25,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -110,6 +111,7 @@ import org.opencps.util.PortletUtil;
 import org.opencps.util.PortletUtil.SplitDate;
 import org.opencps.util.WebKeys;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -2404,6 +2406,8 @@ public class DossierMgtFrontOfficePortlet extends MVCPortlet {
 				actionRequest, DossierDisplayTerms.DOSSIER_STATUS);
 
 		String redirectURL = ParamUtil.getString(actionRequest, "redirectURL");
+		
+		//String holdPosition = ParamUtil.getString(actionRequest, "hold");
 
 		Dossier dossier = DossierLocalServiceUtil.getDossier(dossierId);
 
@@ -2532,12 +2536,12 @@ public class DossierMgtFrontOfficePortlet extends MVCPortlet {
 		catch (Exception e) {
 
 			if (e instanceof NoSuchDossierException ||
-				e instanceof NoSuchDossierTemplateException ||
+				e instanceof NoSuchDossierTemplateException||
 				e instanceof RequiredDossierPartException) {
-
+				
 				SessionErrors.add(actionRequest, e.getClass());
-			}
-			else {
+				
+			}else {
 				SessionErrors.add(
 					actionRequest,
 					MessageKeys.DOSSIER_SYSTEM_EXCEPTION_OCCURRED);
@@ -3416,6 +3420,57 @@ public class DossierMgtFrontOfficePortlet extends MVCPortlet {
 		PortletUtil.writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
+	public void keywordsAutoComplete(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+			throws PortalException, SystemException, IOException {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+		String keywords =
+			ParamUtil.getString(actionRequest, "keywords");
+		
+		long administrationId = ParamUtil.getLong(actionRequest, "administrationId");
+		
+		List<ServiceInfo> serviceInfos = new ArrayList<ServiceInfo>();
+		
+		DictItem domainItem = null;
+		
+		String administrationIndex = StringPool.BLANK;
+		
+		if(administrationId > 0){
+			
+			domainItem = DictItemLocalServiceUtil.getDictItem(administrationId);
+			
+			administrationIndex = domainItem.getTreeIndex();
+			
+		}
+		
+		serviceInfos = ServiceInfoLocalServiceUtil.getServiceInFosByG_DI_Status(themeDisplay.getScopeGroupId(), 
+				StringPool.BLANK, 
+				administrationIndex, 
+				1, 
+				keywords,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		
+		for (ServiceInfo serviceInfo : serviceInfos) {
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+			
+			jsonObject.put("serviceinfoId",
+					String.valueOf(serviceInfo.getServiceinfoId()));
+					
+			jsonObject.put("serviceName",
+					serviceInfo.getServiceName());
+			
+			jsonArray.put(jsonObject);
+		}
+		
+		PortletUtil.writeJSON(actionRequest, actionResponse, jsonArray);
+	}
+	
 	private boolean _hasPermission = true;
 
 	public boolean hasPermission() {
