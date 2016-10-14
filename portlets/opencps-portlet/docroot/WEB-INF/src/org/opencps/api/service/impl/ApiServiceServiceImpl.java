@@ -153,7 +153,7 @@ public class ApiServiceServiceImpl extends ApiServiceServiceBaseImpl {
 			String note = dossierInfoObj.getString("note");
 			String dossierFiles = dossierInfoObj.getString("dossierFiles");
 			
-			ServiceInfo serviceInfo = serviceInfoPersistence.fetchByC_SN(
+			ServiceInfo serviceInfo = serviceInfoPersistence.findByC_SN(
 				serviceContext.getCompanyId(), serviceNo);
 			
 			ServiceConfig serviceConfig = serviceConfigPersistence.findByG_S_G(
