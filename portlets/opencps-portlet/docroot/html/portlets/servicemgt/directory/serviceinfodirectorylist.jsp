@@ -159,10 +159,10 @@
 			<%
 				ServiceSearchTerms searchTerms = (ServiceSearchTerms) searchContainer.getSearchTerms();
 	
-				total = ServiceInfoLocalServiceUtil.countService(scopeGroupId, searchTerms.getKeywords(), 
+				total = ServiceInfoLocalServiceUtil.countServiceDirectory(scopeGroupId, searchTerms.getKeywords(), 
 					searchTerms.getAdministrationCode(), searchTerms.getDomainCode());
 	
-				results = ServiceInfoLocalServiceUtil.searchService(scopeGroupId, searchTerms.getKeywords(), 
+				results = ServiceInfoLocalServiceUtil.searchServiceDirectory(scopeGroupId, searchTerms.getKeywords(), 
 					searchTerms.getAdministrationCode(), searchTerms.getDomainCode(),
 					searchContainer.getStart(), searchContainer.getEnd());
 				

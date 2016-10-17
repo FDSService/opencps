@@ -76,7 +76,37 @@ public class ServiceInfoLocalServiceImpl
 		return serviceInfoFinder.searchService(
 		    groupId, keywords, administrationCode, domainCode, start, end);
 	}
+	
+	/**
+	 * @param groupId
+	 * @param keywords
+	 * @param administrationCode
+	 * @param domainCode
+	 * @param start
+	 * @param end
+	 * @return
+	 * @throws PortalException
+	 * @throws SystemException
+	 */
+	public List<ServiceInfo> searchServiceDirectory(
+	    long groupId, String keywords, String administrationCode,
+	    String domainCode, int start, int end)
+	    throws PortalException, SystemException {
 
+		return serviceInfoFinder.searchServiceDirectory(
+		    groupId, keywords, administrationCode, domainCode, 0, start, end);
+	}
+	
+	public int countServiceDirectory(
+	    long groupId, String keywords, String administrationCode,
+	    String domainCode)
+	    throws PortalException, SystemException {
+
+		return serviceInfoFinder.countServiceDirectory(
+		    groupId, keywords, administrationCode, domainCode, 0);
+
+	}
+	
 	/**
 	 * Count service info
 	 * 
