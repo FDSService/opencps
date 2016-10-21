@@ -110,6 +110,7 @@
 				groupId = ?
 			AND ((lower(opencps_serviceinfo.serviceName) LIKE ?) OR (lower(opencps_serviceinfo.fullName) LIKE ?))
 			AND (opencps_serviceinfo.administrationCode = ?)
+			AND (opencps_serviceinfo.domainCode = ?)
 			AND (opencps_serviceinfo.activeStatus = ?)
 		]]>
 	</sql>
